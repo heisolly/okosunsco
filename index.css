@@ -387,6 +387,7 @@ body::before {
 .text-gradient-gold {
   background: linear-gradient(135deg, #D4AF37 0%, #B89628 50%, #8E7015 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 200% auto;
   animation: shine 4s linear infinite;

@@ -35,10 +35,10 @@ const LegalInsights: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                 <div>
-                    <span className="text-accent text-[10px] uppercase tracking-[0.25em] font-bold mb-4 block">
-                        Though Leadership
+                    <span className="text-accent text-[10px] uppercase tracking-[0.25em] font-bold mb-4 block whitespace-nowrap">
+                        Thought
                     </span>
-                    <h2 className="text-3xl md:text-5xl font-serif text-primary italic">Legal Intelligence</h2>
+                    <h2 className="text-3xl md:text-5xl font-serif text-primary italic">Strategic Intelligence</h2>
                 </div>
                 <a href="#" className="flex items-center gap-2 text-xs uppercase tracking-widest text-secondary/60 hover:text-accent transition-colors group">
                     View All Analysis <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform"/>

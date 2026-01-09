@@ -83,32 +83,6 @@ const App: React.FC = () => {
     <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000">
       <div className="bg-grain"></div> {/* Film/Noise Overlay */}
       
-      {/* NOIR LUXE HEADER */}
-      <nav className="fixed top-0 w-full z-[100] px-6 py-6 lg:px-12 transition-all duration-500 bg-gradient-to-b from-black/50 to-transparent">
-         <div className="max-w-[1800px] mx-auto flex items-center justify-between">
-             <div className="flex items-center gap-3 group cursor-pointer" onClick={() => navigateTo('home')}>
-                <div className="text-2xl font-serif text-white group-hover:text-accent transition-colors">O&P</div>
-                <div className="h-4 w-[1px] bg-white/20" />
-                <div className="text-[10px] tracking-[0.3em] uppercase text-white/80">Okosun & Partners</div>
-             </div>
-             
-             <div className="hidden md:flex items-center gap-12">
-                {['Practice', 'The Firm', 'Insights'].map((item) => (
-                   <button key={item} 
-                      className="text-[11px] uppercase tracking-[0.2em] text-white/70 hover:text-accent hover:underline decoration-accent/50 underline-offset-8 transition-all"
-                      onClick={() => navigateTo(item.toLowerCase() as any)}
-                   >
-                      {item}
-                   </button>
-                ))}
-             </div>
-
-             <button onClick={() => navigateTo('consultation')} className="text-[10px] tracking-[0.2em] font-bold text-primary bg-accent px-6 py-2 hover:bg-white transition-colors uppercase">
-                Consult
-             </button>
-         </div>
-      </nav>
-
       {/* HERO SECTION - GOLDEN HOUR LUXURY */}
       <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-primary" data-scene="intro">
          
@@ -450,7 +424,7 @@ const App: React.FC = () => {
             <div className="flex flex-col md:flex-row justify-between items-end mb-24 gap-12 border-b border-accent/10 pb-12">
                <div>
                   <span className="text-accent text-xs font-mono tracking-[0.4em] uppercase block mb-6 animate-pulse">
-                     Thought Leadership
+                     Forensic Strategy
                   </span>
                   <h2 className="text-5xl md:text-7xl font-serif text-white max-w-2xl leading-[1.1]">
                      Architecture of <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-accent to-[#F4E4C1]">Victory.</span>
@@ -899,9 +873,13 @@ const App: React.FC = () => {
   return (
     <div className="relative min-h-screen bg-ivory text-primary selection:bg-accent/20 selection:text-accent font-sans overflow-x-hidden">
       <div className="bg-grain"></div> {/* Film/Noise Overlay */}
-      {/* LUXURY HEADER - REDESIGNED */}
-      <nav className="fixed top-0 w-full z-[100] bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)] transition-all duration-500">
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-3 lg:py-4">
+      {/* LUXURY HEADER - INTELLIGENT ADAPTATION */}
+      <nav className={`fixed top-0 w-full z-[100] transition-all duration-700 ${
+        currentPage === "home" && scrollY < 50
+          ? "bg-transparent py-6 lg:py-8"
+          : "bg-white/95 backdrop-blur-xl border-b border-accent/20 shadow-[0_4px_30px_rgba(0,0,0,0.05)] py-3 lg:py-4"
+      }`}>
+        <div className="max-w-[1800px] mx-auto px-6 lg:px-12">
           <div className="flex items-center justify-between">
             
             {/* LOGO SECTION - LEFT */}
@@ -912,13 +890,21 @@ const App: React.FC = () => {
               <img 
                 src="/logo.png" 
                 alt="Okosun, Okosun & Partners" 
-                className="h-10 lg:h-12 w-auto object-contain group-hover/logo:scale-105 transition-all duration-500"
+                className={`h-10 lg:h-12 w-auto object-contain group-hover/logo:scale-105 transition-all duration-500 ${
+                  currentPage === "home" && scrollY < 50 ? "brightness-0 invert" : ""
+                }`}
               />
-              <div className="hidden xl:flex flex-col border-l-2 border-accent/30 pl-4">
-                <span className="text-sm font-bold text-primary tracking-tight">
+              <div className={`hidden xl:flex flex-col border-l-2 border-accent/30 pl-4 ${
+                currentPage === "home" && scrollY < 50 ? "border-white/20" : ""
+              }`}>
+                <span className={`text-sm font-bold tracking-tight ${
+                  currentPage === "home" && scrollY < 50 ? "text-white" : "text-primary"
+                }`}>
                   Okosun, Okosun & Partners
                 </span>
-                <span className="text-[8px] uppercase tracking-[0.3em] font-black text-primary/40">
+                <span className={`text-[8px] uppercase tracking-[0.3em] font-black ${
+                  currentPage === "home" && scrollY < 50 ? "text-white/40" : "text-primary/40"
+                }`}>
                   Strategic Legal Counsel
                 </span>
               </div>
@@ -939,7 +925,7 @@ const App: React.FC = () => {
                   className={`relative text-[11px] uppercase tracking-[0.2em] font-bold transition-all duration-300 py-2 group/nav ${
                     currentPage === item.id 
                       ? "text-accent" 
-                      : "text-primary/70 hover:text-primary"
+                      : (currentPage === "home" && scrollY < 50 ? "text-white/70 hover:text-white" : "text-primary/70 hover:text-primary")
                   }`}
                 >
                   {item.label}
@@ -959,7 +945,11 @@ const App: React.FC = () => {
               {/* Consult Button */}
               <button
                 onClick={() => navigateTo("consultation")}
-                className="hidden md:flex items-center gap-3 px-8 py-3 bg-primary text-white text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-accent transition-all duration-300 shadow-lg hover:shadow-xl group/cta"
+                className={`hidden md:flex items-center gap-3 px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-300 shadow-lg hover:shadow-xl group/cta ${
+                  currentPage === "home" && scrollY < 50
+                    ? "bg-white text-primary hover:bg-accent hover:text-white"
+                    : "bg-primary text-white hover:bg-accent"
+                }`}
               >
                 <PhoneCall className="w-4 h-4 group-hover/cta:rotate-12 transition-transform" />
                 <span>Consult Now</span>
@@ -968,9 +958,15 @@ const App: React.FC = () => {
               {/* Contact Icon Button */}
               <button
                 onClick={() => navigateTo("contact")}
-                className="flex items-center justify-center w-12 h-12 border-2 border-primary/10 hover:border-accent hover:bg-accent/5 transition-all duration-300 group/icon"
+                className={`flex items-center justify-center w-12 h-12 border-2 transition-all duration-300 group/icon ${
+                  currentPage === "home" && scrollY < 50
+                    ? "border-white/10 hover:border-white hover:bg-white/5"
+                    : "border-primary/10 hover:border-accent hover:bg-accent/5"
+                }`}
               >
-                <ExternalLink className="w-5 h-5 text-primary/60 group-hover/icon:text-accent transition-colors" />
+                <ExternalLink className={`w-5 h-5 transition-colors ${
+                  currentPage === "home" && scrollY < 50 ? "text-white/60 group-hover/icon:text-white" : "text-primary/60 group-hover/icon:text-accent"
+                }`} />
               </button>
             </div>
           </div>
