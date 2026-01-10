@@ -1,8 +1,0 @@
-
-{
-  "name": "OkoSlaw - Strategic Legal Counsel",
-  "description": "A sophisticated legal services platform featuring a 3D animated Justice statue, strategic practice area highlights, and an AI-powered legal strategist for initial consultations.",
-  "requestFramePermissions": [
-    "microphone"
-  ]
-}

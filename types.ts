@@ -29,17 +29,6 @@ export type Scene = 'intro' | 'values' | 'practice' | 'stats' | 'team' | 'timeli
 
 export type Page = 'home' | 'about' | 'team' | 'practice' | 'contact' | 'faq' | 'privacy' | 'blog' | 'consultation';
 
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-  groundingUrls?: { title: string; uri: string }[];
-}
-
-export interface Suggestion {
-  label: string;
-  text: string;
-}
-
 export interface FAQItem {
   question: string;
   answer: string;

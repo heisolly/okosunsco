@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Scale, Briefcase, Users, Building2, Lightbulb, ArrowRight, Gavel, ShieldCheck, Landmark, Clock, Calendar, Smartphone, Trophy, UserCheck, Search } from 'lucide-react';
-import { PracticeArea, Partner, CaseVictory, Suggestion, FAQItem } from './types';
+import { PracticeArea, Partner, CaseVictory, FAQItem } from './types';
 
 export const FIRM_NAME = "Okosun, Okosun & Partners";
 
@@ -100,12 +100,6 @@ export const VICTORIES: CaseVictory[] = [
     status: 'FAVORABLE VERDICT',
     description: 'Secured full beneficiary rights in a contested will proceeding involving international assets.'
   }
-];
-
-export const CHAT_SUGGESTIONS: Suggestion[] = [
-  { label: 'Criminal Defense', text: 'How does Okosun & Partners handle complex criminal defense cases?' },
-  { label: 'Corporate M&A', text: 'Tell me about your expertise in company law and mergers.' },
-  { label: 'Property Disputes', text: 'What is your strategy for high-stakes property litigation?' }
 ];
 
 export const getIcon = (name: string) => {

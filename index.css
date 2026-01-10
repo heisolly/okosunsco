@@ -1,5 +1,4 @@
-/* Premium Global Styles */
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap");
+/* Global Styles */
 
 :root {
   --ivory: #faf7f1;
@@ -21,11 +20,10 @@ body {
   background: linear-gradient(135deg, #faf7f1 0%, #f5f0e8 50%, #faf7f1 100%);
   color: var(--primary);
   overflow-x: hidden;
-  font-family: "Inter", sans-serif;
+  font-family: "Space Grotesk", sans-serif;
   position: relative;
 }
 
-/* Animated Background Gradient */
 body::before {
   content: "";
   position: fixed;
@@ -279,7 +277,6 @@ body::before {
   }
 }
 
-/* 3D Card Transforms */
 .card-3d {
   transform-style: preserve-3d;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -370,9 +367,6 @@ body::before {
   -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
 
-/* --- NEW PREMIUM ANIMATIONS & UTILITIES --- */
-
-/* Enhanced Grain Overlay */
 .bg-grain {
   position: fixed;
   inset: 0;
@@ -407,110 +401,6 @@ body::before {
 @keyframes scroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
-}
-
-/* 3D Scale Model (CSS Only) */
-.scene-3d {
-  width: 100%;
-  height: 500px;
-  perspective: 1200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.scale-model {
-  position: relative;
-  transform-style: preserve-3d;
-  animation: rotateModel 25s infinite linear;
-}
-
-@keyframes rotateModel {
-  0% { transform: rotateY(0deg) rotateX(5deg); }
-  50% { transform: rotateY(180deg) rotateX(-5deg); }
-  100% { transform: rotateY(360deg) rotateX(5deg); }
-}
-
-.scale-base {
-  position: absolute;
-  bottom: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 25px;
-  background: #1a1a1a;
-  border-radius: 50%;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-.scale-pole {
-  position: absolute;
-  bottom: -90px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 280px;
-  background: linear-gradient(to right, #cfcfcf, #ffffff, #cfcfcf);
-}
-
-.scale-beam-wrapper {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  height: 20px;
-  transform-style: preserve-3d;
-  animation: balance 8s ease-in-out infinite;
-}
-
-@keyframes balance {
-  0%, 100% { transform: translateX(-50%) rotateZ(4deg); }
-  50% { transform: translateX(-50%) rotateZ(-4deg); }
-}
-
-.scale-beam {
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(to right, #D4AF37, #F9E076, #D4AF37);
-  position: absolute;
-  top: 0;
-  border-radius: 2px;
-}
-
-.scale-pan-string {
-  position: absolute;
-  top: 0;
-  width: 1px;
-  height: 100px;
-  background: rgba(212, 175, 55, 0.4);
-  transform-origin: top;
-}
-
-.string-left { left: 0; animation: counterBalanceLeft 8s ease-in-out infinite; }
-.string-right { right: 0; animation: counterBalanceRight 8s ease-in-out infinite; }
-
-@keyframes counterBalanceLeft {
-  0%, 100% { transform: rotateZ(-4deg); }
-  50% { transform: rotateZ(4deg); }
-}
-@keyframes counterBalanceRight {
-  0%, 100% { transform: rotateZ(-4deg); }
-  50% { transform: rotateZ(4deg); }
-}
-
-.scale-pan {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 30px;
-  border-bottom-left-radius: 40px;
-  border-bottom-right-radius: 40px;
-  background: radial-gradient(circle at 30% 30%, #F9E076, #D4AF37);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  opacity: 0.95;
 }
 
 /* Smooth Hover Lines */
