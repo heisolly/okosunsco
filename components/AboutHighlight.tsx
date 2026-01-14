@@ -1,5 +1,6 @@
 import React from 'react';
 import RevealSection from './RevealSection';
+import { ScrambledText, SplitText, GlitchText, FuzzyText } from './ReactsbitsAnimations';
 
 interface WhyChooseUsItem {
   title: string;
@@ -35,12 +36,12 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
             O&P
           </div>
           <span className="text-accent text-xs font-black uppercase tracking-[0.5em] mb-8 block shimmer">
-            THE CHAMBERS
+            <ScrambledText text="THE CHAMBERS" />
           </span>
           <h2 className="font-serif text-5xl md:text-8xl text-white italic mb-12 leading-none">
-            Since 2010, <br />
+            <SplitText text="Since 2010," delay={0.1} /> <br />
             we've refined the <br />
-            art of <span className="gradient-text text-glow">victory.</span>
+            art of <span className="gradient-text text-glow"><GlitchText text="victory." /></span>
           </h2>
           <p className="text-white/40 font-light text-xl leading-relaxed mb-16 max-w-lg">
             Founded by Emmanuel and Aituaje Okosun, our firm bridges the gap
@@ -54,7 +55,7 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                 </div>
                 <div>
                   <h4 className="font-display text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors">
-                    {item.title}
+                    <FuzzyText text={item.title} />
                   </h4>
                   <p className="text-sm text-white/40 leading-relaxed group-hover:text-white/60 transition-colors">
                     {item.desc}

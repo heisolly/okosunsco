@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Clock, ArrowRight } from 'lucide-react';
+import { DecryptedText, GradientText, ShinyText } from '../components/ReactsbitsAnimations';
 
 const Contact: React.FC = () => {
   return (
@@ -7,10 +8,10 @@ const Contact: React.FC = () => {
       <div className="px-6 md:px-24 max-w-7xl mx-auto pb-32">
         <div className="text-center mb-20">
           <span className="text-accent text-xs font-black uppercase tracking-[0.5em] mb-8 block">
-            GET IN TOUCH
+            <DecryptedText text="GET IN TOUCH" />
           </span>
           <h1 className="font-serif text-6xl md:text-9xl text-primary italic mb-6">
-            Contact Us
+            <GradientText text="Contact Us" colors={['#0E0E12', '#D4AF37', '#0E0E12']} />
           </h1>
           <p className="text-xl text-primary/60 font-light max-w-2xl mx-auto">
             Schedule a confidential consultation with our legal experts
@@ -118,7 +119,7 @@ const Contact: React.FC = () => {
               <div className="text-center">
                 <button className="px-16 py-6 bg-primary text-white hover:bg-accent transition-all duration-500 hover:scale-105 shadow-xl hover:shadow-2xl">
                   <span className="text-[11px] uppercase tracking-[0.5em] font-black">
-                    Send Message
+                    <ShinyText text="Send Message" />
                   </span>
                 </button>
               </div>

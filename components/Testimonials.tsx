@@ -1,5 +1,6 @@
 import React from 'react';
 import RevealSection from './RevealSection';
+import { DecryptedText, GradientText } from './ReactsbitsAnimations';
 
 const Testimonials: React.FC = () => {
   const reviews = [
@@ -28,10 +29,10 @@ const Testimonials: React.FC = () => {
       <div className="max-w-[1600px] mx-auto">
         <div className="text-center mb-20">
           <span className="text-[10px] uppercase tracking-[0.5em] font-black text-accent mb-6 block">
-            CLIENT VOICES
+            <DecryptedText text="CLIENT VOICES" />
           </span>
           <h2 className="font-serif text-6xl md:text-8xl text-primary italic">
-            Testimonials
+            <GradientText text="Testimonials" colors={['#0E0E12', '#D4AF37', '#0E0E12']} />
           </h2>
         </div>
 

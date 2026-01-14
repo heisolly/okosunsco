@@ -1,5 +1,6 @@
 import React from 'react';
 import { Clock, Calendar, Smartphone } from 'lucide-react';
+import { ScrambledText, SplitText, GradientText, ShinyText, FuzzyText } from '../components/ReactsbitsAnimations';
 
 const About: React.FC = () => {
   return (
@@ -7,11 +8,11 @@ const About: React.FC = () => {
       <div className="pt-48 pb-20 px-6 md:px-24 max-w-[1800px] mx-auto">
         <div className="max-w-4xl">
           <span className="text-accent text-xs font-black uppercase tracking-[0.5em] mb-8 block">
-            ABOUT THE FIRM
+            <ScrambledText text="ABOUT THE FIRM" />
           </span>
           <h1 className="font-serif text-6xl md:text-8xl text-primary italic mb-12 leading-none">
-            A Legacy of <br />
-            <span className="text-accent">Excellence</span> & Trust.
+            <SplitText text="A Legacy of" delay={0.1} /> <br />
+            <span className="text-accent"><GradientText text="Excellence" colors={['#D4AF37', '#FFD700', '#D4AF37']} /></span> & Trust.
           </h1>
           <p className="text-2xl text-primary/60 font-light leading-relaxed max-w-2xl">
             Founded in 2010, Okosun, Okosun & Partners serves as the strategic
@@ -52,7 +53,9 @@ const About: React.FC = () => {
           
           <div className="space-y-12">
             <div>
-              <h3 className="text-4xl font-serif italic text-primary mb-6">Our Story</h3>
+              <h3 className="text-4xl font-serif italic text-primary mb-6">
+                <FuzzyText text="Our Story" />
+              </h3>
               <div className="space-y-6 text-primary/70 leading-relaxed font-light">
                 <p>
                   Okosun, Okosun & Partners began as a specialized litigation boutique.
@@ -77,7 +80,9 @@ const About: React.FC = () => {
                 { title: "Excellence", desc: "Delivering world-class legal services in every matter." }
               ].map((item, i) => (
                 <div key={i} className="border-l-2 border-accent/20 pl-6 hover:border-accent transition-colors duration-300">
-                  <h4 className="text-lg font-bold text-primary mb-2">{item.title}</h4>
+                  <h4 className="text-lg font-bold text-primary mb-2">
+                    <ShinyText text={item.title} />
+                  </h4>
                   <p className="text-sm text-primary/60">{item.desc}</p>
                 </div>
               ))}

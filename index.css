@@ -709,3 +709,162 @@ body::before {
 .transition-smooth {
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Luxury Marquee Animation */
+.luxury-marquee-container {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem 0;
+}
+
+.luxury-marquee-track {
+  display: flex;
+  width: 100%;
+}
+
+.luxury-marquee-content {
+  display: flex;
+  gap: 0;
+  animation: luxuryScroll 60s linear infinite;
+  will-change: transform;
+}
+
+.luxury-marquee-container:hover .luxury-marquee-content {
+  animation-play-state: paused;
+}
+
+.luxury-marquee-item {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+@keyframes luxuryScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+/* Text Animations */
+
+/* Split Text Animation */
+.split-text-container {
+  display: inline-block;
+}
+
+.split-text-char {
+  display: inline-block;
+  opacity: 0;
+  animation: splitTextReveal 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes splitTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotateX(-90deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0);
+  }
+}
+
+/* Gradient Text Animation */
+.gradient-text-animated {
+  background: linear-gradient(90deg, #D4AF37, #F4E4C1, #D4AF37, #B8860B, #D4AF37);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 3s linear infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Shiny Text Animation */
+.shiny-text {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.shiny-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+/* Blur Text Animation */
+.blur-text-container {
+  display: inline-block;
+}
+
+.blur-text-word {
+  display: inline-block;
+  filter: blur(10px);
+  opacity: 0;
+  transition: filter 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blur-text-word.blur-text-visible {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Fuzzy Text Animation */
+.fuzzy-text {
+  animation: fuzzyPulse 2s ease-in-out infinite;
+}
+
+@keyframes fuzzyPulse {
+  0%, 100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+  50% {
+    filter: blur(0.5px);
+    opacity: 0.95;
+  }
+}
+
+/* Scroll Reveal Animation */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+
+
+
+
+

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Twitter, Linkedin, Instagram, MapPin, Phone, Mail, Clock, ArrowDown } from 'lucide-react';
 import { Page } from '../types';
+import { ASCIIText, TrueFocus, ShinyText } from './ReactsbitsAnimations';
 
 interface FooterProps {
   onNavigate: (page: Page) => void;
@@ -46,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           <div className="lg:col-span-2 space-y-6">
             <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-accent">
-              Quick Links
+              <ASCIIText text="Quick Links" />
             </h4>
             <ul className="space-y-3">
               {[
@@ -70,7 +71,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           <div className="lg:col-span-3 space-y-6">
             <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-accent">
-              Practice Areas
+              <ASCIIText text="Practice Areas" />
             </h4>
             <ul className="space-y-3">
               {["Corporate Law", "Litigation", "Property Law", "Criminal Defense", "Legal Advisory"].map((area) => (
@@ -85,7 +86,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           <div className="lg:col-span-3 space-y-6">
             <h4 className="text-xs uppercase tracking-[0.3em] font-bold text-accent">
-              Get In Touch
+              <ASCIIText text="Get In Touch" />
             </h4>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -145,7 +146,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             className="group flex items-center gap-2 px-6 py-2 border border-white/20 hover:border-accent hover:bg-accent/10 transition-all duration-300"
           >
             <span className="text-xs uppercase tracking-wider font-bold text-white/60 group-hover:text-accent transition-colors">
-              Back to Top
+              <ShinyText text="Back to Top" />
             </span>
             <ArrowDown className="w-4 h-4 rotate-180 text-white/60 group-hover:text-accent group-hover:-translate-y-1 transition-all" />
           </button>

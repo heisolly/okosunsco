@@ -10,6 +10,7 @@ import ProcessTimeline from '../components/ProcessTimeline';
 import FAQSection from '../components/FAQSection';
 import { PRACTICE_AREAS, WHY_CHOOSE_US, getIcon, FAQS } from '../constants';
 import { Page } from '../types';
+import { TextPressure, BlurText } from '../components/ReactsbitsAnimations';
 
 interface HomeProps {
   onNavigate: (page: Page) => void;
@@ -26,8 +27,6 @@ const Home: React.FC<HomeProps> = ({ onNavigate, activeFaq, setActiveFaq }) => {
         onInitiateBrief={() => onNavigate('consultation')}
         onViewCapabilities={() => onNavigate('practice')}
       />
-
-      <SocialMarquee />
 
       <Philosophy />
 
@@ -57,12 +56,10 @@ const Home: React.FC<HomeProps> = ({ onNavigate, activeFaq, setActiveFaq }) => {
 
           <div className="relative z-10">
             <h2 className="font-serif text-5xl md:text-8xl text-primary italic mb-12 leading-tight">
-              Ready for a <br />
-              <span className="gradient-text text-glow">Strategic Shift?</span>
+              <TextPressure text="Ready for a Strategic Shift?" />
             </h2>
             <p className="text-2xl text-secondary/60 font-light mb-16 max-w-2xl mx-auto">
-              Our partners handle only a limited portfolio of cases to ensure
-              absolute strategic focus.
+              <BlurText text="Our partners handle only a limited portfolio of cases to ensure absolute strategic focus." delay={0.3} />
             </p>
             <button
               onClick={() => onNavigate("contact")}
@@ -78,6 +75,8 @@ const Home: React.FC<HomeProps> = ({ onNavigate, activeFaq, setActiveFaq }) => {
       </section>
 
       <Testimonials />
+
+      <SocialMarquee />
 
       <ProcessTimeline onStartProcess={() => onNavigate('consultation')} />
 

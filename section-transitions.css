@@ -1,0 +1,149 @@
+/* ============================================
+   SMOOTH SECTION TRANSITIONS (SIMPLIFIED)
+   ============================================ */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Simple section fade-in */
+section {
+  opacity: 1;
+  transition: opacity 0.3s ease-out;
+}
+
+section.section-visible {
+  opacity: 1;
+}
+
+/* Minimal section separators */
+.section-separator {
+  position: relative;
+  padding: 2rem 0;
+}
+
+.section-separator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 800px;
+  height: 1px;
+  background: rgba(212, 175, 55, 0.2);
+}
+
+/* Simple transitions */
+.section-transition {
+  transition: background-color 0.3s ease;
+}
+
+/* Disable complex animations */
+.section-parallax::before {
+  display: none;
+}
+
+/* Fade between sections */
+@keyframes sectionFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.section-animate {
+  animation: sectionFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* Staggered section content */
+.section-content > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-visible .section-content > *:nth-child(1) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.1s;
+}
+
+.section-visible .section-content > *:nth-child(2) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+
+.section-visible .section-content > *:nth-child(3) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.3s;
+}
+
+.section-visible .section-content > *:nth-child(4) {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+
+/* Smooth page transitions */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.page-transition-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-transition-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease-in, transform 0.3s ease-in;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  section {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}

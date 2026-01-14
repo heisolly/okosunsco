@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import RevealSection from './RevealSection';
 import { PracticeArea } from '../types';
+import { DecryptedText, GradientText, TextPressure, ShinyText } from './ReactsbitsAnimations';
 
 interface PracticeGridProps {
   areas: PracticeArea[];
@@ -22,10 +23,10 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
         <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-8">
           <div className="max-w-xl">
             <span className="text-accent text-xs font-black uppercase tracking-[0.4em] mb-4 block shimmer">
-              DOMAINS
+              <DecryptedText text="DOMAINS" />
             </span>
             <h2 className="font-serif text-5xl md:text-7xl text-primary italic leading-tight">
-              Mastery across the <span className="gradient-text">legal spectrum.</span>
+              Mastery across the <span className="gradient-text"><GradientText text="legal spectrum." colors={['#D4AF37', '#0E0E12', '#D4AF37']} /></span>
             </h2>
           </div>
           <p className="text-secondary/50 max-w-xs text-sm font-light">
@@ -51,7 +52,7 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
                   {getIcon(area.icon)}
                 </div>
                 <h3 className="font-display text-2xl font-bold text-primary mb-6 group-hover:text-accent transition-colors duration-500">
-                  {area.title}
+                  <TextPressure text={area.title} />
                 </h3>
                 <p className="text-sm font-light text-secondary/70 mb-10 leading-relaxed">
                   {area.description}
@@ -60,7 +61,7 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
                   onClick={() => onNavigate("practice")}
                   className="mt-auto flex items-center gap-3 text-[10px] uppercase tracking-widest font-black text-accent group-hover:gap-5 transition-all animated-underline"
                 >
-                  Brief Details <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                  <ShinyText text="Brief Details" /> <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
                 </button>
               </div>
             </div>
