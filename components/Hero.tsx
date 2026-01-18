@@ -10,81 +10,103 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
   return (
     <>
-      {/* Sharp Mobile Hero - Redesigned for Luxury & Precision */}
-      <section className="lg:hidden relative min-h-screen w-full flex flex-col overflow-hidden bg-[#FAF9F6]" data-scene="intro">
-        {/* The "Crazy" Sharp Background Architecture */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-[-10%] right-[-10%] w-[1px] h-[120%] bg-accent/20 rotate-[30deg] transform-gpu" />
-          <div className="absolute top-[20%] right-[10%] w-[1px] h-[60%] bg-accent/10 rotate-[30deg] transform-gpu" />
-          
-          {/* Subtle Masked Symbolism - Increased Visibility */}
-          <div className="absolute bottom-0 right-[-10%] w-full h-2/3 opacity-[0.15] z-0">
-            <img src="/lady-justice.png" alt="" className="w-full h-full object-contain object-bottom grayscale scale-125 origin-bottom-right" />
+      {/* Precise Mobile Hero Redesign - Matching Screenshot */}
+      <section className="lg:hidden relative min-h-screen w-full flex flex-col bg-[#FAF9F6] overflow-hidden" data-scene="intro">
+        
+        {/* Mockup Integrated Header (from screenshot) */}
+        <header className="relative z-30 flex items-center justify-between px-6 pt-8 pb-4">
+          <div className="flex items-center gap-2">
+            <img src="/logo.png" alt="Logo" className="h-10 w-auto object-contain" />
           </div>
+          <nav className="hidden xs:flex items-center gap-4">
+            {['HOME', 'ABOUT', 'PRACTICE', 'CONTACT'].map((item) => (
+              <span key={item} className={`text-[9px] font-black tracking-widest ${item === 'HOME' ? 'text-accent' : 'text-primary/40'}`}>
+                {item}
+              </span>
+            ))}
+          </nav>
+          <button className="w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center border border-black/5">
+            <div className="space-y-1">
+              <div className="w-4 h-[2px] bg-primary rounded-full" />
+              <div className="w-4 h-[2px] bg-primary rounded-full" />
+              <div className="w-4 h-[2px] bg-primary rounded-full" />
+            </div>
+          </button>
+        </header>
+
+        {/* Background Sharp Lines */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          {/* Main Diagonal Line from Screenshot */}
+          <div className="absolute top-[-10%] right-[15%] w-[1px] h-[120%] bg-accent/20 rotate-[22deg] transform-gpu" />
+          <div className="absolute top-[40%] left-[-10%] w-[1px] h-[60%] bg-accent/10 rotate-[22deg] transform-gpu" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col pt-32 px-8">
-          <div className="space-y-8">
-            {/* Elite Origin Tag */}
-            <div className="flex items-center gap-4 animate-in fade-in slide-in-from-left duration-700">
-              <div className="w-10 h-[1px] bg-accent" />
-              <span className="text-[9px] font-black uppercase tracking-[0.5em] text-accent">Elite National Command</span>
-            </div>
+        <div className="relative z-10 flex-1 flex flex-col px-10 pt-16">
+          
+          {/* Elite Tag with Line */}
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-12 h-[1px] bg-accent" />
+            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-accent">Elite National Command</span>
+          </div>
 
-            {/* Impactful Typography */}
-            <div className="space-y-2">
-              <h1 className="font-serif text-[16vw] leading-[0.85] text-primary italic">
-                <TextPressure text="Justice" />
-              </h1>
-              <h1 className="font-serif text-[16vw] leading-[0.85] text-primary">
-                Served <span className="text-accent underline decoration-accent/10 underline-offset-[12px]">Sharp.</span>
-              </h1>
-            </div>
+          {/* Headline Suite */}
+          <div className="mb-12">
+            <h1 className="font-serif text-[18vw] leading-[0.9] text-primary italic mb-1">
+              Justice
+            </h1>
+            <h1 className="font-serif text-[18vw] leading-[0.9] flex items-baseline flex-wrap gap-x-4">
+              <span className="text-primary italic">Served</span>
+              <span className="relative">
+                <span className="text-accent not-italic">Sharp.</span>
+                <div className="absolute bottom-1 left-0 right-0 h-4 bg-accent/10 -z-10" />
+                <div className="absolute -bottom-2 left-0 right-0 h-[6px] bg-accent" />
+              </span>
+            </h1>
+          </div>
 
-            <p className="text-primary/60 text-base font-light leading-relaxed max-w-[280px] border-l-2 border-accent pl-6 italic">
-              <BlurText text="Clinical legal strategies drafted for Nigeria's high-stakes corporate and private interests." delay={0.4} />
+          {/* Description Block with Vertical Bar */}
+          <div className="flex gap-6 mb-16">
+            <div className="w-[2px] h-24 bg-accent shrink-0" />
+            <p className="text-primary/40 text-lg font-serif italic leading-relaxed max-w-[280px]">
+              Clinical legal strategies drafted for Nigeria's high-stakes corporate and private interests.
             </p>
           </div>
 
-          <div className="mt-auto pb-16 space-y-16">
-            {/* Reference-Style Stats Node */}
-            <div className="relative">
-              <div className="absolute left-0 top-[-20%] bottom-[-20%] w-[1px] bg-accent/30 rotate-[15deg]" />
-              <div className="pl-10 space-y-10">
-                <div className="group">
-                  <p className="text-[8px] font-black uppercase tracking-widest text-accent mb-2 opacity-70">Success Rate</p>
-                  <p className="text-5xl font-serif italic text-primary">98.4%</p>
-                </div>
-                <div className="w-16 h-[1px] bg-primary/5" />
-                <div className="group">
-                  <p className="text-[8px] font-black uppercase tracking-widest text-accent mb-2 opacity-70">Years Active</p>
-                  <p className="text-5xl font-serif italic text-primary">15+</p>
-                </div>
-              </div>
+          {/* Sharp Stats Nodes */}
+          <div className="space-y-16 mb-20 relative">
+            <div className="group">
+              <p className="text-[9px] font-black uppercase tracking-widest text-accent mb-3">Success Rate</p>
+              <p className="text-6xl font-serif italic text-primary">98.4%</p>
             </div>
+            
+            <div className="w-20 h-[1px] bg-primary/10" />
 
-            {/* Action Suite */}
-            <div className="space-y-4">
-              <button 
-                onClick={onInitiateBrief}
-                className="group relative w-full py-7 bg-primary text-white rounded-full overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(14,14,18,0.4)] flex items-center justify-center gap-4"
-              >
-                <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
-                <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.5em]">
-                  <ShinyText text="COMMENCE BRIEF" />
-                </span>
-                <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-2" />
-              </button>
-              
-              <div className="flex justify-center pt-2">
-                <a href="tel:+2348101050240" className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-accent transition-colors flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                  Office Line: 0810 105 0240
-                </a>
-              </div>
+            <div className="group">
+              <p className="text-[9px] font-black uppercase tracking-widest text-accent mb-3">Years Active</p>
+              <p className="text-6xl font-serif italic text-primary">15+</p>
             </div>
           </div>
+
+          {/* Call to Action - Keeping Functional Button below visual stack */}
+          <div className="pb-32">
+            <button 
+              onClick={onInitiateBrief}
+              className="group relative w-full py-7 bg-primary text-white rounded-full overflow-hidden transition-all duration-500 shadow-2xl flex items-center justify-center gap-4"
+            >
+              <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
+              <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.5em]">
+                <ShinyText text="COMMENCE BRIEF" />
+              </span>
+              <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-2" />
+            </button>
+          </div>
         </div>
+
+        {/* Lady Justice at bottom - Centered and Clear (from screenshot) */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1/3 opacity-30 pointer-events-none z-0">
+          <img src="/lady-justice.png" alt="" className="w-full h-full object-contain object-bottom grayscale" />
+        </div>
+
       </section>
 
       {/* Sharp Desktop Hero - Reference Image Aesthetic */}
