@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Scale, Briefcase, Building2, Users, ArrowRight, CheckCircle, Award } from 'lucide-react';
+import { Scale, Briefcase, Building2, Users, ArrowRight, CheckCircle, Award, Landmark, Shield, Gavel, FileText, TrendingUp } from 'lucide-react';
 import { PRACTICE_AREAS } from '../constants';
 import { Page } from '../types';
+import { DecryptedText, GradientText, ShinyText, BlurText, TextPressure } from '../components/ReactsbitsAnimations';
 
 interface PracticeProps {
   onNavigate: (page: Page) => void;
@@ -37,209 +38,247 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
     };
   }, []);
 
-  const getIconComponent = (iconName: string) => {
-    const iconProps = { className: "w-16 h-16 stroke-[1.5]" };
+  const getIconComponent = (iconName: string, className = "w-16 h-16 stroke-[1]") => {
     switch (iconName) {
-      case 'scale': return <Scale {...iconProps} />;
-      case 'briefcase': return <Briefcase {...iconProps} />;
-      case 'building': return <Building2 {...iconProps} />;
-      case 'users': return <Users {...iconProps} />;
-      default: return <Scale {...iconProps} />;
+      case 'scale': return <Scale className={className} />;
+      case 'briefcase': return <Briefcase className={className} />;
+      case 'building': return <Building2 className={className} />;
+      case 'users': return <Users className={className} />;
+      default: return <Scale className={className} />;
     }
   };
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
-      <div className="relative pt-48 pb-32 px-6 md:px-24 overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/95">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-20 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
+    <div className="bg-[#FAF9F6] min-h-screen text-primary selection:bg-accent selection:text-white">
+      {/* Luxury Hero Section */}
+      <section className="relative pt-48 pb-32 overflow-hidden bg-white">
+        {/* Dynamic Background Elements */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.08),transparent_70%)]" />
+          <div className="absolute -bottom-1/2 -right-1/4 w-[80%] h-full bg-[radial-gradient(circle_at_bottom,rgba(14,14,18,0.03),transparent_70%)]" />
+          
+          {/* Animated Strokes */}
+          <div className="absolute top-[20%] right-[15%] w-px h-[60%] bg-gradient-to-b from-transparent via-accent/20 to-transparent rotate-12" />
+          <div className="absolute top-[10%] left-[10%] w-96 h-96 border border-accent/5 rounded-full" />
+          <div className="absolute top-[15%] left-[12%] w-[30rem] h-[30rem] border border-accent/5 rounded-full" />
         </div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="max-w-4xl">
-            <span className="text-accent text-xs font-black uppercase tracking-[0.5em] mb-8 block">
-              AREAS OF EXPERTISE
-            </span>
-            <h1 className="font-serif text-6xl md:text-9xl text-white italic mb-12 leading-none">
-              Strategic Legal
-              <br />
-              <span className="text-accent">Excellence.</span>
-            </h1>
-            <p className="text-2xl text-white/70 font-light leading-relaxed max-w-3xl mb-12">
-              Delivering comprehensive legal solutions across multiple practice areas with precision, 
-              integrity, and unwavering commitment to our clients' success.
-            </p>
-            <div className="flex flex-wrap gap-8 text-white/60">
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-accent" />
-                <span className="text-sm font-light">15+ Years Experience</span>
+        <div className="max-w-[1800px] mx-auto px-6 md:px-24 relative z-10">
+          <div className="flex flex-col lg:flex-row items-end justify-between gap-12">
+            <div className="max-w-4xl">
+              <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-primary text-white rounded-full mb-10 shadow-2xl">
+                <Gavel className="w-4 h-4 text-accent" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em]">Expert Practice</span>
               </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-accent" />
-                <span className="text-sm font-light">500+ Cases Won</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <CheckCircle className="w-6 h-6 text-accent" />
-                <span className="text-sm font-light">₦5B+ Recovered</span>
+              
+              <h1 className="font-serif text-7xl md:text-[11rem] text-primary italic leading-[0.8] mb-12">
+                <TextPressure text="Elite Advocacy" />
+              </h1>
+              
+              <p className="text-2xl md:text-3xl text-primary/60 font-light max-w-2xl leading-relaxed border-l-4 border-accent pl-10">
+                <BlurText text="A legacy of high-stakes victories across Nigeria's most complex legal landscapes." delay={0.3} />
+              </p>
+            </div>
+
+            <div className="hidden lg:block pb-12">
+              <div className="flex flex-col items-end gap-6">
+                <div className="text-right">
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-2">Success Rate</p>
+                  <p className="text-5xl font-serif italic text-primary">98.4%</p>
+                </div>
+                <div className="h-px w-32 bg-primary/10" />
+                <div className="text-right">
+                  <p className="text-[10px] font-black uppercase tracking-[0.4em] text-accent mb-2">Years Active</p>
+                  <p className="text-5xl font-serif italic text-primary">15+</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="py-32 px-6 md:px-24 bg-white">
-        <div className="max-w-7xl mx-auto space-y-24">
-          {PRACTICE_AREAS.map((area, index) => {
-            const isVisible = visibleSections.has(index);
-            const isCriminalLaw = index === 1;
-            const isPropertyLaw = index === 2;
-            const hasImage = isCriminalLaw || isPropertyLaw;
+      {/* Capabilities Navigation / Sticky Scroll Feel */}
+      <section className="bg-primary text-white py-32 relative overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.05),transparent_80%)]" />
+          <div className="absolute -bottom-20 -left-20 w-96 h-96 bg-accent/10 rounded-full blur-[100px]" />
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+            <div>
+              <div className="sticky top-48 space-y-12">
+                <div className="space-y-6">
+                  <span className="text-accent text-[10px] font-black uppercase tracking-[0.5em] block">THE ARCHITECTURE OF DEFENSE</span>
+                  <h2 className="text-5xl md:text-7xl font-serif italic leading-tight">
+                    Strategic <br /> <span className="text-accent underline decoration-accent/30 underline-offset-8">Perspectives</span>
+                  </h2>
+                </div>
+                
+                <p className="text-xl text-white/50 font-light leading-relaxed max-w-md">
+                  We don't just practice law; we architect solutions. Explore our core domains of expertise tailored for elite corporate and individual interests.
+                </p>
+
+                <div className="grid grid-cols-2 gap-8 pt-8">
+                  {[
+                    { icon: Landmark, label: "Federal Courts" },
+                    { icon: Shield, label: "Civil Defense" },
+                    { icon: TrendingUp, label: "M&A Advisory" },
+                    { icon: FileText, label: "Title Perfection" }
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-4 group">
+                      <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-accent transition-all duration-500">
+                        <item.icon className="w-4 h-4 text-accent group-hover:text-primary transition-colors" />
+                      </div>
+                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 group-hover:text-white transition-colors">{item.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-24 lg:pt-24">
+              {PRACTICE_AREAS.map((area, index) => {
+                const isVisible = visibleSections.has(index);
+                return (
+                  <div 
+                    key={area.id}
+                    ref={(el) => (sectionRefs.current[index] = el)}
+                    className={`relative p-12 bg-white/5 backdrop-blur-sm border border-white/10 rounded-[3rem] transition-all duration-1000 group hover:bg-white/10 hover:border-accent/30 ${
+                      isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-24'
+                    }`}
+                  >
+                    <div className="absolute -top-6 -right-6 w-24 h-24 bg-accent text-primary rounded-full flex items-center justify-center text-4xl font-serif font-black shadow-2xl transition-transform group-hover:scale-110">
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+
+                    <div className="space-y-8">
+                      <div className="w-20 h-20 bg-accent/20 rounded-2xl flex items-center justify-center text-accent">
+                        {getIconComponent(area.icon, "w-10 h-10")}
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-4xl font-serif italic group-hover:text-accent transition-colors underline decoration-accent/0 group-hover:decoration-accent/50 underline-offset-8">
+                          {area.title}
+                        </h3>
+                        <p className="text-lg text-white/70 italic leading-relaxed">
+                          {area.description}
+                        </p>
+                      </div>
+
+                      <div className="h-px w-full bg-white/10" />
+
+                      <p className="text-base text-white/40 font-light leading-relaxed">
+                        {area.detailedDescription}
+                      </p>
+
+                      <button 
+                        onClick={() => onNavigate("contact")}
+                        className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-accent group-hover:translate-x-4 transition-all duration-500"
+                      >
+                        Transmit Inquiry
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Visual Break / Showcase Section */}
+      <section className="py-32 bg-white overflow-hidden">
+        <div className="max-w-[1800px] mx-auto px-6 md:px-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-5 space-y-12">
+              <span className="text-accent text-[10px] font-black uppercase tracking-[0.5em] block">FIELD INTELLIGENCE</span>
+              <h2 className="text-5xl md:text-7xl font-serif italic text-primary leading-[1.1]">
+                Proven <br /> <span className="text-accent">Execution.</span>
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+                {[
+                  { val: "₦5.2B+", label: "Capital Recovered" },
+                  { val: "120+", label: "Corporate M&A" },
+                  { val: "450+", label: "Property Titles" },
+                  { val: "95%", label: "Litigation Retention" }
+                ].map((stat, i) => (
+                  <div key={i} className="space-y-2">
+                    <p className="text-4xl font-serif italic text-primary">{stat.val}</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/30">{stat.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
             
-            return (
-              <div 
-                key={area.id}
-                ref={(el) => (sectionRefs.current[index] = el)}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-16 items-center transition-all duration-700 ease-out ${
-                  index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-                } ${
-                  isVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-12'
-                }`}
-              >
-                <div className={`${index % 2 === 1 ? 'lg:order-2' : ''} transition-all duration-700 ease-out ${
-                  isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-                }`}>
-                  <div className="relative group">
-                    {hasImage ? (
-                      <div className="aspect-[4/5] rounded-[3rem] overflow-hidden relative shadow-2xl">
-                        <img
-                          src={isCriminalLaw ? "/images/criminal-law.png" : "/images/property-law.png"}
-                          alt={area.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div className="absolute bottom-0 left-0 right-0 p-8 text-white translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700">
-                          <div className="flex items-center gap-4 mb-4">
-                            <div className="text-accent">
-                              {getIconComponent(area.icon)}
-                            </div>
-                          </div>
-                          <p className="text-sm font-light leading-relaxed">
-                            Expert legal counsel in {area.title.toLowerCase()}
-                          </p>
-                        </div>
-                        <div className="absolute top-8 right-8 w-16 h-16 bg-accent/90 backdrop-blur-sm rounded-full flex items-center justify-center text-primary font-serif text-2xl font-bold">
-                          {String(index + 1).padStart(2, '0')}
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="aspect-square bg-gradient-to-br from-primary/5 to-accent/5 rounded-[3rem] p-16 flex items-center justify-center relative overflow-hidden border-2 border-primary/10 hover:border-accent/30 transition-all duration-700">
-                        <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                        <div className="text-accent group-hover:scale-110 transition-transform duration-700 relative z-10">
-                          {getIconComponent(area.icon)}
-                        </div>
-                        <div className="absolute top-8 right-8 text-primary/5 font-serif text-9xl font-bold group-hover:text-accent/10 transition-colors duration-700">
-                          {String(index + 1).padStart(2, '0')}
-                        </div>
-                      </div>
-                    )}
+            <div className="lg:col-span-7 relative">
+              <div className="grid grid-cols-2 gap-8">
+                <div className="space-y-8 pt-24">
+                  <div className="aspect-[3/4] rounded-[4rem] overflow-hidden shadow-2xl border-8 border-[#FAF9F6] relative group">
+                    <img src="/images/criminal-law.png" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Litigation" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                  </div>
+                  <div className="aspect-[3/4] rounded-[4rem] bg-accent p-12 flex flex-col justify-between">
+                    <Shield className="w-16 h-16 text-primary" />
+                    <p className="text-2xl font-serif italic text-primary leading-tight">"Integrity is the anchor of our practice."</p>
                   </div>
                 </div>
-
-                <div className={`${index % 2 === 1 ? 'lg:order-1' : ''} transition-all duration-700 ease-out ${
-                  isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${index % 2 === 1 ? 'translate-x-8' : '-translate-x-8'}`
-                }`}>
-                  <span className="text-accent text-[10px] font-black uppercase tracking-[0.5em] mb-6 block">
-                    {area.id.toUpperCase()} LAW
-                  </span>
-                  <h2 className="font-serif text-5xl md:text-6xl text-primary italic mb-8 leading-tight">
-                    {area.title}
-                  </h2>
-                  <p className="text-xl text-primary/60 font-light leading-relaxed mb-6">
-                    {area.description}
-                  </p>
-                  <p className="text-base text-primary/50 font-light leading-relaxed mb-10">
-                    {area.detailedDescription}
-                  </p>
-                  <button 
-                    onClick={() => onNavigate("contact")}
-                    className="group flex items-center gap-4 text-[11px] uppercase tracking-[0.4em] font-black text-primary hover:text-accent transition-all duration-300"
-                  >
-                    Discuss This Practice
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                  </button>
+                <div className="space-y-8">
+                  <div className="aspect-[3/4] rounded-[4rem] bg-primary p-12 flex flex-col justify-between text-white">
+                    <Landmark className="w-16 h-16 text-accent" />
+                    <p className="text-2xl font-serif italic leading-tight">Federal presence across every geopolitical zone.</p>
+                  </div>
+                  <div className="aspect-[3/4] rounded-[4rem] overflow-hidden shadow-2xl border-8 border-[#FAF9F6] relative group">
+                    <img src="/images/property-law.png" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000" alt="Property" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent" />
+                  </div>
                 </div>
               </div>
-            );
-          })}
-        </div>
-      </div>
-
-      <div className="py-24 bg-primary/5 border-y-2 border-primary/10">
-        <div className="max-w-7xl mx-auto px-6 md:px-24">
-          <div className="text-center mb-16">
-            <h3 className="font-serif text-4xl md:text-5xl text-primary italic mb-4">
-              Proven Track Record
-            </h3>
-            <p className="text-primary/60 font-light">
-              Numbers that speak to our commitment and success
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { value: "15+", label: "Years of Excellence" },
-              { value: "500+", label: "Cases Successfully Resolved" },
-              { value: "₦5B+", label: "Recovered for Clients" },
-              { value: "98%", label: "Client Satisfaction Rate" }
-            ].map((stat, i) => (
-              <div key={i} className="text-center group hover:-translate-y-2 transition-transform duration-500">
-                <div className="text-5xl md:text-6xl font-serif italic text-accent mb-3 group-hover:scale-110 transition-transform">
-                  {stat.value}
-                </div>
-                <div className="text-xs uppercase tracking-[0.3em] font-black text-primary/40">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="relative py-32 px-6 bg-gradient-to-br from-primary via-primary/98 to-accent/20 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+      {/* The Closing CTA */}
+      <section className="relative py-48 bg-primary overflow-hidden">
+        {/* Cinematic Background */}
+        <div className="absolute inset-0 z-0">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.1),transparent_70%)]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 pointer-events-none" />
         </div>
 
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <Award className="w-20 h-20 text-accent mx-auto mb-8" />
-          <h2 className="font-serif text-5xl md:text-7xl text-white italic mb-8 leading-tight">
-            Ready to Secure Your
-            <br />
-            <span className="text-accent">Legal Victory?</span>
+        <div className="max-w-5xl mx-auto px-6 text-center relative z-10 space-y-16">
+          <Award className="w-24 h-24 text-accent mx-auto animate-pulse" />
+          
+          <h2 className="text-6xl md:text-9xl font-serif italic text-white leading-tight">
+            Secure Your <br /> <span className="text-accent">Victory.</span>
           </h2>
-          <p className="text-xl text-white/70 font-light mb-12 max-w-2xl mx-auto leading-relaxed">
-            Our expert legal team is ready to provide you with strategic counsel and representation 
-            tailored to your unique needs.
+          
+          <p className="text-xl md:text-2xl text-white/50 font-light max-w-3xl mx-auto leading-relaxed italic">
+            Whether you're navigating complex corporate waters or defending individual rights, our senior partners are ready to architect your strategy.
           </p>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
             <button
               onClick={() => onNavigate("consultation")}
-              className="group relative px-12 py-6 bg-accent text-primary rounded-full text-xs font-black uppercase tracking-[0.4em] hover:bg-white transition-all duration-500 hover:scale-105 shadow-2xl overflow-hidden"
+              className="group relative px-20 py-10 bg-accent text-primary rounded-full overflow-hidden transition-all duration-500 hover:scale-105 shadow-[0_25px_50px_-12px_rgba(212,175,55,0.5)]"
             >
-              <span className="relative z-10">Schedule Consultation</span>
+              <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
+              <span className="relative z-10 text-[12px] font-black uppercase tracking-[0.6em]">
+                <ShinyText text="COMMENCE BRIEF" />
+              </span>
             </button>
             <button
               onClick={() => onNavigate("contact")}
-              className="group px-12 py-6 bg-transparent border-2 border-white/30 text-white rounded-full text-xs font-black uppercase tracking-[0.4em] hover:bg-white hover:text-primary transition-all duration-500 hover:scale-105"
+              className="group px-20 py-10 bg-transparent border-2 border-white/20 text-white rounded-full text-[12px] font-black uppercase tracking-[0.6em] hover:bg-white hover:text-primary transition-all duration-500"
             >
-              Contact Us
+              Direct Link
             </button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
