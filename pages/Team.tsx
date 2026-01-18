@@ -50,22 +50,53 @@ const Team: React.FC = () => {
         ))}
       </div>
 
-      {/* Team Images Section */}
+      {/* Team Gallery Section */}
       <div className="border-t-2 border-primary/10 pt-24">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="mb-16">
+          <h2 className="font-serif text-4xl md:text-5xl text-primary italic text-center">
+            Our Legal Team
+          </h2>
+          <p className="text-center text-primary/60 mt-4 font-light">
+            Dedicated professionals committed to excellence
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {[
-            '/images/IMG_9634-Edit.jpg',
+            '/images/IMG_9616-Edit.jpg',
+            '/images/IMG_9660-Edit.jpg',
+            '/images/IMG_9608-Edit.jpg',
+            '/images/IMG_9615-Edit-Edit.jpg',
+            '/images/IMG_9619-Edit.jpg',
             '/images/IMG_9627-Edit.jpg',
-            '/images/IMG_9642-Edit.jpg'
+            '/images/IMG_9634-Edit.jpg',
+            '/images/IMG_9640-Edit.jpg',
+            '/images/IMG_9642-Edit.jpg',
+            '/images/IMG_9664-Edit-Edit.jpg',
+            '/images/IMG_9672-Edit.jpg',
+            '/images/IMG_9612-Edit.jpg'
           ].map((image, index) => (
-            <div key={index} className="group relative overflow-hidden rounded-2xl shadow-2xl">
+            <div 
+              key={index} 
+              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              style={{ 
+                animationDelay: `${index * 100}ms`,
+                animation: 'fadeInUp 0.6s ease-out forwards',
+                opacity: 0
+              }}
+            >
               <div className="aspect-[3/4] overflow-hidden relative">
                 <img
                   src={image}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                  alt="Team Member"
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
+                  alt={`Team member ${index + 1}`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="w-8 h-8 bg-accent rounded-full flex items-center justify-center mx-auto">
+                    <span className="text-primary font-bold text-sm">{String(index + 1).padStart(2, '0')}</span>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
