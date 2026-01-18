@@ -114,10 +114,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
               </div>
 
-              <a href="tel:+2348055282602" className="flex items-start gap-3 group">
+              <a href="tel:+2348101050240" className="flex items-start gap-3 group">
                 <Phone className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                 <div className="text-sm text-white/60 group-hover:text-accent transition-colors">
-                  +234 805 528 2602<br />
+                  +234 810 105 0240<br />
                   +234 803 482 8680
                 </div>
               </a>
@@ -219,10 +219,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     </div>
                   </div>
 
-                  <a href="tel:+2348055282602" className="flex items-start gap-3">
+                  <a href="tel:+2348101050240" className="flex items-start gap-3">
                     <Phone className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     <div className="text-sm text-white/60">
-                      +234 805 528 2602<br />
+                      +234 810 105 0240<br />
                       +234 803 482 8680
                     </div>
                   </a>

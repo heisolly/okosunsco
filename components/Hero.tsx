@@ -10,57 +10,78 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
   return (
     <>
-      {/* Sharp Mobile Hero */}
+      {/* Sharp Mobile Hero - Redesigned for Luxury & Precision */}
       <section className="lg:hidden relative min-h-screen w-full flex flex-col overflow-hidden bg-[#FAF9F6]" data-scene="intro">
-        {/* The Sharp Diagonal Background Element */}
-        <div className="absolute top-0 right-0 w-full h-full pointer-events-none z-0">
-          <div className="absolute top-[-10%] right-[-20%] w-[1px] h-[120%] bg-accent/20 rotate-[25deg] transform-gpu" />
+        {/* The "Crazy" Sharp Background Architecture */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-[-10%] right-[-10%] w-[1px] h-[120%] bg-accent/20 rotate-[30deg] transform-gpu" />
+          <div className="absolute top-[20%] right-[10%] w-[1px] h-[60%] bg-accent/10 rotate-[30deg] transform-gpu" />
+          
+          {/* Subtle Masked Symbolism */}
+          <div className="absolute -bottom-20 -right-20 w-3/4 h-3/4 opacity-[0.05]">
+            <img src="/lady-justice.png" alt="" className="w-full h-full object-contain object-bottom grayscale" />
+          </div>
         </div>
 
         <div className="relative z-10 flex-1 flex flex-col pt-32 px-8">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 text-[9px] font-black uppercase tracking-[0.4em] text-accent">
-              <div className="w-8 h-[1px] bg-accent" />
-              <span>Elite National Advocacy</span>
+          <div className="space-y-8">
+            {/* Elite Origin Tag */}
+            <div className="flex items-center gap-4 animate-in fade-in slide-in-from-left duration-700">
+              <div className="w-10 h-[1px] bg-accent" />
+              <span className="text-[9px] font-black uppercase tracking-[0.5em] text-accent">Elite National Command</span>
             </div>
 
-            <h1 className="font-serif text-[14vw] leading-[0.9] text-primary italic">
-              Justice <br />
-              <span className="text-accent not-italic">Armed.</span>
-            </h1>
+            {/* Impactful Typography */}
+            <div className="space-y-2">
+              <h1 className="font-serif text-[16vw] leading-[0.85] text-primary italic">
+                <TextPressure text="Justice" />
+              </h1>
+              <h1 className="font-serif text-[16vw] leading-[0.85] text-primary">
+                Served <span className="text-accent underline decoration-accent/10 underline-offset-[12px]">Sharp.</span>
+              </h1>
+            </div>
 
-            <p className="text-primary/60 text-sm font-light leading-relaxed max-w-[280px] border-l border-accent/30 pl-4">
-              <BlurText text="Architecting legal victory through strategic foresight and clinical precision." delay={0.4} />
+            <p className="text-primary/60 text-base font-light leading-relaxed max-w-[280px] border-l-2 border-accent pl-6 italic">
+              <BlurText text="Clinical legal strategies drafted for Nigeria's high-stakes corporate and private interests." delay={0.4} />
             </p>
           </div>
 
-          <div className="mt-auto pb-12 space-y-12">
-            {/* The "Sharp" Stats from Reference Image - Mobile Version */}
-            <div className="relative pl-6">
-              <div className="absolute left-0 top-0 bottom-0 w-[1px] bg-accent/20 rotate-[15deg]" />
-              <div className="space-y-6">
-                <div>
-                  <p className="text-[8px] font-black uppercase tracking-widest text-accent mb-1">Success Rate</p>
-                  <p className="text-4xl font-serif italic text-primary">98.4%</p>
+          <div className="mt-auto pb-16 space-y-16">
+            {/* Reference-Style Stats Node */}
+            <div className="relative">
+              <div className="absolute left-0 top-[-20%] bottom-[-20%] w-[1px] bg-accent/30 rotate-[15deg]" />
+              <div className="pl-10 space-y-10">
+                <div className="group">
+                  <p className="text-[8px] font-black uppercase tracking-widest text-accent mb-2 opacity-70">Success Rate</p>
+                  <p className="text-5xl font-serif italic text-primary">98.4%</p>
                 </div>
-                <div className="w-12 h-[1px] bg-primary/5" />
-                <div>
-                  <p className="text-[8px] font-black uppercase tracking-widest text-accent mb-1">Years Active</p>
-                  <p className="text-4xl font-serif italic text-primary">15+</p>
+                <div className="w-16 h-[1px] bg-primary/5" />
+                <div className="group">
+                  <p className="text-[8px] font-black uppercase tracking-widest text-accent mb-2 opacity-70">Years Active</p>
+                  <p className="text-5xl font-serif italic text-primary">15+</p>
                 </div>
               </div>
             </div>
 
-            <div className="flex flex-col gap-4">
+            {/* Action Suite */}
+            <div className="space-y-4">
               <button 
                 onClick={onInitiateBrief}
-                className="group relative w-full py-6 bg-primary text-white rounded-full overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-2xl flex items-center justify-center gap-4"
+                className="group relative w-full py-7 bg-primary text-white rounded-full overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(14,14,18,0.4)] flex items-center justify-center gap-4"
               >
-                <span className="text-[10px] font-black uppercase tracking-[0.4em]">
+                <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
+                <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.5em]">
                   <ShinyText text="COMMENCE BRIEF" />
                 </span>
-                <ArrowRight className="w-4 h-4 text-accent transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-2" />
               </button>
+              
+              <div className="flex justify-center pt-2">
+                <a href="tel:+2348101050240" className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/40 hover:text-accent transition-colors flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                  Office Line: 0810 105 0240
+                </a>
+              </div>
             </div>
           </div>
         </div>

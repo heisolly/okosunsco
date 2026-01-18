@@ -48,7 +48,7 @@ const Contact: React.FC = () => {
               <div className="space-y-8 md:space-y-10">
                 {[
                   { icon: MapPin, label: "Private Office", val: ["1st Ewasede,", "Benin City, Edo State", "Nigeria"] },
-                  { icon: Phone, label: "Direct Access", val: ["+234 805 528 2602", "+234 803 482 8680"] },
+                  { icon: Phone, label: "Direct Access", val: ["+234 810 105 0240", "+234 803 482 8680"] },
                   { icon: Mail, label: "Digital Briefs", val: ["counsel@okosunpartners.com", "info@okosunpartners.com"] },
                   { icon: Clock, label: "Operational Hours", val: ["Mon - Fri: 9AM - 6PM", "Sat: By Appointment"] }
                 ].map((item, i) => (
@@ -238,7 +238,7 @@ const Contact: React.FC = () => {
             
             <div className="flex flex-col sm:flex-row gap-6 md:gap-8 w-full lg:w-auto">
               {[
-                { label: "Emergency Line", val: "+234 805 528 2602" },
+                { label: "Emergency Line", val: "+234 810 105 0240" },
                 { label: "Priority Messenger", val: "+234 803 482 8680" }
               ].map((chan, i) => (
                 <div key={i} className="bg-primary p-6 md:p-8 rounded-[1.5rem] md:rounded-[2.5rem] flex-1 min-w-full sm:min-w-[280px] md:min-w-[300px] group cursor-pointer hover:bg-accent hover:scale-105 transition-all duration-500 shadow-xl md:shadow-2xl shadow-primary/20 hover:shadow-accent/40 text-center sm:text-left">
