@@ -23,7 +23,6 @@ const App: React.FC = () => {
       const currentScrollY = window.scrollY;
       setScrollY(currentScrollY);
       
-      // Hide header links when scrolling down past 100px on mobile
       if (currentScrollY > 100) {
         setShowHeaderLinks(false);
       } else {
@@ -56,7 +55,7 @@ const App: React.FC = () => {
   const navigateTo = (page: Page) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     setTimeout(() => setCurrentPage(page), 100);
-    setMobileMenuOpen(false); // Close mobile menu on navigation
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -122,7 +121,6 @@ const App: React.FC = () => {
               ))}
             </div>
 
-            {/* Mobile Header Links - Show at top, hide on scroll */}
             <div className={`lg:hidden flex items-center gap-6 transition-all duration-300 ${
               showHeaderLinks ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
             }`}>
@@ -162,7 +160,6 @@ const App: React.FC = () => {
                 <ExternalLink className="w-5 h-5 text-primary/60 group-hover/icon:text-accent transition-colors" />
               </button>
 
-              {/* Mobile Menu Button - Always Visible and Fixed */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="lg:hidden flex items-center justify-center w-12 h-12 border-2 border-primary/10 hover:border-accent hover:bg-accent/5 transition-all duration-300 rounded-full backdrop-blur-sm bg-white/90 shadow-lg"
@@ -178,7 +175,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Menu Drawer */}
         <div 
           className={`lg:hidden fixed inset-0 top-[72px] bg-primary/95 backdrop-blur-lg z-50 transition-all duration-500 ${
             mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'

@@ -5,7 +5,6 @@ import RevealSection from './RevealSection';
 const FeaturedCaseStudy: React.FC = () => {
   return (
     <RevealSection className="py-32 bg-primary text-white relative overflow-hidden" data-scene="case-study">
-        {/* Grid Background */}
         <div className="absolute inset-0 opacity-[0.05]">
           <div className="absolute inset-0" style={{
             backgroundImage: `
@@ -16,7 +15,6 @@ const FeaturedCaseStudy: React.FC = () => {
           }} />
         </div>
 
-        {/* Decorative Blurs */}
         <div className="absolute top-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
         

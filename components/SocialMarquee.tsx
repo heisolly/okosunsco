@@ -15,7 +15,6 @@ const SocialMarquee: React.FC = () => {
 
   return (
     <section className="relative py-16 md:py-24 lg:py-32 bg-gradient-to-br from-white via-[#F5F5F0] to-white overflow-hidden border-y border-primary/10">
-      {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
@@ -35,7 +34,6 @@ const SocialMarquee: React.FC = () => {
       </div>
 
       <div className="max-w-[1800px] mx-auto px-4 md:px-6 lg:px-12 relative z-10">
-        {/* Header */}
         <div className="text-center mb-12 md:mb-16 lg:mb-20">
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="w-12 h-px bg-gradient-to-r from-transparent to-accent"></div>
@@ -51,7 +49,6 @@ const SocialMarquee: React.FC = () => {
           </p>
         </div>
 
-        {/* Mobile: Grid Cards */}
         <div className="md:hidden grid grid-cols-2 gap-3 mb-12">
           {clients.map((client, i) => (
             <div
@@ -74,7 +71,6 @@ const SocialMarquee: React.FC = () => {
           ))}
         </div>
 
-        {/* Desktop: Marquee */}
         <div className="hidden md:block relative luxury-marquee-container mb-16 lg:mb-20">
           <div className="absolute left-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-r from-white via-[#F5F5F0] to-transparent z-10 pointer-events-none"></div>
           <div className="absolute right-0 top-0 bottom-0 w-32 md:w-48 bg-gradient-to-l from-white via-[#F5F5F0] to-transparent z-10 pointer-events-none"></div>
@@ -106,7 +102,6 @@ const SocialMarquee: React.FC = () => {
           </div>
         </div>
 
-        {/* Stats - Responsive Grid */}
         <div className="grid grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto">
           <div className="text-center p-4 md:p-6 bg-white/50 backdrop-blur-sm rounded-xl border border-primary/10 hover:border-accent/30 transition-all duration-300 hover:shadow-lg group">
             <div className="text-3xl md:text-4xl font-serif text-accent mb-1 group-hover:scale-110 transition-transform duration-300">500+</div>

@@ -16,7 +16,6 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
       className="py-24 md:py-48 px-0 md:px-24 bg-gradient-to-b from-white/30 to-ivory/50 backdrop-blur-sm relative overflow-hidden"
       data-scene="practice"
     >
-      {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
@@ -31,7 +30,6 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
       
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Header Section */}
         <div className="flex flex-col items-start justify-between mb-12 md:mb-24 gap-6 md:gap-8 px-6 md:px-0">
           <div className="max-w-xl">
             <span className="text-accent text-[10px] md:text-xs font-black uppercase tracking-[0.4em] mb-4 block shimmer">
@@ -47,7 +45,6 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
           </p>
         </div>
 
-        {/* Mobile: Horizontal Scroll Cards */}
         <div className="md:hidden">
           <div className="flex gap-4 overflow-x-auto pb-8 px-6 snap-x snap-mandatory scrollbar-hide">
             {areas.map((area, index) => (
@@ -64,7 +61,6 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
                   <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl" />
                   
                   <div className="relative z-10 flex flex-col h-full">
-                    {/* Icon and Number Badge */}
                     <div className="flex items-start justify-between mb-6">
                       <div className="text-accent group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
                         {getIcon(area.icon)}
@@ -94,7 +90,6 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
             ))}
           </div>
           
-          {/* Scroll Indicator */}
           <div className="flex justify-center gap-2 mt-4 px-6">
             {areas.map((_, index) => (
               <div 
@@ -105,7 +100,6 @@ const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon 
           </div>
         </div>
 
-        {/* Desktop: Grid Layout */}
         <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
           {areas.map((area, index) => (
             <div

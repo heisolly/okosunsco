@@ -10,24 +10,18 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
   return (
     <>
-      {/* Mobile Hero - Full Screen with Image Background */}
       <section className="lg:hidden relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white" data-scene="intro">
-        {/* Background Image - Full Screen */}
         <div className="absolute inset-0 z-0">
           <img 
             src="/lady-justice.png" 
             alt="Lady Justice" 
             className="w-full h-full object-contain object-center scale-150"
           />
-          {/* Gradient Overlays for Text Readability */}
           <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-transparent to-white/90"></div>
         </div>
 
-        {/* Content Overlay */}
         <div className="relative z-10 w-full h-full min-h-screen flex flex-col">
-          {/* Top Section - Badge and Heading */}
           <div className="flex-1 flex flex-col items-center justify-start pt-24 px-6 text-center">
-            {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 backdrop-blur-sm rounded-full mb-8 animate-in fade-in duration-700">
               <Award className="w-4 h-4 text-accent" />
               <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">
@@ -35,7 +29,6 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
               </span>
             </div>
 
-            {/* Main Heading */}
             <h1 className="font-serif text-5xl sm:text-6xl text-primary leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
               Justice Served
               <br />
@@ -43,9 +36,7 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
             </h1>
           </div>
 
-          {/* Bottom Section - Buttons and Stats */}
           <div className="flex flex-col items-center justify-end pb-12 px-6">
-            {/* Buttons */}
             <div className="flex flex-col w-full gap-4 max-w-md mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
               <button 
                 onClick={onInitiateBrief}
@@ -64,7 +55,6 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
               </button>
             </div>
 
-            {/* Stats */}
             <div className="grid grid-cols-3 gap-6 w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-600">
               <div className="text-center">
                 <div className="flex items-center justify-center gap-1 mb-1">
@@ -92,7 +82,6 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
         </div>
       </section>
 
-      {/* Desktop Hero - Side by Side Layout */}
       <section className="hidden lg:flex relative min-h-screen w-full items-center overflow-hidden bg-white pt-32 pb-12" data-scene="intro">
         <div className="absolute inset-0 z-0">
           <svg className="absolute top-20 left-0 w-[500px] h-[500px] opacity-20" viewBox="0 0 200 200">

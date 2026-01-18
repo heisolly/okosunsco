@@ -28,7 +28,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
       className="py-20 md:py-32 px-4 md:px-6 bg-gradient-to-b from-primary via-[#0a0a0c] to-primary text-white overflow-hidden relative"
       data-scene="values"
     >
-      {/* Animated Grid Background */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute inset-0" style={{
           backgroundImage: `
@@ -39,12 +38,10 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
         }} />
       </div>
 
-      {/* Glowing Orbs */}
       <div className="absolute top-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-[150px] animate-pulse" />
       <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[150px] animate-pulse" style={{ animationDelay: '1s' }} />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 backdrop-blur-sm rounded-full mb-6 border border-accent/20">
             <Zap className="w-4 h-4 text-accent" />
@@ -60,7 +57,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
           </p>
         </div>
 
-        {/* Mobile Stats - Horizontal Scroll */}
         <div className="lg:hidden mb-8 -mx-4 px-4">
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
             {stats.map((stat, index) => (
@@ -72,10 +68,8 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                   opacity: 0
                 }}
               >
-                {/* Gradient Overlay */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-10`} />
                 
-                {/* Shine Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-active:translate-x-full transition-transform duration-1000" />
                 
                 <div className="relative z-10 text-center">
@@ -88,13 +82,11 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                   </div>
                 </div>
 
-                {/* Corner Accent */}
                 <div className="absolute top-0 right-0 w-20 h-20 bg-accent/5 rounded-bl-full" />
               </div>
             ))}
           </div>
           
-          {/* Scroll Indicator */}
           <div className="flex justify-center gap-2 mt-4">
             {stats.map((_, index) => (
               <div 
@@ -105,7 +97,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
           </div>
         </div>
 
-        {/* Desktop Stats - Grid */}
         <div className="hidden lg:grid grid-cols-4 gap-6 mb-8">
           {stats.map((stat, index) => (
             <div
@@ -118,10 +109,8 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                 opacity: 0
               }}
             >
-              {/* Gradient Overlay */}
               <div className={`absolute inset-0 bg-gradient-to-br ${stat.color} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
               
-              {/* Shine Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               
               <div className="relative z-10">
@@ -134,17 +123,13 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                 </div>
               </div>
 
-              {/* Corner Accent */}
               <div className="absolute top-0 right-0 w-20 h-20 bg-accent/5 rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           ))}
         </div>
 
-        {/* Mobile Content Layout */}
         <div className="lg:hidden space-y-6">
-          {/* Feature Highlight Card - Mobile First */}
           <div className="relative rounded-2xl overflow-hidden group min-h-[450px]">
-            {/* Background Image */}
             <div className="absolute inset-0">
               <img
                 src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1200"
@@ -154,9 +139,7 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/40" />
             </div>
 
-            {/* Content Overlay */}
             <div className="relative z-10 h-full flex flex-col justify-end p-6">
-              {/* Floating Badge */}
               <div className="absolute top-6 right-6 px-3 py-1.5 bg-accent/90 backdrop-blur-sm rounded-full">
                 <div className="flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-primary" />
@@ -166,7 +149,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                 </div>
               </div>
 
-              {/* Main Content */}
               <div className="space-y-3">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                   <Target className="w-3.5 h-3.5 text-accent" />
@@ -183,7 +165,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                   We don't just win cases—we architect victories. Every strategy is tailored, every move calculated.
                 </p>
 
-                {/* Stats Row */}
                 <div className="flex gap-4 pt-3 border-t border-white/10">
                   <div>
                     <div className="text-xl font-serif text-accent">₦5B+</div>
@@ -202,7 +183,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
             </div>
           </div>
 
-          {/* Why Choose Us Cards - Mobile */}
           <div className="space-y-3">
             {whyChooseUs.slice(0, 3).map((item, index) => (
               <div
@@ -214,12 +194,10 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                 }}
               >
                 <div className="flex gap-3 items-start">
-                  {/* Icon */}
                   <div className="shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center text-accent">
                     {item.icon}
                   </div>
                   
-                  {/* Content */}
                   <div className="flex-1">
                     <h3 className="text-lg font-bold text-white mb-1.5">
                       {item.title}
@@ -230,16 +208,13 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                   </div>
                 </div>
 
-                {/* Bottom Border Accent */}
                 <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent opacity-30" />
               </div>
             ))}
           </div>
         </div>
 
-        {/* Desktop Content Layout */}
         <div className="hidden lg:grid grid-cols-2 gap-6">
-          {/* Left: Why Choose Us Cards */}
           <div className="space-y-4">
             {whyChooseUs.slice(0, 3).map((item, index) => (
               <div
@@ -250,16 +225,13 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                   opacity: 0
                 }}
               >
-                {/* Glow Effect */}
                 <div className="absolute inset-0 bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl" />
                 
                 <div className="relative z-10 flex gap-4 items-start">
-                  {/* Icon */}
                   <div className="shrink-0 w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-primary transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
                     {item.icon}
                   </div>
                   
-                  {/* Content */}
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-white mb-2 group-hover:text-accent transition-colors duration-300">
                       {item.title}
@@ -269,19 +241,15 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                     </p>
                   </div>
 
-                  {/* Arrow */}
                   <ArrowRight className="w-5 h-5 text-accent opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-500 shrink-0 mt-1" />
                 </div>
 
-                {/* Bottom Border Accent */}
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               </div>
             ))}
           </div>
 
-          {/* Right: Feature Highlight Card */}
           <div className="relative rounded-2xl overflow-hidden group h-full min-h-[400px]">
-            {/* Background Image */}
             <div className="absolute inset-0">
               <img
                 src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&q=80&w=1200"
@@ -291,9 +259,7 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
               <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/40" />
             </div>
 
-            {/* Content Overlay */}
             <div className="relative z-10 h-full flex flex-col justify-end p-8 md:p-10">
-              {/* Floating Badge */}
               <div className="absolute top-8 right-8 px-4 py-2 bg-accent/90 backdrop-blur-sm rounded-full">
                 <div className="flex items-center gap-2">
                   <Sparkles className="w-4 h-4 text-primary" />
@@ -303,7 +269,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                 </div>
               </div>
 
-              {/* Main Content */}
               <div className="space-y-4">
                 <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full border border-white/20">
                   <Target className="w-4 h-4 text-accent" />
@@ -320,7 +285,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
                   We don't just win cases—we architect victories. Every strategy is tailored, every move calculated, every outcome optimized for your success.
                 </p>
 
-                {/* Stats Row */}
                 <div className="flex gap-6 pt-4 border-t border-white/10">
                   <div>
                     <div className="text-2xl font-serif text-accent">₦5B+</div>
@@ -338,7 +302,6 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
               </div>
             </div>
 
-            {/* Animated Border */}
             <div className="absolute inset-0 border-2 border-accent/0 group-hover:border-accent/50 transition-all duration-500 rounded-2xl pointer-events-none" />
           </div>
         </div>

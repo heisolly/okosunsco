@@ -73,7 +73,6 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        {/* Professional Image Section */}
         <div className="mb-20">
           <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
             <div className="aspect-[21/9] overflow-hidden">

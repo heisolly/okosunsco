@@ -50,7 +50,6 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
-      {/* Hero Section */}
       <div className="relative pt-48 pb-32 px-6 md:px-24 overflow-hidden bg-gradient-to-br from-primary via-primary to-primary/95">
         <div className="absolute inset-0 opacity-5">
           <div className="absolute top-20 left-20 w-96 h-96 bg-accent rounded-full blur-3xl"></div>
@@ -89,13 +88,12 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Practice Areas - Smooth Scroll Animation */}
       <div className="py-32 px-6 md:px-24 bg-white">
         <div className="max-w-7xl mx-auto space-y-24">
           {PRACTICE_AREAS.map((area, index) => {
             const isVisible = visibleSections.has(index);
-            const isCriminalLaw = index === 1; // Criminal Law is at index 1
-            const isPropertyLaw = index === 2; // Property Law is at index 2
+            const isCriminalLaw = index === 1;
+            const isPropertyLaw = index === 2;
             const hasImage = isCriminalLaw || isPropertyLaw;
             
             return (
@@ -110,13 +108,11 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
                     : 'opacity-0 translate-y-12'
                 }`}
               >
-                {/* Visual Side - Image for Criminal Law, Icon for others */}
                 <div className={`${index % 2 === 1 ? 'lg:order-2' : ''} transition-all duration-700 ease-out ${
                   isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
                 }`}>
                   <div className="relative group">
                     {hasImage ? (
-                      // Criminal Law & Property Law - Show Image
                       <div className="aspect-[4/5] rounded-[3rem] overflow-hidden relative shadow-2xl">
                         <img
                           src={isCriminalLaw ? "/images/criminal-law.png" : "/images/property-law.png"}
@@ -139,7 +135,6 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
                         </div>
                       </div>
                     ) : (
-                      // Other Practice Areas - Show Icon
                       <div className="aspect-square bg-gradient-to-br from-primary/5 to-accent/5 rounded-[3rem] p-16 flex items-center justify-center relative overflow-hidden border-2 border-primary/10 hover:border-accent/30 transition-all duration-700">
                         <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                         <div className="text-accent group-hover:scale-110 transition-transform duration-700 relative z-10">
@@ -153,7 +148,6 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
                   </div>
                 </div>
 
-                {/* Content Side */}
                 <div className={`${index % 2 === 1 ? 'lg:order-1' : ''} transition-all duration-700 ease-out ${
                   isVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${index % 2 === 1 ? 'translate-x-8' : '-translate-x-8'}`
                 }`}>
@@ -183,7 +177,6 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* Stats Section */}
       <div className="py-24 bg-primary/5 border-y-2 border-primary/10">
         <div className="max-w-7xl mx-auto px-6 md:px-24">
           <div className="text-center mb-16">
@@ -214,7 +207,6 @@ const Practice: React.FC<PracticeProps> = ({ onNavigate }) => {
         </div>
       </div>
 
-      {/* CTA Section */}
       <div className="relative py-32 px-6 bg-gradient-to-br from-primary via-primary/98 to-accent/20 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent rounded-full blur-3xl animate-pulse"></div>

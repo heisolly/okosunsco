@@ -41,7 +41,6 @@ const Home: React.FC<HomeProps> = ({ onNavigate, activeFaq, setActiveFaq }) => {
       <AboutHighlight whyChooseUs={WHY_CHOOSE_US} />
 
       <section className="py-24 md:py-48 px-4 md:px-6 relative overflow-hidden" data-scene="cta">
-        {/* Grid Background */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute inset-0" style={{
             backgroundImage: `

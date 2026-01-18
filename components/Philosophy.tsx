@@ -6,7 +6,6 @@ import { ScrollReveal, DecryptedText } from './ReactsbitsAnimations';
 const Philosophy: React.FC = () => {
   return (
     <RevealSection className="py-16 md:py-32 bg-gradient-to-b from-white to-[#F9F9F7] relative overflow-hidden" data-scene="philosophy">
-      {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
@@ -17,14 +16,12 @@ const Philosophy: React.FC = () => {
         }} />
       </div>
 
-      {/* Background Decorations */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none opacity-5">
         <div className="absolute top-20 left-10 w-64 h-64 border-2 border-accent rounded-full"></div>
         <div className="absolute bottom-20 right-10 w-96 h-96 border border-primary/20 rounded-full"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Section Header */}
         <div className="text-center mb-12 md:mb-20">
           <span className="text-accent text-[10px] md:text-xs font-black uppercase tracking-[0.4em] mb-4 block">
             <DecryptedText text="THE CHAMBERS" />
@@ -36,9 +33,7 @@ const Philosophy: React.FC = () => {
           </div>
         </div>
 
-        {/* Mobile Layout - Vertical Stack */}
         <div className="lg:hidden space-y-12">
-          {/* Quote Section */}
           <div className="text-center">
             <Quote className="text-accent w-12 h-12 mx-auto mb-6 opacity-30" />
             <ScrollReveal text="">
@@ -58,7 +53,6 @@ const Philosophy: React.FC = () => {
             </ScrollReveal>
           </div>
 
-          {/* Stats Grid - Mobile */}
           <div className="grid grid-cols-2 gap-4">
             {[
               { icon: Award, value: "15+", label: "Years of Excellence" },
@@ -83,9 +77,7 @@ const Philosophy: React.FC = () => {
           </div>
         </div>
 
-        {/* Desktop Layout - Side by Side */}
         <div className="hidden lg:grid grid-cols-2 gap-16 items-center">
-          {/* Left: Quote and Description */}
           <div>
             <Quote className="text-accent w-16 h-16 mb-8 opacity-30" />
             <ScrollReveal text="">
@@ -121,7 +113,6 @@ const Philosophy: React.FC = () => {
             </div>
           </div>
 
-          {/* Right: Stats Grid */}
           <div className="grid grid-cols-2 gap-6">
             {[
               { icon: Award, value: "15+", label: "Years of Excellence", color: "from-accent/10 to-accent/5" },

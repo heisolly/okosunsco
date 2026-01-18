@@ -16,7 +16,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
   return (
     <footer className="w-full bg-primary text-white relative overflow-hidden">
-      {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.05]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
@@ -31,7 +30,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[180px]" />
       
       <div className="max-w-[1800px] mx-auto px-4 md:px-6 lg:px-12 py-12 md:py-20 lg:py-24 relative z-10">
-        {/* Desktop Layout */}
         <div className="hidden lg:grid grid-cols-12 gap-20 pb-16 border-b border-white/10">
           <div className="col-span-4 space-y-8">
             <div>
@@ -142,9 +140,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Mobile Smart Accordion Layout */}
         <div className="lg:hidden space-y-8 pb-12 border-b border-white/10">
-          {/* Logo & Description */}
           <div className="space-y-6">
             <img 
               src="/logo.png" 
@@ -156,9 +152,7 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </p>
           </div>
 
-          {/* Accordion Sections */}
           <div className="space-y-2">
-            {/* Quick Links */}
             <div className="border border-white/10 rounded-xl overflow-hidden">
               <button
                 onClick={() => toggleSection('links')}
@@ -189,7 +183,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Practice Areas */}
             <div className="border border-white/10 rounded-xl overflow-hidden">
               <button
                 onClick={() => toggleSection('practice')}
@@ -209,7 +202,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Contact Info */}
             <div className="border border-white/10 rounded-xl overflow-hidden">
               <button
                 onClick={() => toggleSection('contact')}
@@ -254,7 +246,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Social Links - Mobile */}
           <div className="flex gap-3 justify-center">
             {[
               { Icon: Twitter, label: 'Twitter', url: '#' },
@@ -273,7 +264,6 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs text-white/40 text-center md:text-left">
             © 2026 Okosun, Okosun & Partners. All rights reserved.

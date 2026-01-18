@@ -36,7 +36,6 @@ const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ onStartProcess }) => 
 
   return (
     <RevealSection className="py-32 lg:py-48 px-6 bg-[#0E0E12] overflow-hidden relative" data-scene="process">
-      {/* Grid Background */}
       <div className="absolute inset-0 opacity-[0.05]">
         <div className="absolute inset-0" style={{
           backgroundImage: `
