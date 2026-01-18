@@ -10,103 +10,100 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
   return (
     <>
-      {/* Precise Mobile Hero Redesign - Matching Screenshot */}
+      {/* Large & Clean Mobile Hero Redesign - Cinematic Focus */}
       <section className="lg:hidden relative min-h-screen w-full flex flex-col bg-[#FAF9F6] overflow-hidden" data-scene="intro">
         
-        {/* Mockup Integrated Header (from screenshot) */}
-        <header className="relative z-30 flex items-center justify-between px-6 pt-8 pb-4">
-          <div className="flex items-center gap-2">
-            <img src="/logo.png" alt="Logo" className="h-10 w-auto object-contain" />
-          </div>
-          <nav className="hidden xs:flex items-center gap-4">
-            {['HOME', 'ABOUT', 'PRACTICE', 'CONTACT'].map((item) => (
-              <span key={item} className={`text-[9px] font-black tracking-widest ${item === 'HOME' ? 'text-accent' : 'text-primary/40'}`}>
-                {item}
-              </span>
-            ))}
+        {/* Clean Header Integration */}
+        <header className="relative z-30 flex items-center justify-between px-6 pt-10 pb-6">
+          <img src="/logo.png" alt="Logo" className="h-9 w-auto object-contain" />
+          <nav className="flex items-center gap-6">
+            <span className="text-[10px] font-black tracking-widest text-accent">HOME</span>
+            <button className="w-10 h-10 rounded-full bg-white shadow-lg border border-black/5 flex items-center justify-center">
+              <div className="w-4 h-[2px] bg-primary relative after:absolute after:top-1.5 after:left-0 after:w-4 after:h-[2px] after:bg-primary before:absolute before:-top-1.5 before:left-0 before:w-4 before:h-[2px] before:bg-primary" />
+            </button>
           </nav>
-          <button className="w-10 h-10 rounded-full bg-white shadow-xl flex items-center justify-center border border-black/5">
-            <div className="space-y-1">
-              <div className="w-4 h-[2px] bg-primary rounded-full" />
-              <div className="w-4 h-[2px] bg-primary rounded-full" />
-              <div className="w-4 h-[2px] bg-primary rounded-full" />
-            </div>
-          </button>
         </header>
 
-        {/* Background Sharp Lines */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          {/* Main Diagonal Line from Screenshot */}
-          <div className="absolute top-[-10%] right-[15%] w-[1px] h-[120%] bg-accent/20 rotate-[22deg] transform-gpu" />
-          <div className="absolute top-[40%] left-[-10%] w-[1px] h-[60%] bg-accent/10 rotate-[22deg] transform-gpu" />
+        {/* LARGE CINEMATIC BACKGROUND VISUAL - Show Well & Largely */}
+        <div className="absolute inset-x-0 bottom-0 top-0 z-0 flex items-center justify-center pointer-events-none">
+          {/* Main Large Lady Justice */}
+          <div className="relative w-full h-full flex items-center justify-center">
+             <img 
+               src="/lady-justice.png" 
+               alt="" 
+               className="w-[130%] h-auto opacity-[0.35] grayscale brightness-[1.05] contrast-[1.1] transform translate-y-10" 
+             />
+             <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-transparent to-[#FAF9F6]/90" />
+             <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6]/20 via-transparent to-transparent" />
+          </div>
+          
+          {/* Sharp Gold Architecture lines */}
+          <div className="absolute top-0 right-0 w-[1px] h-full bg-accent/20 rotate-[20deg] transform-gpu" />
+          <div className="absolute top-[20%] left-[-10%] w-[1px] h-3/4 bg-accent/10 rotate-[20deg] transform-gpu" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col px-10 pt-16">
-          
-          {/* Elite Tag with Line */}
-          <div className="flex items-center gap-4 mb-10">
-            <div className="w-12 h-[1px] bg-accent" />
-            <span className="text-[10px] font-black uppercase tracking-[0.4em] text-accent">Elite National Command</span>
+        <div className="relative z-10 flex-1 flex flex-col px-10 text-center pt-8">
+          {/* Elite Tag */}
+          <div className="flex flex-col items-center gap-5 mb-12">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-[1px] bg-accent" />
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-accent">Elite National Command</span>
+              <div className="w-8 h-[1px] bg-accent" />
+            </div>
           </div>
 
-          {/* Headline Suite */}
-          <div className="mb-12">
-            <h1 className="font-serif text-[18vw] leading-[0.9] text-primary italic mb-1">
+          {/* Headline Suite - Centered and Dramatic */}
+          <div className="space-y-3 mb-12">
+            <h1 className="font-serif text-[16vw] leading-[0.85] text-primary italic">
               Justice
             </h1>
-            <h1 className="font-serif text-[18vw] leading-[0.9] flex items-baseline flex-wrap gap-x-4">
-              <span className="text-primary italic">Served</span>
-              <span className="relative">
-                <span className="text-accent not-italic">Sharp.</span>
-                <div className="absolute bottom-1 left-0 right-0 h-4 bg-accent/10 -z-10" />
-                <div className="absolute -bottom-2 left-0 right-0 h-[6px] bg-accent" />
-              </span>
+            <h1 className="font-serif text-[16vw] leading-[0.85] text-primary relative inline-block">
+              Served <span className="text-accent underline decoration-accent/10 underline-offset-[16px]">Sharp.</span>
+              <div className="absolute -bottom-3 left-0 right-0 h-[6px] bg-accent" />
             </h1>
           </div>
 
-          {/* Description Block with Vertical Bar */}
-          <div className="flex gap-6 mb-16">
-            <div className="w-[2px] h-24 bg-accent shrink-0" />
-            <p className="text-primary/40 text-lg font-serif italic leading-relaxed max-w-[280px]">
-              Clinical legal strategies drafted for Nigeria's high-stakes corporate and private interests.
-            </p>
+          {/* Clean Clinical Description with subtle backdrop */}
+          <div className="relative py-8 px-6 mb-12 backdrop-blur-sm bg-white/5 rounded-[2rem] border border-white/20 max-w-[320px] mx-auto">
+             <p className="text-primary/60 text-base font-serif italic leading-relaxed">
+               "Clinical legal strategies architected for Nigeria's most complex corporate and private interests."
+             </p>
           </div>
 
-          {/* Sharp Stats Nodes */}
-          <div className="space-y-16 mb-20 relative">
-            <div className="group">
-              <p className="text-[9px] font-black uppercase tracking-widest text-accent mb-3">Success Rate</p>
-              <p className="text-6xl font-serif italic text-primary">98.4%</p>
+          {/* Precision Stats Node - Large Centered */}
+          <div className="grid grid-cols-2 gap-12 mb-20 relative px-6">
+            <div className="space-y-1">
+              <p className="text-[9px] font-black uppercase tracking-widest text-accent opacity-70">Success Rate</p>
+              <p className="text-5xl font-serif italic text-primary">98.4%</p>
             </div>
-            
-            <div className="w-20 h-[1px] bg-primary/10" />
-
-            <div className="group">
-              <p className="text-[9px] font-black uppercase tracking-widest text-accent mb-3">Years Active</p>
-              <p className="text-6xl font-serif italic text-primary">15+</p>
+            <div className="absolute left-1/2 top-4 bottom-4 w-[1px] bg-primary/10 -translate-x-1/2 rotate-[15deg]" />
+            <div className="space-y-1">
+              <p className="text-[9px] font-black uppercase tracking-widest text-accent opacity-70">Years Active</p>
+              <p className="text-5xl font-serif italic text-primary">15+</p>
             </div>
           </div>
 
-          {/* Call to Action - Keeping Functional Button below visual stack */}
-          <div className="pb-32">
+          {/* Action Suite - Floating at top of view in center stack */}
+          <div className="mt-auto pb-12 w-full max-w-[400px] mx-auto">
             <button 
               onClick={onInitiateBrief}
-              className="group relative w-full py-7 bg-primary text-white rounded-full overflow-hidden transition-all duration-500 shadow-2xl flex items-center justify-center gap-4"
+              className="group relative w-full py-8 bg-primary text-white rounded-[2rem] overflow-hidden transition-all duration-500 shadow-[0_30px_60px_-15px_rgba(14,14,18,0.5)] flex items-center justify-center gap-4"
             >
               <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
-              <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.5em]">
+              <span className="relative z-10 text-[12px] font-bold uppercase tracking-[0.5em]">
                 <ShinyText text="COMMENCE BRIEF" />
               </span>
               <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-2" />
             </button>
+            
+            <div className="mt-8 flex justify-center">
+               <a href="tel:+2348101050240" className="text-[9px] font-black uppercase tracking-[0.4em] text-primary/30 flex items-center gap-3 hover:text-accent transition-colors">
+                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                 Secure Response: 0810 105 0240
+               </a>
+            </div>
           </div>
         </div>
-
-        {/* Lady Justice at bottom - Centered and Clear (from screenshot) */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-1/3 opacity-30 pointer-events-none z-0">
-          <img src="/lady-justice.png" alt="" className="w-full h-full object-contain object-bottom grayscale" />
-        </div>
-
       </section>
 
       {/* Sharp Desktop Hero - Reference Image Aesthetic */}
