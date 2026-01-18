@@ -16,7 +16,9 @@ const Team: React.FC = () => {
           </h1>
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      
+      {/* Partners Section */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32">
         {PARTNERS.map((p) => (
           <div key={p.id} className="group relative">
             <div className="aspect-[3/4] overflow-hidden rounded-[3rem] relative mb-12 shadow-2xl">
@@ -47,8 +49,31 @@ const Team: React.FC = () => {
           </div>
         ))}
       </div>
+
+      {/* Team Images Section */}
+      <div className="border-t-2 border-primary/10 pt-24">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            '/images/IMG_9634-Edit.jpg',
+            '/images/IMG_9627-Edit.jpg',
+            '/images/IMG_9642-Edit.jpg'
+          ].map((image, index) => (
+            <div key={index} className="group relative overflow-hidden rounded-2xl shadow-2xl">
+              <div className="aspect-[3/4] overflow-hidden relative">
+                <img
+                  src={image}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                  alt="Team Member"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Team;
+

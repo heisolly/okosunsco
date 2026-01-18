@@ -18,6 +18,15 @@ export interface Partner {
   bio: string;
 }
 
+export interface Lawyer {
+  id: string;
+  name: string;
+  role: string;
+  specialization: string;
+  image: string;
+  bio: string;
+}
+
 export interface CaseVictory {
   title: string;
   status: string;

@@ -73,6 +73,29 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
+        {/* Professional Image Section */}
+        <div className="mb-20">
+          <div className="relative overflow-hidden rounded-3xl shadow-2xl group">
+            <div className="aspect-[21/9] overflow-hidden">
+              <img
+                src="/images/IMG_9642-Edit.jpg"
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
+                style={{ objectPosition: 'center 30%' }}
+                alt="Legal Team"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/70 via-primary/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-12 text-white">
+                <p className="font-serif text-3xl md:text-5xl italic mb-4">
+                  Professional Legal Counsel
+                </p>
+                <p className="text-lg font-light opacity-90 max-w-2xl">
+                  Our team is ready to provide you with strategic legal guidance and representation
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div className="max-w-4xl mx-auto">
           <div className="bg-white border-2 border-primary/10 p-12 md:p-16 hover:border-accent/30 transition-all duration-500">
             <h3 className="font-serif text-4xl text-primary italic mb-8 text-center">

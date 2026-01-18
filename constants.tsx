@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Scale, Briefcase, Users, Building2, Lightbulb, ArrowRight, Gavel, ShieldCheck, Landmark, Clock, Calendar, Smartphone, Trophy, UserCheck, Search } from 'lucide-react';
-import { PracticeArea, Partner, CaseVictory, FAQItem } from './types';
+import { PracticeArea, Partner, Lawyer, CaseVictory, FAQItem } from './types';
 
 export const FIRM_NAME = "Okosun, Okosun & Partners";
 
@@ -55,7 +55,7 @@ export const PARTNERS: Partner[] = [
     name: 'Emmanuel Ehiabhi Okosun',
     role: 'Principal Partner',
     bar: 'Called to Bar 2007',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=800',
+    image: '/images/IMG_9616-Edit.jpg',
     bio: 'With nearly two decades of litigation experience, Emmanuel has established himself as a formidable force in the Nigerian legal system. Specializing in high-stakes criminal defense and constitutional law.'
   },
   {
@@ -63,10 +63,94 @@ export const PARTNERS: Partner[] = [
     name: 'Aituaje Okosun',
     role: 'Managing Partner',
     bar: 'Called to Bar 2008',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800',
+    image: '/images/IMG_9660-Edit.jpg',
     bio: 'Aituaje leads our corporate and property law divisions with meticulous precision. Her background in complex commercial transactions and estate management has made her primary counsel for Lagos’s prominent entities.'
   }
 ];
+
+export const TEAM_LAWYERS: Lawyer[] = [
+  {
+    id: 'lawyer1',
+    name: 'Osagie Omoruyi',
+    role: 'Senior Associate',
+    specialization: 'Corporate & Commercial Law',
+    image: '/images/IMG_9608-Edit.jpg',
+    bio: 'Osagie specializes in mergers, acquisitions, and corporate restructuring with over 8 years of experience in complex commercial transactions.'
+  },
+  {
+    id: 'lawyer2',
+    name: 'Itohan Osayande',
+    role: 'Senior Associate',
+    specialization: 'Property & Real Estate Law',
+    image: '/images/IMG_9615-Edit-Edit.jpg',
+    bio: 'Itohan leads our property law division, handling high-value real estate transactions and land disputes across Nigeria.'
+  },
+  {
+    id: 'lawyer3',
+    name: 'Eghosa Aigbedion',
+    role: 'Associate',
+    specialization: 'Criminal Defense',
+    image: '/images/IMG_9619-Edit.jpg',
+    bio: 'Eghosa brings strategic defense expertise to criminal cases, with a focus on white-collar crime and regulatory compliance.'
+  },
+  {
+    id: 'lawyer4',
+    name: 'Uyi Osarenkhoe',
+    role: 'Associate',
+    specialization: 'Civil Litigation',
+    image: '/images/IMG_9627-Edit.jpg',
+    bio: 'Uyi handles complex civil litigation matters, including contract disputes and tort claims with precision and dedication.'
+  },
+  {
+    id: 'lawyer5',
+    name: 'Osaze Okundaye',
+    role: 'Associate',
+    specialization: 'Intellectual Property',
+    image: '/images/IMG_9634-Edit.jpg',
+    bio: 'Osaze protects our clients\' intellectual property rights, specializing in trademark, copyright, and patent law.'
+  },
+  {
+    id: 'lawyer6',
+    name: 'Ehis Omorogbe',
+    role: 'Associate',
+    specialization: 'Family & Estate Law',
+    image: '/images/IMG_9640-Edit.jpg',
+    bio: 'Ehis provides compassionate yet strategic counsel in family law matters and estate planning.'
+  },
+  {
+    id: 'lawyer7',
+    name: 'Efe Osahon',
+    role: 'Junior Associate',
+    specialization: 'Corporate Compliance',
+    image: '/images/IMG_9642-Edit.jpg',
+    bio: 'Efe assists clients with regulatory compliance and corporate governance matters.'
+  },
+  {
+    id: 'lawyer8',
+    name: 'Ivie Iyamu',
+    role: 'Junior Associate',
+    specialization: 'Tax & Revenue Law',
+    image: '/images/IMG_9664-Edit-Edit.jpg',
+    bio: 'Ivie specializes in tax planning and revenue law, helping clients navigate Nigeria\'s complex tax landscape.'
+  },
+  {
+    id: 'lawyer9',
+    name: 'Osahon Edokpayi',
+    role: 'Legal Researcher',
+    specialization: 'Constitutional Law',
+    image: '/images/IMG_9672-Edit.jpg',
+    bio: 'Osahon provides in-depth legal research and analysis, with expertise in constitutional and administrative law.'
+  },
+  {
+    id: 'lawyer10',
+    name: 'Omon Osagie',
+    role: 'Paralegal',
+    specialization: 'Case Management',
+    image: '/images/IMG_9612-Edit.jpg',
+    bio: 'Omon ensures seamless case management and client coordination across all practice areas.'
+  }
+];
+
 
 export const FAQS: FAQItem[] = [
   {

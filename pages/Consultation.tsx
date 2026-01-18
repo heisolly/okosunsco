@@ -5,7 +5,7 @@ const Consultation: React.FC = () => {
   return (
     <div className="animate-in fade-in slide-in-from-bottom-8 duration-700">
       <div className="pt-48 pb-32 px-6 md:px-24 max-w-[100vw] bg-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000')] opacity-10 bg-cover bg-center" />
+        <div className="absolute inset-0 bg-[url('/images/IMG_9627-Edit.jpg')] opacity-10 bg-cover bg-center" />
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/95 to-primary" />
         
         <div className="max-w-4xl mx-auto text-center relative z-10">

@@ -43,9 +43,9 @@ const About: React.FC = () => {
           <div className="relative">
             <div className="aspect-[4/5] rounded-tr-[100px] rounded-bl-[100px] overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1575505586669-63d931686482?auto=format&fit=crop&q=80&w=1200"
+                src="/images/IMG_9642-Edit.jpg"
                 className="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700"
-                alt="Law Office"
+                alt="Legal Team"
               />
             </div>
             <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-accent/10 rounded-full z-[-1]"></div>
