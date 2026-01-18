@@ -17,9 +17,9 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
           <div className="absolute top-[-10%] right-[-10%] w-[1px] h-[120%] bg-accent/20 rotate-[30deg] transform-gpu" />
           <div className="absolute top-[20%] right-[10%] w-[1px] h-[60%] bg-accent/10 rotate-[30deg] transform-gpu" />
           
-          {/* Subtle Masked Symbolism */}
-          <div className="absolute -bottom-20 -right-20 w-3/4 h-3/4 opacity-[0.05]">
-            <img src="/lady-justice.png" alt="" className="w-full h-full object-contain object-bottom grayscale" />
+          {/* Subtle Masked Symbolism - Increased Visibility */}
+          <div className="absolute bottom-0 right-[-10%] w-full h-2/3 opacity-[0.15] z-0">
+            <img src="/lady-justice.png" alt="" className="w-full h-full object-contain object-bottom grayscale scale-125 origin-bottom-right" />
           </div>
         </div>
 
