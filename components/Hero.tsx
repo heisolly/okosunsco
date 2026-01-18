@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight, Award, Users, TrendingUp } from 'lucide-react';
-import { SplitText, BlurText, TextType } from './ReactsbitsAnimations';
+import { ArrowRight, Award, Users, TrendingUp, Shield, Scale, Gavel, Globe } from 'lucide-react';
+import { DecryptedText, GradientText, ShinyText, BlurText, TextPressure } from './ReactsbitsAnimations';
 
 interface HeroProps {
   onInitiateBrief: () => void;
@@ -10,206 +10,197 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
   return (
     <>
-      <section className="lg:hidden relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white" data-scene="intro">
-        <div className="absolute inset-0 z-0">
+      {/* Mobile Hero - Cinematic & Impactful */}
+      <section className="lg:hidden relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#FAF9F6]" data-scene="intro">
+        {/* Abstract Background Gradients */}
+        <div className="absolute inset-0 z-0 opacity-40">
+          <div className="absolute top-0 right-0 w-[80%] h-full bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.2),transparent_70%)]" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-full h-[60%] bg-[radial-gradient(circle_at_bottom_left,rgba(14,14,18,0.05),transparent_60%)]" />
+        </div>
+
+        {/* Feature Image - Lady Justice */}
+        <div className="absolute inset-x-0 bottom-0 z-0 h-3/4 flex items-end justify-center pointer-events-none opacity-20">
           <img 
             src="/lady-justice.png" 
             alt="Lady Justice" 
-            className="w-full h-full object-contain object-center scale-150"
+            className="h-full w-auto object-contain object-bottom scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-transparent to-white/90"></div>
         </div>
 
-        <div className="relative z-10 w-full h-full min-h-screen flex flex-col">
-          <div className="flex-1 flex flex-col items-center justify-start pt-24 px-6 text-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 backdrop-blur-sm rounded-full mb-8 animate-in fade-in duration-700">
-              <Award className="w-4 h-4 text-accent" />
-              <span className="text-[10px] font-bold text-primary uppercase tracking-[0.2em]">
-                Est. 2010 • Award-Winning
+        <div className="relative z-10 w-full h-full min-h-screen flex flex-col pt-24 pb-12 px-6">
+          <div className="flex-1 flex flex-col items-center justify-start text-center">
+            {/* Elite Badge */}
+            <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-primary text-white rounded-full mb-10 shadow-2xl shadow-primary/20 animate-in fade-in duration-700">
+              <Shield className="w-4 h-4 text-accent" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em]">
+                Elite Advocacy • Est. 2010
               </span>
             </div>
 
-            <h1 className="font-serif text-5xl sm:text-6xl text-primary leading-[1.1] tracking-tight animate-in fade-in slide-in-from-bottom-4 duration-700 delay-200">
-              Justice Served
-              <br />
-              <span className="italic font-normal">with Integrity</span>
+            {/* Main Heading */}
+            <h1 className="font-serif text-5xl sm:text-6xl text-primary leading-tight mb-8">
+              <TextPressure text="Justice Served" />
+              <span className="block mt-2 text-accent italic font-normal underline decoration-accent/20 underline-offset-8">with Integrity</span>
             </h1>
+
+            {/* Subtext */}
+            <p className="text-lg text-primary/60 font-light max-w-sm leading-relaxed border-l-2 border-accent/30 pl-6 mx-auto">
+              <BlurText text="Nigeria's premier legal architects. Delivering strategic foresight for elite corporate and private interests." delay={0.4} />
+            </p>
           </div>
 
-          <div className="flex flex-col items-center justify-end pb-12 px-6">
-            <div className="flex flex-col w-full gap-4 max-w-md mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 delay-500">
-              <button 
-                onClick={onInitiateBrief}
-                className="group w-full px-8 py-4 bg-primary text-white font-bold text-xs uppercase tracking-[0.15em] hover:bg-accent transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 rounded-full"
-              >
-                <span>Get Service Now</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <button 
-                onClick={onViewCapabilities}
-                className="group w-full px-8 py-4 bg-white border-2 border-primary/20 text-primary font-bold text-xs uppercase tracking-[0.15em] hover:border-accent hover:text-accent transition-all duration-300 flex items-center justify-center gap-3 rounded-full"
-              >
-                <span>Our Expertise</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </div>
+          <div className="space-y-4 w-full max-w-md mx-auto relative z-20">
+            <button 
+              onClick={onInitiateBrief}
+              className="group w-full px-8 py-6 bg-primary text-white rounded-full overflow-hidden transition-all duration-500 hover:scale-[1.02] shadow-[0_20px_40px_-10px_rgba(14,14,18,0.4)] flex items-center justify-center gap-4"
+            >
+              <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.5em]">
+                <ShinyText text="COMMENCE BRIEF" />
+              </span>
+              <ArrowRight className="w-5 h-5 text-accent group-hover:translate-x-2 transition-transform" />
+            </button>
+            
+            <button 
+              onClick={onViewCapabilities}
+              className="group w-full px-8 py-6 bg-white border-2 border-primary/5 text-primary rounded-full hover:border-accent transition-all duration-500 flex items-center justify-center gap-4"
+            >
+              <span className="text-[11px] font-black uppercase tracking-[0.5em]">Expertise</span>
+              <Scale className="w-5 h-5 text-accent group-hover:rotate-12 transition-transform" />
+            </button>
 
-            <div className="grid grid-cols-3 gap-6 w-full max-w-md animate-in fade-in slide-in-from-bottom-4 duration-700 delay-600">
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-1 mb-1">
-                  <Award className="w-4 h-4 text-accent" />
-                  <div className="text-2xl font-serif text-accent">15+</div>
+            {/* Mobile Stats Ribbon */}
+            <div className="flex items-center justify-between pt-8 border-t border-primary/5">
+              {[
+                { label: "Years", val: "15+" },
+                { label: "Cases", val: "500+" },
+                { label: "Success", val: "98%" }
+              ].map((stat, i) => (
+                <div key={i} className="text-center px-4">
+                  <p className="text-xl font-serif italic text-primary leading-none mb-1">{stat.val}</p>
+                  <p className="text-[8px] font-black uppercase tracking-widest text-accent">{stat.label}</p>
                 </div>
-                <div className="text-[9px] uppercase tracking-wider text-primary/60 font-bold">Years</div>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-1 mb-1">
-                  <Users className="w-4 h-4 text-accent" />
-                  <div className="text-2xl font-serif text-accent">500+</div>
-                </div>
-                <div className="text-[9px] uppercase tracking-wider text-primary/60 font-bold">Cases</div>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center gap-1 mb-1">
-                  <TrendingUp className="w-4 h-4 text-accent" />
-                  <div className="text-2xl font-serif text-accent">₦5B+</div>
-                </div>
-                <div className="text-[9px] uppercase tracking-wider text-primary/60 font-bold">Recovered</div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <section className="hidden lg:flex relative min-h-screen w-full items-center overflow-hidden bg-white pt-32 pb-12" data-scene="intro">
+      {/* Desktop Hero - The Premium Dossier View */}
+      <section className="hidden lg:flex relative min-h-screen w-full items-center overflow-hidden bg-[#FAF9F6] pt-24" data-scene="intro">
+        {/* Advanced Background Elements */}
         <div className="absolute inset-0 z-0">
-          <svg className="absolute top-20 left-0 w-[500px] h-[500px] opacity-20" viewBox="0 0 200 200">
-            <path d="M 20,100 Q 60,20 100,100 T 180,100" fill="none" stroke="#0E0E12" strokeWidth="1.5"/>
-            <path d="M 10,120 Q 50,60 90,120" fill="none" stroke="#D4AF37" strokeWidth="1.2"/>
-            <circle cx="50" cy="80" r="120" fill="none" stroke="#0E0E12" strokeWidth="0.5"/>
-            <circle cx="60" cy="90" r="100" fill="none" stroke="#D4AF37" strokeWidth="0.3"/>
-          </svg>
-          <svg className="absolute bottom-0 right-0 w-[700px] h-[700px] opacity-20" viewBox="0 0 200 200">
-            <path d="M 20,100 Q 60,180 100,100 T 180,100" fill="none" stroke="#0E0E12" strokeWidth="1.5"/>
-            <path d="M 110,140 Q 150,80 190,140" fill="none" stroke="#D4AF37" strokeWidth="1.2"/>
-            <circle cx="150" cy="120" r="100" fill="none" stroke="#0E0E12" strokeWidth="0.5"/>
-            <circle cx="140" cy="110" r="80" fill="none" stroke="#D4AF37" strokeWidth="0.3"/>
-          </svg>
+          <div className="absolute top-0 right-0 w-[60%] h-full bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.12),transparent_70%)]" />
+          <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[70%] bg-[radial-gradient(circle_at_bottom_left,rgba(14,14,18,0.03),transparent_60%)]" />
           
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwIiBzdHJva2Utd2lkdGg9IjAuNSIgb3BhY2l0eT0iMC4wMyIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-40"></div>
+          {/* Subtle Grid & Animated Stroke */}
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 pointer-events-none" />
+          <div className="absolute top-1/4 right-[15%] w-px h-1/2 bg-gradient-to-b from-transparent via-accent/30 to-transparent rotate-12" />
         </div>
 
-        <div className="max-w-[1800px] mx-auto px-16 py-16 relative z-10 w-full">
-          <div className="grid grid-cols-12 gap-0 items-center">
-            <div className="col-span-5 space-y-8 animate-in fade-in slide-in-from-left duration-1000">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-full">
-                  <Award className="w-4 h-4 text-accent" />
-                  <span className="text-xs font-bold text-primary uppercase tracking-wider">
-                    <TextType text="Est. 2010 • Award-Winning Firm" speed={30} />
+        <div className="max-w-[1800px] mx-auto px-16 xl:px-24 py-16 relative z-10 w-full">
+          <div className="grid grid-cols-12 gap-16 items-center">
+            {/* Left Content Column */}
+            <div className="col-span-6 space-y-12">
+              <div className="space-y-8">
+                {/* Premium Badge */}
+                <div className="inline-flex items-center gap-3 px-6 py-2.5 bg-primary text-white rounded-full shadow-2xl shadow-primary/20">
+                  <Shield className="w-4 h-4 text-accent" />
+                  <span className="text-[10px] font-bold uppercase tracking-[0.4em]">
+                    Elite National Advocacy • Est. 2010
                   </span>
                 </div>
 
-                <h1 className="font-serif text-7xl xl:text-8xl text-primary leading-[1.05] tracking-tight">
-                  <SplitText text="Justice Served" delay={0.2} />
-                  <br />
-                  <span className="italic font-normal">with Integrity</span>
-                </h1>
+                {/* Main Headline */}
+                <div className="space-y-4">
+                  <h1 className="font-serif text-7xl xl:text-9xl text-primary leading-[1.1] md:leading-[1] italic">
+                    <TextPressure text="Justice Served" />
+                    <span className="block translate-x-[15%] text-accent underline decoration-accent/20 underline-offset-[16px]">with Integrity</span>
+                  </h1>
+                </div>
                 
-                <p className="text-lg text-primary/60 font-light leading-relaxed max-w-lg">
-                  <BlurText text="Nigeria's premier legal strategists. We combine deep expertise with innovative thinking to deliver exceptional results for our clients across civil, criminal, property, and corporate law." delay={0.5} />
+                <p className="text-xl xl:text-2xl text-primary/60 font-light leading-relaxed max-w-2xl border-l-4 border-accent pl-10">
+                  <BlurText text="Architecture of victory begins with strategic foresight. We provide elite legal representation for high-stakes corporate and private interests across Nigeria." delay={0.5} />
                 </p>
               </div>
 
-              <div className="flex gap-4 pt-2">
+              {/* Action Suite */}
+              <div className="flex items-center gap-8 pt-4">
                 <button 
                   onClick={onInitiateBrief}
-                  className="group px-10 py-4 bg-primary text-white font-bold text-sm uppercase tracking-wide hover:bg-accent transition-all duration-300 shadow-lg hover:shadow-xl flex items-center gap-3 rounded-full"
+                  className="group relative px-16 py-10 bg-primary text-white rounded-full overflow-hidden transition-all duration-500 hover:scale-105 shadow-[0_30px_60px_-15px_rgba(14,14,18,0.5)]"
                 >
-                  <span>Get Service Now</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
+                  <span className="relative z-10 text-[12px] font-black uppercase tracking-[0.6em] flex items-center gap-4">
+                    <ShinyText text="COMMENCE BRIEF" />
+                    <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-2" />
+                  </span>
                 </button>
                 
                 <button 
                   onClick={onViewCapabilities}
-                  className="group px-10 py-4 border-2 border-primary/20 text-primary font-bold text-sm uppercase tracking-wide hover:border-accent hover:text-accent transition-all duration-300 flex items-center gap-3 rounded-full"
+                  className="group px-12 py-10 bg-transparent border-2 border-primary/5 text-primary rounded-full text-[12px] font-black uppercase tracking-[0.6em] hover:bg-white hover:border-accent hover:text-accent transition-all duration-500 flex items-center gap-4"
                 >
-                  <span>Our Expertise</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  Expertise
+                  <Scale className="w-5 h-5 text-accent transition-transform group-hover:rotate-12" />
                 </button>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 pt-6 border-t border-primary/10">
-                <div className="text-left">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Award className="w-5 h-5 text-accent" />
-                    <div className="text-4xl font-serif text-accent">15+</div>
+              {/* Success Metrics Overlay */}
+              <div className="grid grid-cols-3 gap-12 pt-12 border-t border-primary/5">
+                {[
+                  { icon: Award, val: "15+", label: "Years Excellence" },
+                  { icon: Gavel, val: "500+", label: "Cases Resolved" },
+                  { icon: TrendingUp, val: "₦5B+", label: "Capital Recovered" }
+                ].map((stat, i) => (
+                  <div key={i} className="group cursor-default">
+                    <div className="flex items-center gap-3 mb-2">
+                      <stat.icon className="w-5 h-5 text-accent group-hover:scale-110 transition-transform" />
+                      <div className="text-4xl font-serif italic text-primary">{stat.val}</div>
+                    </div>
+                    <div className="text-[10px] font-black uppercase tracking-[0.2em] text-primary/30 group-hover:text-accent transition-colors">
+                      {stat.label}
+                    </div>
                   </div>
-                  <div className="text-xs uppercase tracking-wider text-primary/50 font-bold">Years Excellence</div>
-                </div>
-                <div className="text-left">
-                  <div className="flex items-center gap-2 mb-2">
-                    <Users className="w-5 h-5 text-accent" />
-                    <div className="text-4xl font-serif text-accent">500+</div>
-                  </div>
-                  <div className="text-xs uppercase tracking-wider text-primary/50 font-bold">Cases Won</div>
-                </div>
-                <div className="text-left">
-                  <div className="flex items-center gap-2 mb-2">
-                    <TrendingUp className="w-5 h-5 text-accent" />
-                    <div className="text-4xl font-serif text-accent">₦5B+</div>
-                  </div>
-                  <div className="text-xs uppercase tracking-wider text-primary/50 font-bold">Recovered</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4 pt-4 border-t border-primary/10">
-                <div className="flex -space-x-3">
-                  <div className="w-10 h-10 rounded-full bg-accent/20 border-2 border-white flex items-center justify-center">
-                    <span className="text-xs font-bold text-accent">EO</span>
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-primary/20 border-2 border-white flex items-center justify-center">
-                    <span className="text-xs font-bold text-primary">AO</span>
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-accent/30 border-2 border-white flex items-center justify-center">
-                    <span className="text-xs font-bold text-accent">+10</span>
-                  </div>
-                </div>
-                <div className="text-sm text-primary/60">
-                  <span className="font-bold text-primary">Expert Legal Team</span>
-                  <br />
-                  <span className="text-xs">Senior Partners & Associates</span>
-                </div>
+                ))}
               </div>
             </div>
 
-            <div className="col-span-7 relative h-[800px] animate-in fade-in slide-in-from-right duration-1000 delay-200">
-              <div className="relative w-full h-full flex items-end justify-end">
-                <div className="absolute inset-0 flex items-end justify-end">
+            {/* Right Visual Column - The Cinematic Frame */}
+            <div className="col-span-6 relative h-[85vh] animate-in fade-in slide-in-from-right duration-[1.5s]">
+              <div className="relative w-full h-full">
+                {/* Foreground Image with Luxury Masking */}
+                <div className="absolute inset-x-0 bottom-0 h-full flex items-end justify-end">
+                  {/* Glowing Aura behind Justice */}
+                  <div className="absolute bottom-[10%] right-[10%] w-[60%] h-[60%] bg-accent/20 rounded-full blur-[120px] animate-pulse" />
+                  
                   <img 
                     src="/lady-justice.png" 
-                    alt="Lady Justice - Symbol of Legal Excellence" 
-                    className="h-full w-auto object-contain object-bottom max-w-none"
-                    style={{ maxHeight: '100%' }}
+                    alt="Lady Justice" 
+                    className="h-full w-auto object-contain object-bottom scale-110 relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.4)]"
                   />
                 </div>
 
-                <div className="absolute top-1/3 right-20 bg-white/95 backdrop-blur-sm border border-primary/10 p-6 rounded-xl max-w-xs shadow-2xl z-30 animate-in fade-in slide-in-from-top duration-1000 delay-700">
-                  <div className="flex items-start gap-2">
-                    <div className="text-5xl text-accent/30 font-serif leading-none mt-1">"</div>
-                    <div className="flex-1">
-                      <p className="text-primary/70 font-light text-sm leading-relaxed">
-                        <BlurText text="Strategic foresight is the foundation of every victory. We architect legal solutions that stand the test of time." delay={1.5} />
-                      </p>
-                      <p className="text-primary/50 text-xs mt-3 uppercase tracking-wider font-bold">Okosun & Partners</p>
+                {/* Floating Intelligence Card */}
+                <div className="absolute top-[20%] right-0 bg-white/90 backdrop-blur-2xl border border-white p-10 rounded-[2.5rem] max-w-sm shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] z-20">
+                  <div className="flex items-start gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center">
+                      <Globe className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-black uppercase tracking-widest text-accent mb-1">Strategic Presence</p>
+                      <p className="text-xl font-serif italic text-primary">Global Standards. National Precision.</p>
                     </div>
                   </div>
+                  <p className="text-primary/60 font-medium italic text-sm leading-relaxed mb-6">
+                    "Victory is the byproduct of superior preparation. We architect legal strategies that stand the test of time."
+                  </p>
+                  <p className="text-[9px] font-black uppercase tracking-[0.3em] text-primary/30">Node: HQ-BENIN-01</p>
                 </div>
 
-                <div className="absolute bottom-0 right-0 left-0 text-center z-20">
-                  <div className="text-[20rem] font-serif font-bold text-primary/[0.02] leading-none select-none">
-                    Legal Excellence
+                {/* Background Text Depth */}
+                <div className="absolute bottom-0 right-0 left-0 text-right pr-12 pb-12 z-0 overflow-hidden pointer-events-none">
+                  <div className="text-[18rem] font-serif font-black text-primary/[0.015] leading-none select-none italic whitespace-nowrap">
+                    EXCELLENCE
                   </div>
                 </div>
               </div>
