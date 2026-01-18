@@ -17,7 +17,6 @@ const Team: React.FC = () => {
         </div>
       </div>
       
-      {/* Partners Section */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32">
         {PARTNERS.map((p) => (
           <div key={p.id} className="group relative">
@@ -50,7 +49,6 @@ const Team: React.FC = () => {
         ))}
       </div>
 
-      {/* Team Gallery Section - Modern Masonry Layout */}
       <div className="border-t-2 border-primary/10 pt-24">
         <div className="mb-16">
           <h2 className="font-serif text-4xl md:text-5xl text-primary italic text-center">
@@ -61,9 +59,7 @@ const Team: React.FC = () => {
           </p>
         </div>
         
-        {/* Masonry Grid Gallery */}
         <div className="relative">
-          {/* Grid Background */}
           <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
             <div className="absolute inset-0" style={{
               backgroundImage: `
@@ -74,7 +70,6 @@ const Team: React.FC = () => {
             }} />
           </div>
 
-          {/* Desktop: 4 Column Masonry */}
           <div className="hidden md:grid grid-cols-4 gap-6 relative z-10">
             {[
               '/images/IMG_9616-Edit.jpg',
@@ -90,7 +85,6 @@ const Team: React.FC = () => {
               '/images/IMG_9672-Edit.jpg',
               '/images/IMG_9612-Edit.jpg'
             ].map((image, index) => {
-              // Create staggered heights for masonry effect
               const heights = ['h-[400px]', 'h-[500px]', 'h-[450px]', 'h-[480px]'];
               const heightClass = heights[index % 4];
               
@@ -102,17 +96,14 @@ const Team: React.FC = () => {
                     animationDelay: `${index * 0.08}s`
                   }}
                 >
-                  {/* Image */}
                   <img
                     src={image}
                     className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                     alt={`Team member ${index + 1}`}
                   />
                   
-                  {/* Gradient Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   
-                  {/* Hover Content */}
                   <div className="absolute inset-0 flex flex-col justify-end p-8 translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-4 transform scale-0 group-hover:scale-100 transition-transform duration-500 delay-100">
                       <span className="text-primary font-bold text-xl">{String(index + 1).padStart(2, '0')}</span>
@@ -120,14 +111,12 @@ const Team: React.FC = () => {
                     <div className="h-1 w-0 bg-accent group-hover:w-20 transition-all duration-500 delay-200"></div>
                   </div>
 
-                  {/* Border Accent */}
                   <div className="absolute inset-0 border-2 border-transparent group-hover:border-accent/50 rounded-3xl transition-all duration-500 pointer-events-none" />
                 </div>
               );
             })}
           </div>
 
-          {/* Mobile: 2 Column Grid */}
           <div className="md:hidden grid grid-cols-2 gap-4 relative z-10">
             {[
               '/images/IMG_9616-Edit.jpg',
@@ -143,7 +132,6 @@ const Team: React.FC = () => {
               '/images/IMG_9672-Edit.jpg',
               '/images/IMG_9612-Edit.jpg'
             ].map((image, index) => {
-              // Alternating heights for mobile
               const heights = ['h-[280px]', 'h-[320px]'];
               const heightClass = heights[index % 2];
               
