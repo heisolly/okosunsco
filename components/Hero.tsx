@@ -11,40 +11,30 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
   return (
     <>
       {/* Large & Clean Mobile Hero Redesign - Cinematic Focus */}
-      <section className="lg:hidden relative min-h-screen w-full flex flex-col bg-[#FAF9F6] overflow-hidden" data-scene="intro">
+      <section className="lg:hidden relative min-h-screen w-full flex flex-col bg-[#FAF9F6] overflow-hidden pt-28" data-scene="intro">
         
-        {/* Clean Header Integration */}
-        <header className="relative z-30 flex items-center justify-between px-6 pt-10 pb-6">
-          <img src="/logo.png" alt="Logo" className="h-9 w-auto object-contain" />
-          <nav className="flex items-center gap-6">
-            <span className="text-[10px] font-black tracking-widest text-accent">HOME</span>
-            <button className="w-10 h-10 rounded-full bg-white shadow-lg border border-black/5 flex items-center justify-center">
-              <div className="w-4 h-[2px] bg-primary relative after:absolute after:top-1.5 after:left-0 after:w-4 after:h-[2px] after:bg-primary before:absolute before:-top-1.5 before:left-0 before:w-4 before:h-[2px] before:bg-primary" />
-            </button>
-          </nav>
-        </header>
-
         {/* LARGE CINEMATIC BACKGROUND VISUAL - Show Well & Largely */}
         <div className="absolute inset-x-0 bottom-0 top-0 z-0 flex items-center justify-center pointer-events-none">
-          {/* Main Large Lady Justice */}
+          {/* Main Large Lady Justice - Centered and Large as requested */}
           <div className="relative w-full h-full flex items-center justify-center">
              <img 
                src="/lady-justice.png" 
                alt="" 
-               className="w-[130%] h-auto opacity-[0.35] grayscale brightness-[1.05] contrast-[1.1] transform translate-y-10" 
+               className="w-[140%] h-auto opacity-[0.25] grayscale brightness-[1.1] contrast-[1.05] transform translate-y-24" 
              />
-             <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-transparent to-[#FAF9F6]/90" />
-             <div className="absolute inset-0 bg-gradient-to-b from-[#FAF9F6]/20 via-transparent to-transparent" />
+             {/* Dynamic Gradients for depth and legibility */}
+             <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-transparent to-[#FAF9F6]/80" />
+             <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#FAF9F6] to-transparent" />
           </div>
           
-          {/* Sharp Gold Architecture lines */}
-          <div className="absolute top-0 right-0 w-[1px] h-full bg-accent/20 rotate-[20deg] transform-gpu" />
-          <div className="absolute top-[20%] left-[-10%] w-[1px] h-3/4 bg-accent/10 rotate-[20deg] transform-gpu" />
+          {/* Sharp Gold Architecture lines - Clinical detail */}
+          <div className="absolute top-0 right-[15%] w-[1px] h-full bg-accent/20 rotate-[20deg] transform-gpu" />
+          <div className="absolute bottom-0 left-[10%] w-[1px] h-1/2 bg-accent/10 rotate-[20deg] transform-gpu" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col px-10 text-center pt-8">
-          {/* Elite Tag */}
-          <div className="flex flex-col items-center gap-5 mb-12">
+        <div className="relative z-10 flex-1 flex flex-col px-10 text-center">
+          {/* Elite Tag - Focused Header */}
+          <div className="flex flex-col items-center gap-4 mb-10">
             <div className="flex items-center gap-3">
               <div className="w-8 h-[1px] bg-accent" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-accent">Elite National Command</span>
@@ -52,52 +42,52 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
             </div>
           </div>
 
-          {/* Headline Suite - Centered and Dramatic */}
-          <div className="space-y-3 mb-12">
-            <h1 className="font-serif text-[16vw] leading-[0.85] text-primary italic">
+          {/* Headline Suite - Dramatic Centered Impact */}
+          <div className="space-y-4 mb-10">
+            <h1 className="font-serif text-[18vw] leading-[0.85] text-primary italic">
               Justice
             </h1>
-            <h1 className="font-serif text-[16vw] leading-[0.85] text-primary relative inline-block">
+            <h1 className="font-serif text-[18vw] leading-[0.85] text-primary relative inline-block">
               Served <span className="text-accent underline decoration-accent/10 underline-offset-[16px]">Sharp.</span>
-              <div className="absolute -bottom-3 left-0 right-0 h-[6px] bg-accent" />
+              <div className="absolute -bottom-4 left-0 right-0 h-[6px] bg-accent" />
             </h1>
           </div>
 
-          {/* Clean Clinical Description with subtle backdrop */}
-          <div className="relative py-8 px-6 mb-12 backdrop-blur-sm bg-white/5 rounded-[2rem] border border-white/20 max-w-[320px] mx-auto">
-             <p className="text-primary/60 text-base font-serif italic leading-relaxed">
+          {/* Clean Clinical Description with glassmorphism for legibility */}
+          <div className="relative py-6 px-8 mb-10 backdrop-blur-md bg-white/10 rounded-[2.5rem] border border-white/30 max-w-[340px] mx-auto shadow-sm">
+             <p className="text-primary/70 text-base font-serif italic leading-relaxed">
                "Clinical legal strategies architected for Nigeria's most complex corporate and private interests."
              </p>
           </div>
 
-          {/* Precision Stats Node - Large Centered */}
-          <div className="grid grid-cols-2 gap-12 mb-20 relative px-6">
+          {/* Precision Stats Node - Large Centered Grid */}
+          <div className="grid grid-cols-2 gap-12 mb-16 relative px-4">
             <div className="space-y-1">
-              <p className="text-[9px] font-black uppercase tracking-widest text-accent opacity-70">Success Rate</p>
+              <p className="text-[9px] font-black uppercase tracking-widest text-accent opacity-60">Success Rate</p>
               <p className="text-5xl font-serif italic text-primary">98.4%</p>
             </div>
-            <div className="absolute left-1/2 top-4 bottom-4 w-[1px] bg-primary/10 -translate-x-1/2 rotate-[15deg]" />
+            <div className="absolute left-1/2 top-4 bottom-4 w-[1px] bg-primary/10 -translate-x-1/2 rotate-[12deg]" />
             <div className="space-y-1">
-              <p className="text-[9px] font-black uppercase tracking-widest text-accent opacity-70">Years Active</p>
+              <p className="text-[9px] font-black uppercase tracking-widest text-accent opacity-60">Years Active</p>
               <p className="text-5xl font-serif italic text-primary">15+</p>
             </div>
           </div>
 
-          {/* Action Suite - Floating at top of view in center stack */}
-          <div className="mt-auto pb-12 w-full max-w-[400px] mx-auto">
+          {/* Multi-Action Suite */}
+          <div className="mt-auto pb-12 w-full max-w-[420px] mx-auto space-y-8">
             <button 
               onClick={onInitiateBrief}
-              className="group relative w-full py-8 bg-primary text-white rounded-[2rem] overflow-hidden transition-all duration-500 shadow-[0_30px_60px_-15px_rgba(14,14,18,0.5)] flex items-center justify-center gap-4"
+              className="group relative w-full py-8 bg-primary text-white rounded-[2rem] overflow-hidden transition-all duration-500 shadow-[0_25px_50px_-12px_rgba(14,14,18,0.5)] flex items-center justify-center gap-4"
             >
               <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
               <span className="relative z-10 text-[12px] font-bold uppercase tracking-[0.5em]">
                 <ShinyText text="COMMENCE BRIEF" />
               </span>
-              <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-2" />
+              <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-3" />
             </button>
             
-            <div className="mt-8 flex justify-center">
-               <a href="tel:+2348101050240" className="text-[9px] font-black uppercase tracking-[0.4em] text-primary/30 flex items-center gap-3 hover:text-accent transition-colors">
+            <div className="flex justify-center flex-col items-center gap-4">
+               <a href="tel:+2348101050240" className="text-[10px] font-black uppercase tracking-[0.4em] text-primary/40 flex items-center gap-3 hover:text-accent transition-colors">
                  <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
                  Secure Response: 0810 105 0240
                </a>
