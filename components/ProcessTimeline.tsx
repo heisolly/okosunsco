@@ -36,6 +36,17 @@ const ProcessTimeline: React.FC<ProcessTimelineProps> = ({ onStartProcess }) => 
 
   return (
     <RevealSection className="py-32 lg:py-48 px-6 bg-[#0E0E12] overflow-hidden relative" data-scene="process">
+      {/* Grid Background */}
+      <div className="absolute inset-0 opacity-[0.05]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `
+            linear-gradient(to right, #D4AF37 1px, transparent 1px),
+            linear-gradient(to bottom, #D4AF37 1px, transparent 1px)
+          `,
+          backgroundSize: '60px 60px'
+        }} />
+      </div>
+
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent/5 blur-[150px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-primary/50 blur-[200px] rounded-full pointer-events-none" />
 

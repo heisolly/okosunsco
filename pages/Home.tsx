@@ -40,12 +40,23 @@ const Home: React.FC<HomeProps> = ({ onNavigate, activeFaq, setActiveFaq }) => {
 
       <AboutHighlight whyChooseUs={WHY_CHOOSE_US} />
 
-      <section className="py-48 px-6 relative overflow-hidden" data-scene="cta">
+      <section className="py-24 md:py-48 px-4 md:px-6 relative overflow-hidden" data-scene="cta">
+        {/* Grid Background */}
+        <div className="absolute inset-0 opacity-[0.03]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(to right, #0E0E12 1px, transparent 1px),
+              linear-gradient(to bottom, #0E0E12 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }} />
+        </div>
+
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-accent/10 rounded-full blur-[150px] animate-pulse pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[150px] animate-pulse pointer-events-none" style={{ animationDelay: '1s' }} />
         
-        <div className="max-w-5xl mx-auto text-center glass-card rounded-[5rem] p-24 shadow-gold relative overflow-hidden group hover:scale-[1.02] transition-all duration-700">
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[5rem]" />
+        <div className="max-w-5xl mx-auto text-center glass-card rounded-3xl md:rounded-[5rem] p-8 md:p-16 lg:p-24 shadow-gold relative overflow-hidden group hover:scale-[1.02] transition-all duration-700">
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl md:rounded-[5rem]" />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1500" />
           
           <div className="absolute inset-0 pointer-events-none">
@@ -55,15 +66,15 @@ const Home: React.FC<HomeProps> = ({ onNavigate, activeFaq, setActiveFaq }) => {
           </div>
 
           <div className="relative z-10">
-            <h2 className="font-serif text-5xl md:text-8xl text-primary italic mb-12 leading-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-8xl text-primary italic mb-6 md:mb-12 leading-tight px-2">
               <TextPressure text="Ready for a Strategic Shift?" />
             </h2>
-            <p className="text-2xl text-secondary/60 font-light mb-16 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-secondary/60 font-light mb-8 md:mb-16 max-w-2xl mx-auto px-4">
               <BlurText text="Our partners handle only a limited portfolio of cases to ensure absolute strategic focus." delay={0.3} />
             </p>
             <button
               onClick={() => onNavigate("contact")}
-              className="group/btn relative px-16 py-8 bg-gradient-to-r from-primary via-accent to-primary text-white rounded-full text-[11px] uppercase tracking-[0.5em] font-black shadow-gold transform hover:-translate-y-3 hover:shadow-[0_30px_80px_-15px_rgba(212,175,55,0.5)] transition-all duration-500 overflow-hidden btn-premium"
+              className="group/btn relative px-8 sm:px-12 md:px-16 py-4 sm:py-6 md:py-8 bg-gradient-to-r from-primary via-accent to-primary text-white rounded-full text-[9px] sm:text-[10px] md:text-[11px] uppercase tracking-[0.3em] sm:tracking-[0.4em] md:tracking-[0.5em] font-black shadow-gold transform hover:-translate-y-3 hover:shadow-[0_30px_80px_-15px_rgba(212,175,55,0.5)] transition-all duration-500 overflow-hidden btn-premium"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-accent via-gold-light to-accent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500" />
               <span className="relative z-10 group-hover/btn:scale-110 inline-block transition-transform duration-300">

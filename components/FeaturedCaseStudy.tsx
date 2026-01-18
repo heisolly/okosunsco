@@ -5,7 +5,20 @@ import RevealSection from './RevealSection';
 const FeaturedCaseStudy: React.FC = () => {
   return (
     <RevealSection className="py-32 bg-primary text-white relative overflow-hidden" data-scene="case-study">
-        {/* Background Texture or Grain could go here if global not sufficient */}
+        {/* Grid Background */}
+        <div className="absolute inset-0 opacity-[0.05]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `
+              linear-gradient(to right, #D4AF37 1px, transparent 1px),
+              linear-gradient(to bottom, #D4AF37 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }} />
+        </div>
+
+        {/* Decorative Blurs */}
+        <div className="absolute top-20 right-10 w-96 h-96 bg-accent/10 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-20 left-10 w-96 h-96 bg-accent/5 rounded-full blur-[150px] pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
