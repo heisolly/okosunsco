@@ -1,71 +1,105 @@
-
 import React, { useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { Scene, Page } from '../types';
 
 interface StatueProps {
   currentScene: Scene;
   currentPage: Page;
-  scrollY: number;
+  scrollY: number; // Keep for compatibility if needed, but we'll use local useScroll
 }
 
-const Statue: React.FC<StatueProps> = ({ currentScene, currentPage, scrollY }) => {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+const Statue: React.FC<StatueProps> = ({ currentScene, currentPage }) => {
+  const { scrollY } = useScroll();
+  
+  // Use springs for smooth movement
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springMouseX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springMouseY = useSpring(mouseY, { stiffness: 50, damping: 20 });
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({
-        x: (e.clientX / window.innerWidth - 0.5) * 40,
-        y: (e.clientY / window.innerHeight - 0.5) * 40,
-      });
+      mouseX.set((e.clientX / window.innerWidth - 0.5) * 40);
+      mouseY.set((e.clientY / window.innerHeight - 0.5) * 40);
     };
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [mouseX, mouseY]);
 
-  const getTransform = () => {
-    const mx = mousePos.x * 0.1;
-    const my = mousePos.y * 0.1;
-
-    if (currentPage !== 'home') {
-      return `translate3d(40vw, 10vh, -200px) rotateY(${-15 + mx}deg) rotateX(${my}deg) scale(0.6)`;
-    }
-
+  // Create refined MotionValues for the final rotation
+  const rotateY = useTransform(scrollY, (v) => {
+    if (currentPage !== 'home') return -15;
     switch (currentScene) {
-      case 'intro':
-        return `translate3d(${mx}px, ${my}px, 0) rotateY(${scrollY * 0.05 + mx}deg) rotateX(${my}deg) scale(1.1)`;
-      case 'values':
-        return `translate3d(25vw, 0, 0) rotateY(${-15 + mx}deg) rotateZ(5deg) scale(0.9)`;
-      case 'practice':
-        return `translate3d(0, 15vh, -150px) rotateY(${180 + mx}deg) scale(0.6)`;
-      case 'stats':
-        return `translate3d(-35vw, 0, 0) rotateY(${30 + mx}deg) scale(0.75)`;
-      case 'team':
-        return `translate3d(0, -25vh, 0) rotateY(${mx}deg) scale(0.5)`;
-      case 'cta':
-        return `translate3d(0, 0, 100px) rotateY(${scrollY * 0.03 + mx}deg) scale(1.3)`;
-      default:
-        return `translate3d(0, 0, 0) rotateY(${mx}deg)`;
+      case 'intro': return v * 0.05;
+      case 'values': return -15;
+      case 'practice': return 180;
+      case 'stats': return 30;
+      case 'cta': return v * 0.03;
+      default: return 0;
     }
-  };
+  });
 
-  const getOpacity = () => {
-    if (currentPage !== 'home') return '0.04';
+  const baseScale = currentPage !== 'home' ? 0.6 : (() => {
     switch (currentScene) {
-      case 'practice': return '0.1';
-      case 'stats': return '0.2';
-      case 'team': return '0.08';
-      case 'cta': return '0.8';
-      default: return '1';
+      case 'intro': return 1.1;
+      case 'values': return 0.9;
+      case 'practice': return 0.6;
+      case 'stats': return 0.75;
+      case 'team': return 0.5;
+      case 'cta': return 1.3;
+      default: return 1;
     }
-  };
+  })();
+
+  const baseOpacity = currentPage !== 'home' ? 0.04 : (() => {
+    switch (currentScene) {
+      case 'practice': return 0.1;
+      case 'stats': return 0.2;
+      case 'team': return 0.08;
+      case 'cta': return 0.8;
+      default: return 1;
+    }
+  })();
+
+  // Combine springs and scroll for the final transform
+  const combinedRotateY = useTransform([rotateY, springMouseX], ([rot, m]: any) => rot + m * 0.1);
+  const translateX = useTransform([springMouseX], ([m]: any) => {
+    if (currentPage !== 'home') return "40vw";
+    if (currentScene === 'values') return "25vw";
+    if (currentScene === 'stats') return "-35vw";
+    if (currentScene === 'intro') return `${m * 0.1}px`;
+    return "0px";
+  });
+  const translateY = useTransform([springMouseY], ([m]: any) => {
+    if (currentPage !== 'home') return "10vh";
+    if (currentScene === 'practice') return "15vh";
+    if (currentScene === 'team') return "-25vh";
+    if (currentScene === 'intro') return `${m * 0.1}px`;
+    return "0px";
+  });
+  const translateZ = currentScene === 'practice' ? "-150px" : (currentScene === 'cta' ? "100px" : (currentPage !== 'home' ? "-200px" : "0px"));
+  const rotateZ = currentScene === 'values' ? "5deg" : "0deg";
 
   return (
     <div className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 perspective-[2000px] flex items-center justify-center overflow-hidden">
-      <div
-        className="relative w-[85vh] h-[85vh] transition-all duration-[1500ms] cubic-bezier(0.16, 1, 0.3, 1) preserve-3d"
+      <motion.div
+        className="relative w-[85vh] h-[85vh] preserve-3d will-change-transform"
         style={{
-          transform: getTransform(),
-          opacity: getOpacity(),
+          x: translateX,
+          y: translateY,
+          z: translateZ,
+          rotateY: combinedRotateY,
+          rotateZ: rotateZ,
+          scale: baseScale,
+          opacity: baseOpacity,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 40,
+          damping: 20,
+          mass: 1,
+          opacity: { duration: 1 }
         }}
       >
         {/* Layer 1: The Scales (Front) */}
@@ -86,7 +120,7 @@ const Statue: React.FC<StatueProps> = ({ currentScene, currentPage, scrollY }) =
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[160%] h-[160%] bg-gradient-radial from-accent/10 via-transparent to-transparent blur-[120px] -z-10"
           style={{ transform: 'translateZ(-80px)' }}
         />
-      </div>
+      </motion.div>
     </div>
   );
 };

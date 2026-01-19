@@ -1,5 +1,9 @@
 /* Global Styles */
 
+html {
+  scroll-behavior: auto !important; /* Let Lenis handle smoothing */
+}
+
 :root {
   --ivory: #faf7f1;
   --primary: #0e0e12;
@@ -397,6 +401,7 @@ body::before {
 }
 .marquee-content {
   animation: scroll 60s linear infinite;
+  will-change: transform;
 }
 @keyframes scroll {
   0% { transform: translateX(0); }

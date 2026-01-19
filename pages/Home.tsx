@@ -2,6 +2,7 @@ import React from 'react';
 import Hero from '../components/Hero';
 import SocialMarquee from '../components/SocialMarquee';
 import Philosophy from '../components/Philosophy';
+import HorizontalShowcase from '../components/HorizontalShowcase';
 import PracticeGrid from '../components/PracticeGrid';
 import FeaturedCaseStudy from '../components/FeaturedCaseStudy';
 import AboutHighlight from '../components/AboutHighlight';
@@ -29,6 +30,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, activeFaq, setActiveFaq }) => {
       />
 
       <Philosophy />
+      <HorizontalShowcase />
 
       <PracticeGrid 
         areas={PRACTICE_AREAS}

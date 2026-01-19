@@ -13,136 +13,133 @@ interface PracticeGridProps {
 const PracticeGrid: React.FC<PracticeGridProps> = ({ areas, onNavigate, getIcon }) => {
   return (
     <RevealSection
-      className="py-24 md:py-48 px-0 md:px-24 bg-gradient-to-b from-white/30 to-ivory/50 backdrop-blur-sm relative overflow-hidden"
+      className="py-32 md:py-56 px-0 md:px-24 bg-[#FAF9F6] relative overflow-hidden"
       data-scene="practice"
     >
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `
-            linear-gradient(to right, #0E0E12 1px, transparent 1px),
-            linear-gradient(to bottom, #0E0E12 1px, transparent 1px)
-          `,
-          backgroundSize: '60px 60px'
-        }} />
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-full h-[1px] bg-accent/10 rotate-[15deg] transform-gpu blur-[1px]" />
+        <div className="absolute bottom-0 left-0 w-full h-[1px] bg-accent/5 rotate-[-5deg] transform-gpu blur-[2px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(212,175,55,0.03),transparent)]" />
       </div>
 
-      <div className="absolute top-20 right-10 w-64 h-64 bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute bottom-20 left-10 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto relative z-10">
-        <div className="flex flex-col items-start justify-between mb-12 md:mb-24 gap-6 md:gap-8 px-6 md:px-0">
-          <div className="max-w-xl">
-            <span className="text-accent text-[10px] md:text-xs font-black uppercase tracking-[0.4em] mb-4 block shimmer">
-              <DecryptedText text="DOMAINS" />
-            </span>
-            <h2 className="font-serif text-4xl md:text-7xl text-primary italic leading-tight">
-              Mastery across the <span className="gradient-text"><GradientText text="legal spectrum." colors={['#D4AF37', '#0E0E12', '#D4AF37']} /></span>
+      <div className="max-w-[1800px] mx-auto relative z-10 px-6 md:px-0">
+        <div className="flex flex-col lg:flex-row items-end justify-between mb-20 md:mb-32 gap-12">
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-[1px] bg-accent" />
+              <span className="text-accent text-[11px] md:text-xs font-black uppercase tracking-[0.5em]">
+                Strategic Domains
+              </span>
+            </div>
+            
+            <h2 className="font-serif text-5xl md:text-8xl lg:text-9xl text-primary italic leading-[0.9] mb-8">
+              Practice <br /> 
+              <span className="text-accent underline decoration-accent/20 underline-offset-8">Intelligence.</span>
             </h2>
+            
+            <p className="text-primary/60 text-lg md:text-2xl font-light italic border-l border-accent/20 pl-6 md:pl-10 max-w-2xl">
+              Sophisticated legal architecture tailored for Nigeria's most complex corporate and private inquiries.
+            </p>
           </div>
-          <p className="text-secondary/50 max-w-xs text-sm font-light">
-            Sophisticated counsel tailored for Nigeria's evolving corporate
-            and individual landscape.
-          </p>
+
+          <div className="hidden lg:block pb-4">
+            <button 
+              onClick={() => onNavigate("practice")}
+              className="group flex items-center gap-6 text-primary hover:text-accent transition-all duration-500"
+            >
+              <div className="flex flex-col items-end">
+                <span className="text-[10px] font-black uppercase tracking-[0.4em]">View All Expertise</span>
+                <span className="text-[8px] text-primary/40 uppercase tracking-[0.2em]">Archive Class A-01</span>
+              </div>
+              <div className="w-14 h-14 rounded-full border border-primary/10 flex items-center justify-center group-hover:border-accent group-hover:bg-accent group-hover:text-primary transition-all duration-500">
+                <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+              </div>
+            </button>
+          </div>
         </div>
 
-        <div className="md:hidden">
-          <div className="flex gap-4 overflow-x-auto pb-8 px-6 snap-x snap-mandatory scrollbar-hide">
+        {/* Mobile Horizontal Scroll */}
+        <div className="lg:hidden">
+          <div className="flex gap-6 overflow-x-auto pb-12 snap-x snap-mandatory scrollbar-hide">
             {areas.map((area, index) => (
               <div
                 key={area.id}
-                className="flex-shrink-0 w-[85vw] max-w-sm snap-center"
-                style={{ 
-                  animationDelay: `${index * 0.1}s`,
-                  animation: 'fadeInUp 0.6s ease-out forwards',
-                  opacity: 0
-                }}
+                className="flex-shrink-0 w-[85vw] snap-center"
               >
-                <div className="group h-full p-8 glass-card hover:shadow-gold transition-all duration-700 flex flex-col rounded-3xl relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl" />
-                  
-                  <div className="relative z-10 flex flex-col h-full">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="text-accent group-hover:scale-110 group-hover:rotate-6 transition-all duration-500">
+                <div className="group h-full p-10 bg-white border border-primary/5 rounded-[3rem] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] transition-all duration-700 relative overflow-hidden">
+                  <div className="relative z-10">
+                    <div className="flex items-center justify-between mb-10">
+                      <div className="p-5 rounded-2xl bg-primary/5 text-accent group-hover:bg-accent group-hover:text-primary transition-all duration-500">
                         {getIcon(area.icon)}
                       </div>
-                      <div className="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
-                        <span className="text-accent font-bold text-sm">{String(index + 1).padStart(2, '0')}</span>
-                      </div>
+                      <span className="text-[5rem] font-serif italic text-primary/5 leading-none">0{index + 1}</span>
                     </div>
                     
-                    <h3 className="font-display text-2xl font-bold text-primary mb-4 group-hover:text-accent transition-colors duration-500">
-                      <TextPressure text={area.title} />
+                    <h3 className="font-serif text-3xl italic text-primary mb-4 group-hover:text-accent transition-colors">
+                      {area.title}
                     </h3>
                     
-                    <p className="text-sm font-light text-secondary/70 mb-6 leading-relaxed flex-grow">
+                    <p className="text-primary/50 font-light leading-relaxed mb-10">
                       {area.description}
                     </p>
                     
                     <button
                       onClick={() => onNavigate("practice")}
-                      className="mt-auto flex items-center gap-3 text-[10px] uppercase tracking-widest font-black text-accent group-hover:gap-5 transition-all"
+                      className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.3em] text-accent"
                     >
-                      <ShinyText text="Brief Details" /> <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                      <ShinyText text="ANALYZE CAPABILITIES" /> <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-          
-          <div className="flex justify-center gap-2 mt-4 px-6">
-            {areas.map((_, index) => (
-              <div 
-                key={index} 
-                className="w-2 h-2 rounded-full bg-primary/20"
-              />
-            ))}
-          </div>
         </div>
 
-        <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Desktop Grid Layout */}
+        <div className="hidden lg:grid grid-cols-4 gap-8">
           {areas.map((area, index) => (
             <div
               key={area.id}
-              className="stagger-item group p-12 glass-card hover:shadow-gold transition-all duration-700 hover:-translate-y-3 hover:scale-105 flex flex-col rounded-3xl card-3d relative overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group p-12 bg-white border border-primary/5 rounded-[4rem] shadow-[0_40px_80px_-20px_rgba(0,0,0,0.05)] hover:shadow-[0_60px_100px_-20px_rgba(212,175,55,0.1)] hover:-translate-y-4 transition-all duration-700 relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-3xl" />
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <div className="absolute top-0 right-0 p-12 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity">
+                <span className="text-[12rem] font-serif italic text-primary leading-none">0{index + 1}</span>
               </div>
 
-              <div className="relative z-10">
-                <div className="mb-10 text-accent group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 float-icon">
-                  {getIcon(area.icon)}
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="mb-12 inline-block">
+                  <div className="p-6 rounded-3xl bg-[#FAF9F6] text-accent group-hover:bg-accent group-hover:text-primary transition-all duration-700 shadow-sm border border-primary/5">
+                    {getIcon(area.icon)}
+                  </div>
                 </div>
-                <h3 className="font-display text-2xl font-bold text-primary mb-6 group-hover:text-accent transition-colors duration-500">
-                  <TextPressure text={area.title} />
+
+                <h3 className="font-serif text-4xl italic text-primary mb-6 group-hover:text-accent transition-colors duration-500">
+                  {area.title}
                 </h3>
-                <p className="text-sm font-light text-secondary/70 mb-10 leading-relaxed">
+
+                <p className="text-primary/50 text-lg font-light leading-relaxed mb-12 flex-grow">
                   {area.description}
                 </p>
+
                 <button
                   onClick={() => onNavigate("practice")}
-                  className="mt-auto flex items-center gap-3 text-[10px] uppercase tracking-widest font-black text-accent group-hover:gap-5 transition-all animated-underline"
+                  className="flex items-center gap-6 text-[11px] font-black uppercase tracking-[0.4em] text-accent group-hover:gap-10 transition-all duration-700"
                 >
-                  <ShinyText text="Brief Details" /> <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform" />
+                  <span className="relative">
+                    CAPABILITIES BRIEF
+                    <span className="absolute -bottom-2 left-0 w-full h-[1px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                  </span>
+                  <div className="w-10 h-10 rounded-full border border-accent/20 flex items-center justify-center group-hover:bg-accent group-hover:text-primary transition-all duration-700">
+                    <ArrowRight className="w-4 h-4" />
+                  </div>
                 </button>
               </div>
             </div>
           ))}
         </div>
       </div>
-      
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </RevealSection>
   );
 };

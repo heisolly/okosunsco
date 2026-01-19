@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { PhoneCall, ExternalLink, Menu, X } from "lucide-react";
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 import Statue from "./components/Statue";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -19,38 +24,83 @@ const App: React.FC = () => {
   const [showHeaderLinks, setShowHeaderLinks] = useState(true);
 
   useEffect(() => {
+    // Scene detection using IntersectionObserver
+    if (currentPage === "home") {
+      const observerOptions = {
+        root: null,
+        rootMargin: "-20% 0px -20% 0px", // Focus on the middle of the viewport
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sceneAttr = entry.target.getAttribute("data-scene") as Scene;
+            if (sceneAttr) {
+              setCurrentScene(sceneAttr);
+            }
+          }
+        });
+      }, observerOptions);
+
+      const sections = document.querySelectorAll("section[data-scene]");
+      sections.forEach((section) => observer.observe(section));
+
+      return () => observer.disconnect();
+    }
+  }, [currentPage]);
+
+  useEffect(() => {
+    // Initialize Lenis for global smooth scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    // RAF loop for Lenis
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    
+    // Start RAF
+    requestAnimationFrame(raf);
+
+    // Sync GSAP ScrollTrigger with Lenis
+    // Note: If using window scroll, ScrollTrigger usually auto-detects. 
+    // But explicit update is safer for pinned sections.
+    // lenis.on('scroll', ScrollTrigger.update); 
+    // gsap.ticker.add((time) => {
+    //   lenis.raf(time * 1000); // GSAP's ticker can drive Lenis for perfect sync, 
+    // });
+    // However, the manual RAF above is the "standard" recommendation from Lenis docs for React.
+    
+    // Existing scroll handler for React state (Header/Statue)
+    // Lenis scrolls the window natively, so 'scroll' events still fire.
+    let ticking = false;
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setScrollY(currentScrollY);
-      
-      if (currentScrollY > 100) {
-        setShowHeaderLinks(false);
-      } else {
-        setShowHeaderLinks(true);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScrollY = window.scrollY;
+          setScrollY(currentScrollY);
+          
+          setShowHeaderLinks(currentScrollY <= 100);
+          ticking = false;
+        });
+        ticking = true;
       }
-      
-      if (currentPage !== "home") return;
-
-      const sections = document.querySelectorAll("section");
-      let bestScene: Scene = "intro";
-      let minDistance = Infinity;
-
-      sections.forEach((section) => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top);
-        if (distance < minDistance) {
-          minDistance = distance;
-          const sceneAttr = section.getAttribute("data-scene") as Scene;
-          if (sceneAttr) bestScene = sceneAttr;
-        }
-      });
-      setCurrentScene(bestScene);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [currentPage]);
+
+    return () => {
+      lenis.destroy();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navigateTo = (page: Page) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
