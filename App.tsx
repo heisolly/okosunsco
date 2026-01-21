@@ -123,15 +123,23 @@ const App: React.FC = () => {
 
 
 
+  // Determine header theme based on current section
+  const isDarkSection = ["practice", "contact", "team", "archive"].includes(currentScene || "");
+  const headerBg = isDarkSection ? "bg-[#0E0E12]/90 border-white/10" : "bg-[#FDFCF8]/90 border-[#D4AF37]/20";
+  const headerText = isDarkSection ? "text-white" : "text-primary";
+
   return (
     <div className="relative min-h-screen bg-ivory text-primary selection:bg-accent/20 selection:text-accent font-sans overflow-x-hidden">
       <div className="bg-grain"></div>
       
       <nav 
+        style={{
+          clipPath: scrollY > 50 ? "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)" : "none"
+        }}
         className={`fixed z-[1000] transistion-all duration-500 ease-out flex justify-center items-center ${
         scrollY > 50 
-          ? "top-0 inset-x-0 md:top-4 md:inset-x-8 md:w-auto md:rounded-[2rem] bg-[#FDFCF8]/95 backdrop-blur-xl border-b md:border border-[#D4AF37]/10 shadow-[0_8px_32px_rgba(14,14,18,0.05)] py-3 md:py-2" 
-          : "top-0 inset-x-0 bg-transparent py-4 md:py-6 border-b border-transparent"
+          ? `top-0 inset-x-0 md:top-4 md:inset-x-8 md:w-auto backdrop-blur-xl border-b md:border shadow-2xl py-3 md:py-4 ${headerBg} ${headerText}` 
+          : "top-0 inset-x-0 bg-transparent py-4 md:py-6 border-b border-transparent text-primary"
       }`}>
         <div className="w-full max-w-[1920px] px-6 lg:px-8 xl:px-12 flex items-center justify-between">
             
@@ -210,19 +218,17 @@ const App: React.FC = () => {
             </div>
 
             {/* 3. CTA Button - Black Polygon from Image 2 */}
-            <div className="flex items-center gap-6">
+            <div className={`flex items-center ${scrollY > 50 ? "ml-0" : "gap-6"}`}>
+              {/* Desktop Details */}
               <button
                 onClick={() => navigateTo("consultation")}
                 className="hidden md:flex relative group overflow-hidden transition-transform duration-300 active:scale-95"
                 style={{
-                   // Custom Polygon Shape resembling the reference
                    clipPath: "polygon(0 0, 100% 0, 100% 70%, 92% 100%, 0 100%)",
                    filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.15))"
                 }}
               >
                 <div className="absolute inset-0 bg-[#0E0E12] group-hover:bg-primary transition-colors duration-300" />
-                
-                {/* Grid Texture */}
                 <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
                 <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '10px 10px' }} />
 
@@ -234,20 +240,21 @@ const App: React.FC = () => {
                 </div>
               </button>
 
-              {/* Mobile Toggle - Improved Visibility */}
+              {/* Mobile Toggle - Minimal & Clean */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`lg:hidden w-12 h-12 flex items-center justify-center border transition-all duration-300 z-[110] relative ${
-                    mobileMenuOpen ? 'border-white/20 rotate-90 bg-transparent' : 
-                    (scrollY > 50 ? 'border-transparent text-primary' : 'border-primary/10 rotate-45 hover:bg-primary hover:border-primary')
+                className={`lg:hidden relative z-[110] flex items-center justify-center transition-colors duration-300 ${
+                  mobileMenuOpen ? 'text-white' : 'text-primary'
                 }`}
               >
                   {mobileMenuOpen ? (
-                    <X className="w-6 h-6 text-white" />
+                    <span className="text-xs font-medium tracking-[0.25em] uppercase">Close</span>
                   ) : (
-                    <div className="flex flex-col gap-1.5 -rotate-45">
-                       <span className="w-6 h-0.5 bg-primary group-hover:bg-white transition-colors" />
-                       <span className="w-4 h-0.5 bg-primary group-hover:bg-white transition-colors ml-auto" />
+                    <div className="w-12 h-12 flex items-center justify-center border border-primary/10 rotate-45 hover:bg-primary hover:border-primary group transition-all duration-300">
+                      <div className="flex flex-col gap-1.5 -rotate-45">
+                         <span className="w-6 h-0.5 bg-primary group-hover:bg-white transition-colors" />
+                         <span className="w-4 h-0.5 bg-primary group-hover:bg-white transition-colors ml-auto" />
+                      </div>
                     </div>
                   )}
               </button>
@@ -257,7 +264,7 @@ const App: React.FC = () => {
 
         {/* 4. Architectural Mobile Menu */}
         <div 
-          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[90] transition-all duration-500 ease-out ${
+          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[90] h-[100dvh] transition-all duration-500 ease-out ${
             mobileMenuOpen 
                ? "opacity-100 pointer-events-auto" 
                : "opacity-0 pointer-events-none"
@@ -274,7 +281,7 @@ const App: React.FC = () => {
           {/* Grid Background */}
           <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
           
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-12">
+          <div className="relative z-10 h-full flex flex-col justify-start pt-40 px-8 sm:px-12">
              <div className="space-y-0 divide-y divide-white/10 border-y border-white/10">
                {[
                  { id: "home", label: "Residence", sub: "01" },

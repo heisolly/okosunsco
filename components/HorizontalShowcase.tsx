@@ -18,11 +18,12 @@ const HorizontalShowcase: React.FC = () => {
   ];
 
   useEffect(() => {
-    // GSAP ScrollTrigger Animation (driven by global Lenis in App.tsx)
-    let ctx = gsap.context(() => {
+    // GSAP ScrollTrigger Animation (driven by global Lenis in App.tsx) - PC ONLY
+    let mm = gsap.matchMedia();
+    
+    mm.add("(min-width: 769px)", () => {
       const track = trackRef.current;
       const section = sectionRef.current;
-
       if (!track || !section) return;
 
       gsap.to(track, {
@@ -38,10 +39,10 @@ const HorizontalShowcase: React.FC = () => {
           anticipatePin: 1
         }
       });
-    }, sectionRef);
+    });
 
     return () => {
-      ctx.revert();
+      mm.revert();
     };
   }, []);
 
@@ -49,9 +50,7 @@ const HorizontalShowcase: React.FC = () => {
     <section 
       ref={sectionRef} 
       data-scene="archive"
-      className="horizontal-section relative z-[60] bg-[#0A0A0E] overflow-hidden"
-      // CSS from user: height: 100vh; display: grid; place-items: center;
-      style={{ height: '100vh', display: 'grid', placeItems: 'center' }}
+      className="horizontal-section relative z-[60] bg-[#0A0A0E] overflow-hidden py-20 md:py-0 md:h-screen md:grid md:place-items-center"
     >
       {/* Background Ambience */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -61,19 +60,19 @@ const HorizontalShowcase: React.FC = () => {
         <div className="absolute inset-0 bg-grain opacity-[0.03]"></div>
       </div>
 
-      {/* HORIZONTAL TRACK */}
-      {/* CSS from user: display: flex; gap: 4vw; height: 70vh; width: max-content; */}
+      {/* TRACK (Desktop) / STACK (Mobile) */}
       <div 
         ref={trackRef}
-        className="horizontal-track relative z-10 pl-[5vw] pr-[5vw]" // Added padding to start/end so items aren't flush
-        style={{ display: 'flex', gap: '4vw', height: '70vh', width: 'max-content' }}
+        className="horizontal-track relative z-10 w-full md:w-max md:h-[70vh] md:flex md:gap-[4vw] md:pl-[5vw] md:pr-[5vw] px-6 flex flex-col gap-24 md:gap-[4vw]"
       >
         {cards.map((card: any, index) => (
           <div 
             key={index}
-            className="panel relative flex-shrink-0 bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] overflow-hidden group hover:border-accent/30 transition-colors duration-500"
-            // CSS from user: width: 60vw; max-width: 900px; height: 100%;
-            style={{ width: '60vw', maxWidth: '900px', height: '100%' }}
+            className="panel relative flex-shrink-0 bg-[#0E0E12]/80 backdrop-blur-md border border-white/10 rounded-[2rem] overflow-hidden group hover:border-accent/30 transition-all duration-500 w-full md:w-[60vw] md:max-w-[900px] h-[65vh] md:h-full sticky top-24 md:static shadow-2xl"
+            style={{ 
+               // Mobile Stacking: simple CSS sticky
+               willChange: 'transform'
+            }}
           >
              {/* Card Content - Adapted to fit new panel size */}
              <div className="relative h-full flex flex-col p-8 md:p-12 justify-between">
@@ -93,13 +92,13 @@ const HorizontalShowcase: React.FC = () => {
                        {index === 0 ? 'Start' : index === cards.length - 1 ? 'End' : `Case 0${index}`}
                      </span>
                   </div>
-                  <span className="text-[8rem] leading-none font-serif text-white/5 font-black italic -mt-8 -mr-4 select-none">
+                  <span className="text-[6rem] md:text-[8rem] leading-none font-serif text-white/5 font-black italic -mt-8 -mr-4 select-none">
                     {index + 1}
                   </span>
                 </div>
 
                 {/* Main Content */}
-                <div className="space-y-6 z-10 max-w-2xl">
+                <div className="space-y-6 z-10 max-w-2xl mt-auto md:mt-0">
                    <h3 className="text-3xl md:text-5xl font-serif text-white italic leading-tight">
                      {card.title}
                    </h3>
