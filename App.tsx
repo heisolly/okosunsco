@@ -137,7 +137,7 @@ const App: React.FC = () => {
       
       <nav 
         style={{
-          clipPath: scrollY > 50 ? "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)" : "none"
+          clipPath: (scrollY > 50 && window.innerWidth >= 768) ? "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)" : "none"
         }}
         className={`fixed z-[1000] transistion-all duration-500 ease-out flex justify-center items-center ${
         scrollY > 50 
@@ -247,16 +247,16 @@ const App: React.FC = () => {
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className={`lg:hidden relative z-[110] flex items-center justify-center transition-colors duration-300 ${
-                  mobileMenuOpen ? 'text-white' : 'text-primary'
+                  mobileMenuOpen ? 'text-white' : headerText
                 }`}
               >
                   {mobileMenuOpen ? (
                     <span className="text-xs font-medium tracking-[0.25em] uppercase">Close</span>
                   ) : (
-                    <div className="w-12 h-12 flex items-center justify-center border border-primary/10 rotate-45 hover:bg-primary hover:border-primary group transition-all duration-300">
+                    <div className={`w-12 h-12 flex items-center justify-center border ${isDarkSection ? 'border-white/10' : 'border-primary/10'} rotate-45 hover:bg-accent hover:border-accent group transition-all duration-300`}>
                       <div className="flex flex-col gap-1.5 -rotate-45">
-                         <span className="w-6 h-0.5 bg-primary group-hover:bg-white transition-colors" />
-                         <span className="w-4 h-0.5 bg-primary group-hover:bg-white transition-colors ml-auto" />
+                         <span className={`w-6 h-0.5 ${isDarkSection ? 'bg-white' : 'bg-primary'} group-hover:bg-primary transition-colors`} />
+                         <span className={`w-4 h-0.5 ${isDarkSection ? 'bg-white' : 'bg-primary'} group-hover:bg-primary transition-colors ml-auto`} />
                       </div>
                     </div>
                   )}
