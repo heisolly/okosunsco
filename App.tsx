@@ -127,24 +127,21 @@ const App: React.FC = () => {
     <div className="relative min-h-screen bg-ivory text-primary selection:bg-accent/20 selection:text-accent font-sans overflow-x-hidden">
       <div className="bg-grain"></div>
       
-      <nav className={`fixed top-0 inset-x-0 z-[100] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+      <nav 
+        className={`fixed z-[1000] transistion-all duration-500 ease-out flex justify-center items-center ${
         scrollY > 50 
-          ? "bg-[#FDFCF8]/95 backdrop-blur-xl border-b border-[#D4AF37]/10 shadow-sm" 
-          : "bg-transparent py-4"
+          ? "top-0 inset-x-0 md:top-4 md:inset-x-8 md:w-auto md:rounded-[2rem] bg-[#FDFCF8]/95 backdrop-blur-xl border-b md:border border-[#D4AF37]/10 shadow-[0_8px_32px_rgba(14,14,18,0.05)] py-3 md:py-2" 
+          : "top-0 inset-x-0 bg-transparent py-4 md:py-6 border-b border-transparent"
       }`}>
-        {/* Top accent line from design */}
-        <div className={`absolute top-0 inset-x-0 h-[3px] bg-accent/20 transition-all duration-700 ${scrollY > 50 ? 'opacity-100' : 'opacity-0'}`} />
-
-        <div className="max-w-[1920px] mx-auto px-6 lg:px-12 xl:px-16">
-          <div className="flex items-center justify-between h-24">
+        <div className="w-full max-w-[1920px] px-6 lg:px-8 xl:px-12 flex items-center justify-between">
             
             {/* 1. Logo Section - Matches Image 1 */}
             <div
               onClick={() => navigateTo("home")}
-              className="flex items-center gap-6 cursor-pointer group/logo"
+              className="flex items-center gap-4 md:gap-6 cursor-pointer group/logo"
             >
               {/* Logo Icon */}
-              <div className="relative w-14 h-14 flex items-center justify-center">
+              <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
                  <img 
                   src="/logo.png" 
                   alt="Logo" 
@@ -152,11 +149,11 @@ const App: React.FC = () => {
                 />
               </div>
               
-              {/* Vertical Divider */}
-              <div className="h-12 w-[1px] bg-[#D4AF37]" />
+              {/* Vertical Divider - Hidden on Mobile */}
+              <div className="hidden md:block h-10 w-[1px] bg-[#D4AF37]" />
 
-              {/* Text Hierarchy from Image */}
-              <div className="flex flex-col items-start justify-center">
+              {/* Text Hierarchy - Hidden on Mobile to reduce clutter */}
+              <div className="hidden md:flex flex-col items-start justify-center">
                 {/* Top Label */}
                 <div className="flex items-center gap-2 mb-0.5 opacity-0 animate-in fade-in slide-in-from-left-2 duration-700 delay-100 fill-mode-forwards">
                    <h3 className="text-[10px] uppercase font-medium tracking-[0.25em] text-[#D4AF37]">
@@ -165,7 +162,7 @@ const App: React.FC = () => {
                 </div>
 
                 {/* Main Name */}
-                <h1 className="font-serif text-xl italic text-primary leading-none tracking-wide text-shadow-sm mb-1">
+                <h1 className="font-serif text-lg md:text-xl italic text-primary leading-none tracking-wide text-shadow-sm mb-1">
                   Okosun, Okosun & Partners
                 </h1>
 
@@ -237,13 +234,16 @@ const App: React.FC = () => {
                 </div>
               </button>
 
-              {/* Mobile Toggle */}
+              {/* Mobile Toggle - Improved Visibility */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden w-12 h-12 flex items-center justify-center border border-primary/10 rotate-45 hover:bg-primary hover:border-primary group transition-all duration-300"
+                className={`lg:hidden w-12 h-12 flex items-center justify-center border transition-all duration-300 z-[110] relative ${
+                    mobileMenuOpen ? 'border-white/20 rotate-90 bg-transparent' : 
+                    (scrollY > 50 ? 'border-transparent text-primary' : 'border-primary/10 rotate-45 hover:bg-primary hover:border-primary')
+                }`}
               >
                   {mobileMenuOpen ? (
-                    <X className="w-5 h-5 text-primary group-hover:text-white -rotate-45" />
+                    <X className="w-6 h-6 text-white" />
                   ) : (
                     <div className="flex flex-col gap-1.5 -rotate-45">
                        <span className="w-6 h-0.5 bg-primary group-hover:bg-white transition-colors" />
@@ -254,16 +254,23 @@ const App: React.FC = () => {
             </div>
 
           </div>
-        </div>
 
         {/* 4. Architectural Mobile Menu */}
         <div 
-          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[90] transition-all duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${
+          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[90] transition-all duration-500 ease-out ${
             mobileMenuOpen 
-               ? "translate-y-0" 
-               : "-translate-y-full pointer-events-none"
+               ? "opacity-100 pointer-events-auto" 
+               : "opacity-0 pointer-events-none"
           }`}
         >
+          {/* Internal Close Button (Redundant but requested) */}
+          <div className="absolute top-8 right-6 z-[120]">
+              {/* We rely on the header button which is z-[110], but user specifically asked for 'a nav closing button'.
+                  Since we adjusted the header button to be z-[110] and white, it serves this purpose perfectly.
+                  Adding another one might be cluttered, but sticking to the improved header button is cleaner.
+              */}
+          </div>
+
           {/* Grid Background */}
           <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
           
@@ -279,7 +286,7 @@ const App: React.FC = () => {
                  <button
                    key={item.id}
                    onClick={() => navigateTo(item.id as Page)}
-                   className="group w-full flex items-center justify-between py-6 hover:bg-white/5 transition-colors"
+                   className="group w-full flex items-center justify-between py-5 hover:bg-white/5 transition-colors"
                  >
                     <div className="flex items-center gap-6">
                         <span className={`text-xs font-mono text-accent/50 group-hover:text-accent transition-colors`}>{item.sub}</span>
@@ -290,16 +297,6 @@ const App: React.FC = () => {
                     <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-accent -rotate-45 group-hover:rotate-0 transition-all duration-500" />
                  </button>
                ))}
-             </div>
-
-             <div className="mt-12 flex items-center justify-between">
-                <div className="flex flex-col">
-                   <span className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Emergency</span>
-                   <span className="font-mono text-accent">+234 (0) 810 105 0240</span>
-                </div>
-                <div className="w-12 h-12 border border-accent/20 flex items-center justify-center rotate-45 hover:bg-accent/10 transition-colors">
-                     <PhoneCall className="w-5 h-5 text-accent -rotate-45" />
-                </div>
              </div>
           </div>
         </div>
