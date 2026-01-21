@@ -1,5 +1,202 @@
-import React from 'react';
-import { Quote, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Quote, ArrowRight, Loader2, CheckCircle2 } from 'lucide-react';
+import { supabase } from '../lib/supabaseClient';
+
+const ConsultationForm: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const [formData, setFormData] = useState({
+    name: '',
+    org: '',
+    email: '',
+    phone: '',
+    category: '',
+    description: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setFormData({
+      ...formData,
+      category
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const { error: supabaseError } = await supabase
+        .from('consultation_requests')
+        .insert([
+          { 
+            name: formData.name, 
+            organization: formData.org, 
+            email: formData.email, 
+            phone: formData.phone, 
+            category: formData.category, 
+            description: formData.description 
+          }
+        ]);
+
+      if (supabaseError) throw supabaseError;
+
+      setIsSuccess(true);
+      setFormData({ name: '', org: '', email: '', phone: '', category: '', description: '' });
+    } catch (err) {
+       setError('Request failed. Please try again or contact us directly.');
+       console.error('Supabase Error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSuccess) {
+    return (
+       <div className="bg-white p-8 md:p-12 lg:p-16 shadow-2xl min-h-[500px] flex flex-col items-center justify-center text-center">
+          <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-6 animate-in zoom-in duration-500">
+             <CheckCircle2 className="w-8 h-8 text-green-600" />
+          </div>
+          <h3 className="font-serif text-3xl text-primary italic mb-4">Request Logged</h3>
+          <p className="text-primary/60 max-w-sm mb-8">
+             Your consultation request has been successfully prioritized. A partner availability schedule will be sent to your email shortly.
+          </p>
+          <button 
+             onClick={() => setIsSuccess(false)}
+             className="text-xs font-black uppercase tracking-[0.2em] text-accent hover:text-primary transition-colors"
+          >
+             Return to Form
+          </button>
+       </div>
+    );
+  }
+
+  return (
+    <form className="space-y-8" onSubmit={handleSubmit}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-2">
+          <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Full Name</label>
+          <input 
+            type="text" 
+            name="name"
+            required
+            value={formData.name}
+            onChange={handleChange}
+            className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" 
+            placeholder="e.g. John Doe" 
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Organization</label>
+          <input 
+            type="text" 
+            name="org"
+            value={formData.org}
+            onChange={handleChange}
+            className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" 
+            placeholder="e.g. Global Corp" 
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-2">
+          <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Email Address</label>
+          <input 
+            type="email" 
+            name="email"
+            required
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" 
+            placeholder="okosunokosunandpartners@gmail.com" 
+          />
+        </div>
+        <div className="space-y-2">
+          <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Phone Number</label>
+          <input 
+            type="tel" 
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" 
+            placeholder="+234..." 
+          />
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Case Category</label>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
+          {["Corporate", "Litigation", "Property", "Advisory"].map(type => (
+            <label key={type} className="flex items-center gap-3 cursor-pointer group">
+              <div className={`w-4 h-4 border border-primary/20 rounded-full flex items-center justify-center group-hover:border-accent ${formData.category === type ? 'border-accent' : ''}`}>
+                <div className={`w-2 h-2 bg-accent rounded-full transition-opacity ${formData.category === type ? 'opacity-100' : 'opacity-0'}`} />
+              </div>
+              <input 
+                type="radio" 
+                name="category" 
+                value={type}
+                checked={formData.category === type}
+                onChange={() => handleCategoryChange(type)}
+                className="hidden"
+              />
+              <span className={`text-sm transition-colors ${formData.category === type ? 'text-primary font-bold' : 'text-primary/60 group-hover:text-primary'}`}>{type}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Brief Case Description</label>
+        <textarea 
+          name="description"
+          required
+          rows={5}
+          value={formData.description}
+          onChange={handleChange}
+          className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20 min-h-[120px]" 
+          placeholder="Could you provide a brief overview of your legal inquiry?"
+        ></textarea>
+      </div>
+      
+      {error && <p className="text-red-500 text-xs font-bold uppercase tracking-widest">{error}</p>}
+
+      <div className="pt-8 flex items-center justify-between">
+        <p className="text-xs text-primary/40 max-w-xs">
+          * By submitting this form, you agree to our privacy policy. Your information is encrypted and secure.
+        </p>
+        <button 
+           type="submit" 
+           disabled={isSubmitting}
+           className="px-12 py-5 bg-primary text-white hover:bg-accent transition-all duration-500 shadow-xl hover:shadow-2xl group disabled:opacity-70 disabled:cursor-not-allowed"
+        >
+          <span className="text-xs font-black uppercase tracking-[0.3em] flex items-center gap-4">
+            {isSubmitting ? (
+              <>
+                 Processing <Loader2 className="w-4 h-4 animate-spin" />
+              </>
+            ) : (
+              <>
+                 Request Slot <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </>
+            )}
+          </span>
+        </button>
+      </div>
+    </form>
+  );
+};
 
 const Consultation: React.FC = () => {
   return (
@@ -61,59 +258,7 @@ const Consultation: React.FC = () => {
                <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 rounded-bl-full" />
                <h3 className="font-serif text-3xl text-primary italic mb-10">Consultation Request</h3>
                
-               <form className="space-y-8">
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   <div className="space-y-2">
-                     <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Full Name</label>
-                     <input type="text" className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" placeholder="e.g. John Doe" />
-                   </div>
-                   <div className="space-y-2">
-                     <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Organization</label>
-                     <input type="text" className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" placeholder="e.g. Global Corp" />
-                   </div>
-                 </div>
-
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   <div className="space-y-2">
-                     <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Email Address</label>
-                     <input type="email" className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" placeholder="john@example.com" />
-                   </div>
-                   <div className="space-y-2">
-                     <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Phone Number</label>
-                     <input type="tel" className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20" placeholder="+234..." />
-                   </div>
-                 </div>
-
-                 <div className="space-y-2">
-                   <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Case Category</label>
-                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
-                      {["Corporate", "Litigation", "Property", "Advisory"].map(type => (
-                        <label key={type} className="flex items-center gap-3 cursor-pointer group">
-                           <div className="w-4 h-4 border border-primary/20 rounded-full flex items-center justify-center group-hover:border-accent">
-                             <div className="w-2 h-2 bg-accent rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
-                           </div>
-                           <span className="text-sm text-primary/60 group-hover:text-primary transition-colors">{type}</span>
-                        </label>
-                      ))}
-                   </div>
-                 </div>
-
-                 <div className="space-y-2">
-                   <label className="text-[10px] uppercase tracking-widest font-black text-primary/40">Brief Case Description</label>
-                   <textarea className="w-full bg-primary/[0.03] border-b border-primary/10 px-0 py-4 focus:outline-none focus:border-accent transition-colors font-serif text-lg text-primary placeholder:text-primary/20 min-h-[120px]" placeholder="Could you provide a brief overview of your legal inquiry?"></textarea>
-                 </div>
-
-                 <div className="pt-8 flex items-center justify-between">
-                    <p className="text-xs text-primary/40 max-w-xs">
-                       * By submitting this form, you agree to our privacy policy. Your information is encrypted and secure.
-                    </p>
-                    <button type="submit" className="px-12 py-5 bg-primary text-white hover:bg-accent transition-all duration-500 shadow-xl hover:shadow-2xl group">
-                       <span className="text-xs font-black uppercase tracking-[0.3em] flex items-center gap-4">
-                          Request Slot <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                       </span>
-                    </button>
-                 </div>
-               </form>
+                <ConsultationForm />
             </div>
           </div>
         </div>

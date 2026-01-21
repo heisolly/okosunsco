@@ -36,7 +36,7 @@ export interface CaseVictory {
 
 export type Scene = 'intro' | 'values' | 'practice' | 'stats' | 'team' | 'timeline' | 'testimonials' | 'cta';
 
-export type Page = 'home' | 'about' | 'team' | 'practice' | 'contact' | 'faq' | 'privacy' | 'blog' | 'consultation';
+export type Page = 'home' | 'about' | 'team' | 'practice' | 'contact' | 'faq' | 'privacy' | 'blog' | 'consultation' | 'admin';
 
 export interface FAQItem {
   question: string;

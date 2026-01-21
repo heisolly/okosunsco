@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PhoneCall, ExternalLink, Menu, X } from "lucide-react";
+import { PhoneCall, ExternalLink, Menu, X, ArrowRight } from "lucide-react";
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -13,6 +13,7 @@ import Team from "./pages/Team";
 import Practice from "./pages/Practice";
 import Contact from "./pages/Contact";
 import Consultation from "./pages/Consultation";
+import Admin from "./pages/Admin";
 import { Scene, Page } from "./types";
 
 const App: React.FC = () => {
@@ -22,6 +23,24 @@ const App: React.FC = () => {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showHeaderLinks, setShowHeaderLinks] = useState(true);
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path === '/admin') {
+      setCurrentPage('admin');
+    } else if (path === '/consultation') {
+      setCurrentPage('consultation');
+    } else if (path === '/contact') {
+      setCurrentPage('contact');
+    }
+  }, []);
+
+  const navigateTo = (page: Page) => {
+    window.history.pushState({}, '', page === 'home' ? '/' : `/${page}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => setCurrentPage(page), 100);
+    setMobileMenuOpen(false);
+  };
 
   useEffect(() => {
     // Scene detection using IntersectionObserver
@@ -102,177 +121,186 @@ const App: React.FC = () => {
     };
   }, []);
 
-  const navigateTo = (page: Page) => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setTimeout(() => setCurrentPage(page), 100);
-    setMobileMenuOpen(false);
-  };
+
 
   return (
     <div className="relative min-h-screen bg-ivory text-primary selection:bg-accent/20 selection:text-accent font-sans overflow-x-hidden">
       <div className="bg-grain"></div>
       
-      <nav className="fixed top-0 w-full z-[100] transition-all duration-300 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[300px] h-[150px] pointer-events-none opacity-30">
-          <svg viewBox="0 0 200 100" className="w-full h-full">
-            <path d="M 150,0 Q 180,30 200,50" fill="none" stroke="#0E0E12" strokeWidth="1"/>
-            <path d="M 160,0 Q 185,25 200,40" fill="none" stroke="#D4AF37" strokeWidth="0.8"/>
-            <circle cx="180" cy="30" r="40" fill="none" stroke="#0E0E12" strokeWidth="0.5"/>
-          </svg>
-        </div>
-        
-        <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-4 relative z-10">
-          <div className="flex items-center justify-between">
+      <nav className={`fixed top-0 inset-x-0 z-[100] transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${
+        scrollY > 50 
+          ? "bg-[#FDFCF8]/95 backdrop-blur-xl border-b border-[#D4AF37]/10 shadow-sm" 
+          : "bg-transparent py-4"
+      }`}>
+        {/* Top accent line from design */}
+        <div className={`absolute top-0 inset-x-0 h-[3px] bg-accent/20 transition-all duration-700 ${scrollY > 50 ? 'opacity-100' : 'opacity-0'}`} />
+
+        <div className="max-w-[1920px] mx-auto px-6 lg:px-12 xl:px-16">
+          <div className="flex items-center justify-between h-24">
+            
+            {/* 1. Logo Section - Matches Image 1 */}
             <div
               onClick={() => navigateTo("home")}
-              className="flex items-center gap-4 cursor-pointer group/logo"
+              className="flex items-center gap-6 cursor-pointer group/logo"
             >
-              <img 
-                src="/logo.png" 
-                alt="Okosun, Okosun & Partners" 
-                className="h-12 lg:h-14 w-auto object-contain group-hover/logo:scale-105 transition-all duration-500"
-              />
-              <div className="hidden xl:flex flex-col border-l-2 border-accent/30 pl-4">
-                <span className="text-sm font-bold tracking-tight text-primary">
+              {/* Logo Icon */}
+              <div className="relative w-14 h-14 flex items-center justify-center">
+                 <img 
+                  src="/logo.png" 
+                  alt="Logo" 
+                  className="w-full h-full object-contain drop-shadow-sm"
+                />
+              </div>
+              
+              {/* Vertical Divider */}
+              <div className="h-12 w-[1px] bg-[#D4AF37]" />
+
+              {/* Text Hierarchy from Image */}
+              <div className="flex flex-col items-start justify-center">
+                {/* Top Label */}
+                <div className="flex items-center gap-2 mb-0.5 opacity-0 animate-in fade-in slide-in-from-left-2 duration-700 delay-100 fill-mode-forwards">
+                   <h3 className="text-[10px] uppercase font-medium tracking-[0.25em] text-[#D4AF37]">
+                     Established 2010 • Benin City Hub
+                   </h3>
+                </div>
+
+                {/* Main Name */}
+                <h1 className="font-serif text-xl italic text-primary leading-none tracking-wide text-shadow-sm mb-1">
                   Okosun, Okosun & Partners
-                </span>
-                <span className="text-[8px] uppercase tracking-[0.3em] font-black text-primary/40">
-                  Strategic Legal Counsel
-                </span>
+                </h1>
+
+                {/* Bottom Label with Diamond */}
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 bg-[#D4AF37] rotate-45" />
+                  <span className="text-[9px] uppercase font-medium tracking-[0.3em] text-[#D4AF37]">
+                    Strategic Legal Counsel
+                  </span>
+                </div>
               </div>
             </div>
 
-            <div className="hidden lg:flex items-center gap-12">
+            {/* 2. Navigation - Fixed Layout (No Absolute) */}
+            <div className="hidden xl:flex items-center h-full ml-auto mr-12 border-l border-[#D4AF37]/20">
               {[
                 { id: "home", label: "Home" },
-                { id: "about", label: "About" },
-                { id: "team", label: "Team" },
+                { id: "about", label: "Firm" },
+                { id: "team", label: "Partners" },
                 { id: "practice", label: "Practice" },
                 { id: "contact", label: "Contact" }
               ].map((item) => (
                 <button
                   key={item.id}
                   onClick={() => navigateTo(item.id as Page)}
-                  className={`relative text-[11px] uppercase tracking-[0.2em] font-bold transition-all duration-300 py-2 group/nav ${
+                  className={`relative h-12 px-8 flex items-center justify-center text-[10px] uppercase tracking-[0.25em] font-medium transition-all duration-300 border-r border-[#D4AF37]/20 group/nav ${
                     currentPage === item.id 
-                      ? "text-accent" 
-                      : "text-primary/70 hover:text-primary"
+                      ? "text-primary bg-[#D4AF37]/5" 
+                      : "text-primary/60 hover:text-primary hover:bg-[#D4AF37]/5"
                   }`}
                 >
+                  {/* Diamond Indicator for Active State */}
+                  {currentPage === item.id && (
+                     <div className="absolute top-1/2 left-4 -translate-y-1/2 w-1.5 h-1.5 bg-[#D4AF37] rotate-45" />
+                  )}
+                  
                   {item.label}
-                  <span
-                    className={`absolute bottom-0 left-0 h-[2px] bg-accent transition-all duration-300 ${
-                      currentPage === item.id 
-                        ? "w-full" 
-                        : "w-0 group-hover/nav:w-full"
-                    }`}
-                  />
+
+                  {/* Gold Underline for Active State */}
+                  <div className={`absolute bottom-0 left-0 w-full h-[2px] bg-[#D4AF37] transition-all duration-300 transform origin-left ${
+                     currentPage === item.id ? "scale-x-100" : "scale-x-0 group-hover/nav:scale-x-100"
+                  }`} />
                 </button>
               ))}
             </div>
 
-            <div className={`lg:hidden flex items-center gap-6 transition-all duration-300 ${
-              showHeaderLinks ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
-            }`}>
-              {[
-                { id: "home", label: "Home" },
-                { id: "about", label: "About" },
-                { id: "practice", label: "Practice" },
-                { id: "contact", label: "Contact" }
-              ].map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => navigateTo(item.id as Page)}
-                  className={`relative text-[9px] uppercase tracking-[0.15em] font-bold transition-all duration-300 ${
-                    currentPage === item.id 
-                      ? "text-accent" 
-                      : "text-primary/70 hover:text-primary"
-                  }`}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
-
-            <div className="flex items-center gap-4">
+            {/* 3. CTA Button - Black Polygon from Image 2 */}
+            <div className="flex items-center gap-6">
               <button
                 onClick={() => navigateTo("consultation")}
-                className="hidden md:flex items-center gap-3 px-8 py-3 text-[10px] font-bold uppercase tracking-[0.2em] bg-primary text-white hover:bg-accent transition-all duration-300 shadow-lg hover:shadow-xl group/cta rounded-full"
+                className="hidden md:flex relative group overflow-hidden transition-transform duration-300 active:scale-95"
+                style={{
+                   // Custom Polygon Shape resembling the reference
+                   clipPath: "polygon(0 0, 100% 0, 100% 70%, 92% 100%, 0 100%)",
+                   filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.15))"
+                }}
               >
-                <PhoneCall className="w-4 h-4 group-hover/cta:rotate-12 transition-transform" />
-                <span>Consult Now</span>
+                <div className="absolute inset-0 bg-[#0E0E12] group-hover:bg-primary transition-colors duration-300" />
+                
+                {/* Grid Texture */}
+                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20" />
+                <div className="absolute inset-0" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)', backgroundSize: '10px 10px' }} />
+
+                <div className="relative px-10 py-4 flex items-center gap-3">
+                  <span className="text-white text-[11px] font-medium uppercase tracking-[0.25em] group-hover:tracking-[0.35em] transition-all duration-300">
+                    Initiate Brief
+                  </span>
+                  <div className="w-1.5 h-1.5 bg-[#D4AF37] rotate-45 animate-pulse" />
+                </div>
               </button>
 
-              <button
-                onClick={() => navigateTo("contact")}
-                className="hidden sm:flex items-center justify-center w-12 h-12 border-2 border-primary/10 hover:border-accent hover:bg-accent/5 transition-all duration-300 group/icon rounded-full backdrop-blur-sm bg-white/80"
-              >
-                <ExternalLink className="w-5 h-5 text-primary/60 group-hover/icon:text-accent transition-colors" />
-              </button>
-
+              {/* Mobile Toggle */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden flex items-center justify-center w-12 h-12 border-2 border-primary/10 hover:border-accent hover:bg-accent/5 transition-all duration-300 rounded-full backdrop-blur-sm bg-white/90 shadow-lg"
-                aria-label="Toggle menu"
+                className="lg:hidden w-12 h-12 flex items-center justify-center border border-primary/10 rotate-45 hover:bg-primary hover:border-primary group transition-all duration-300"
               >
-                {mobileMenuOpen ? (
-                  <X className="w-6 h-6 text-primary" />
-                ) : (
-                  <Menu className="w-6 h-6 text-primary" />
-                )}
+                  {mobileMenuOpen ? (
+                    <X className="w-5 h-5 text-primary group-hover:text-white -rotate-45" />
+                  ) : (
+                    <div className="flex flex-col gap-1.5 -rotate-45">
+                       <span className="w-6 h-0.5 bg-primary group-hover:bg-white transition-colors" />
+                       <span className="w-4 h-0.5 bg-primary group-hover:bg-white transition-colors ml-auto" />
+                    </div>
+                  )}
               </button>
             </div>
+
           </div>
         </div>
 
+        {/* 4. Architectural Mobile Menu */}
         <div 
-          className={`lg:hidden fixed inset-0 top-[72px] bg-primary/95 backdrop-blur-lg z-50 transition-all duration-500 ${
-            mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[90] transition-all duration-700 ease-[cubic-bezier(0.7,0,0.3,1)] ${
+            mobileMenuOpen 
+               ? "translate-y-0" 
+               : "-translate-y-full pointer-events-none"
           }`}
         >
-          <div className={`flex flex-col h-full p-8 transition-transform duration-500 ${
-            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}>
-            <div className="flex flex-col gap-6 mb-12">
-              {[
-                { id: "home", label: "Home" },
-                { id: "about", label: "About" },
-                { id: "team", label: "Team" },
-                { id: "practice", label: "Practice" },
-                { id: "contact", label: "Contact" }
-              ].map((item, index) => (
-                <button
-                  key={item.id}
-                  onClick={() => navigateTo(item.id as Page)}
-                  className={`text-left text-2xl font-serif italic transition-all duration-300 py-3 border-b border-white/10 ${
-                    currentPage === item.id 
-                      ? "text-accent" 
-                      : "text-white hover:text-accent"
-                  }`}
-                  style={{ 
-                    animationDelay: `${index * 100}ms`,
-                    animation: mobileMenuOpen ? 'fadeInLeft 0.5s ease-out forwards' : 'none'
-                  }}
-                >
-                  {item.label}
-                </button>
-              ))}
-            </div>
+          {/* Grid Background */}
+          <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          
+          <div className="relative z-10 h-full flex flex-col justify-center px-8 sm:px-12">
+             <div className="space-y-0 divide-y divide-white/10 border-y border-white/10">
+               {[
+                 { id: "home", label: "Residence", sub: "01" },
+                 { id: "about", label: "The Firm", sub: "02" },
+                 { id: "practice", label: "Expertise", sub: "03" },
+                 { id: "team", label: "Partners", sub: "04" },
+                 { id: "contact", label: "Connect", sub: "05" }
+               ].map((item, i) => (
+                 <button
+                   key={item.id}
+                   onClick={() => navigateTo(item.id as Page)}
+                   className="group w-full flex items-center justify-between py-6 hover:bg-white/5 transition-colors"
+                 >
+                    <div className="flex items-center gap-6">
+                        <span className={`text-xs font-mono text-accent/50 group-hover:text-accent transition-colors`}>{item.sub}</span>
+                        <span className={`font-serif text-3xl sm:text-4xl italic transition-all duration-300 ${currentPage === item.id ? 'text-accent' : 'text-white group-hover:text-accent group-hover:pl-4'}`}>
+                            {item.label}
+                        </span>
+                    </div>
+                    <ArrowRight className="w-5 h-5 text-white/20 group-hover:text-accent -rotate-45 group-hover:rotate-0 transition-all duration-500" />
+                 </button>
+               ))}
+             </div>
 
-            <div className="mt-auto space-y-4">
-              <button
-                onClick={() => navigateTo("consultation")}
-                className="w-full flex items-center justify-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-[0.2em] bg-accent text-primary hover:bg-accent/90 transition-all duration-300 shadow-lg rounded-full"
-              >
-                <PhoneCall className="w-5 h-5" />
-                <span>Book Consultation</span>
-              </button>
-
-              <div className="text-center text-white/60 text-sm">
-                <p>Strategic Legal Counsel</p>
-                <p className="text-accent font-bold mt-1">Okosun, Okosun & Partners</p>
-              </div>
-            </div>
+             <div className="mt-12 flex items-center justify-between">
+                <div className="flex flex-col">
+                   <span className="text-[10px] uppercase tracking-widest text-white/40 mb-1">Emergency</span>
+                   <span className="font-mono text-accent">+234 (0) 810 105 0240</span>
+                </div>
+                <div className="w-12 h-12 border border-accent/20 flex items-center justify-center rotate-45 hover:bg-accent/10 transition-colors">
+                     <PhoneCall className="w-5 h-5 text-accent -rotate-45" />
+                </div>
+             </div>
           </div>
         </div>
       </nav>
@@ -296,6 +324,7 @@ const App: React.FC = () => {
         {currentPage === "practice" && <Practice onNavigate={navigateTo} />}
         {currentPage === "consultation" && <Consultation />}
         {currentPage === "contact" && <Contact />}
+        {currentPage === "admin" && <Admin />}
         
         <Footer onNavigate={navigateTo} />
       </main>

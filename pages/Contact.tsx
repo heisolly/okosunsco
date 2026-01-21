@@ -1,6 +1,195 @@
-import React from 'react';
-import { MapPin, Phone, Mail, Clock, ArrowRight, MessageSquare, Shield, Globe } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { MapPin, Phone, Mail, Clock, ArrowRight, MessageSquare, Shield, Globe, Loader2, CheckCircle2 } from 'lucide-react';
 import { DecryptedText, GradientText, ShinyText, BlurText, TextPressure } from '../components/ReactsbitsAnimations';
+import { supabase } from '../lib/supabaseClient';
+
+const ContactForm: React.FC = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError('');
+
+    try {
+      const { error: supabaseError } = await supabase
+        .from('contact_submissions')
+        .insert([
+          { 
+            name: formData.name, 
+            email: formData.email, 
+            phone: formData.phone, 
+            service: formData.service, 
+            message: formData.message 
+          }
+        ]);
+
+      if (supabaseError) throw supabaseError;
+
+      setIsSuccess(true);
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+    } catch (err) {
+      setError('Transmission failed. Please try again or contact us directly.');
+      console.error('Supabase Error:', err);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  if (isSuccess) {
+    return (
+        <div className="bg-primary rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-16 lg:p-20 relative overflow-hidden shadow-[0_40px_80px_-20px_rgba(14,14,18,0.4)] min-h-[600px] flex flex-col items-center justify-center text-center">
+             <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-6 animate-in zoom-in duration-500">
+                <CheckCircle2 className="w-10 h-10 text-accent" />
+             </div>
+             <h3 className="text-3xl md:text-4xl font-serif italic text-white mb-4">Brief Transmitted</h3>
+             <p className="text-white/60 max-w-md">Your inquiry has been securely routed to our senior counsel. Expect a strategic response within 24 hours.</p>
+             <button 
+               onClick={() => setIsSuccess(false)}
+               className="mt-8 text-accent text-sm font-bold uppercase tracking-widest hover:text-white transition-colors"
+             >
+               Send Another Brief
+             </button>
+        </div>
+    )
+  }
+
+  return (
+    <div className="bg-primary rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-16 lg:p-20 relative overflow-hidden shadow-[0_40px_80px_-20px_rgba(14,14,18,0.4)]">
+      {/* Gold Abstract Background Elements */}
+      <div className="absolute top-0 right-0 w-[70%] h-full bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.08),transparent_60%)]" />
+      <div className="absolute -bottom-20 -left-20 w-60 md:w-80 h-60 md:h-80 bg-accent/5 rounded-full blur-[80px] md:blur-[100px]" />
+      
+      <div className="relative z-10 mb-10 md:mb-16">
+        <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
+          <div className="h-[1px] w-8 md:w-12 bg-accent opacity-50" />
+          <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-accent">Inquiry Protocol</span>
+        </div>
+        <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif italic text-white leading-tight mb-4 md:mb-6">
+          Begin Your <span className="text-accent underline decoration-accent/30 underline-offset-4 md:underline-offset-8">Engagement</span>
+        </h2>
+        <p className="text-white/40 font-light text-base md:text-lg max-w-xl">
+          Our senior associates review all submissions personally. Please provide comprehensive context for your inquiry.
+        </p>
+      </div>
+
+      <form className="space-y-8 md:space-y-12 relative z-10" onSubmit={handleSubmit}>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10">
+          <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
+            <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Legal Identity</label>
+            <input 
+              type="text" 
+              name="name"
+              required 
+              value={formData.name}
+              onChange={handleChange}
+              className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
+              placeholder="Johnathan D. Vance"
+            />
+          </div>
+          <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
+            <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Electronic Mail</label>
+            <input 
+              type="email" 
+              name="email"
+              required 
+              value={formData.email}
+              onChange={handleChange}
+              className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
+              placeholder="okosunokosunandpartners@gmail.com"
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10">
+          <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
+            <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Secure Mobile</label>
+            <input 
+              type="tel" 
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
+              placeholder="+234..."
+            />
+          </div>
+          <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
+            <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Counsel Required</label>
+            <input 
+              type="text" 
+              name="service"
+              value={formData.service}
+              onChange={handleChange}
+              className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
+              placeholder="Arbitration / Litigation"
+            />
+          </div>
+        </div>
+
+        <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 transition-all focus-within:border-accent/40">
+          <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-3 md:mb-4">Brief Context</label>
+          <textarea 
+            name="message"
+            required 
+            rows={5} 
+            value={formData.message}
+            onChange={handleChange}
+            className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none resize-none placeholder:text-white/5" 
+            placeholder="Outline the parameters of your legal matter..."
+          ></textarea>
+        </div>
+
+        {error && (
+            <p className="text-red-400 text-xs uppercase tracking-widest font-bold">{error}</p>
+        )}
+
+        <div className="pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10">
+          <button 
+             type="submit" 
+             disabled={isSubmitting}
+             className="group relative w-full md:w-auto px-12 md:px-20 py-8 md:py-10 bg-accent text-primary rounded-full overflow-hidden transition-all duration-500 hover:scale-105 shadow-[0_15px_30px_-10px_rgba(212,175,55,0.4)] disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
+            <span className="relative z-10 text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] flex items-center justify-center gap-3 md:gap-4">
+              {isSubmitting ? (
+                 <>
+                   <Loader2 className="w-4 h-4 animate-spin" />
+                   <ShinyText text="TRANSMITTING..." />
+                 </>
+              ) : (
+                <>
+                   <ShinyText text="TRANSMIT BRIEF" />
+                   <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-2" />
+                </>
+              )}
+            </span>
+          </button>
+          <div className="flex flex-col items-center md:items-end opacity-30 text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-white">
+            <span>v.25-Alpha Secure System</span>
+            <span>Strict Attorney-Client Privilege</span>
+          </div>
+        </div>
+      </form>
+    </div>
+  );
+};
 
 const Contact: React.FC = () => {
   return (
@@ -49,7 +238,7 @@ const Contact: React.FC = () => {
                 {[
                   { icon: MapPin, label: "Private Office", val: ["1st Ewasede,", "Benin City, Edo State", "Nigeria"] },
                   { icon: Phone, label: "Direct Access", val: ["+234 810 105 0240", "+234 803 482 8680"] },
-                  { icon: Mail, label: "Digital Briefs", val: ["counsel@okosunpartners.com", "info@okosunpartners.com"] },
+                  { icon: Mail, label: "Digital Briefs", val: ["okosunokosunandpartners@gmail.com"] },
                   { icon: Clock, label: "Operational Hours", val: ["Mon - Fri: 9AM - 6PM", "Sat: By Appointment"] }
                 ].map((item, i) => (
                   <div key={i} className="group flex items-start gap-5 md:gap-6">
@@ -89,90 +278,7 @@ const Contact: React.FC = () => {
 
             {/* Right Column: The Premium Gold/Dark Form */}
             <div className="lg:col-span-8">
-              <div className="bg-primary rounded-[2.5rem] md:rounded-[4rem] p-8 md:p-16 lg:p-20 relative overflow-hidden shadow-[0_40px_80px_-20px_rgba(14,14,18,0.4)]">
-                {/* Gold Abstract Background Elements */}
-                <div className="absolute top-0 right-0 w-[70%] h-full bg-[radial-gradient(circle_at_top_right,rgba(212,175,55,0.08),transparent_60%)]" />
-                <div className="absolute -bottom-20 -left-20 w-60 md:w-80 h-60 md:h-80 bg-accent/5 rounded-full blur-[80px] md:blur-[100px]" />
-                
-                <div className="relative z-10 mb-10 md:mb-16">
-                  <div className="flex items-center gap-3 md:gap-4 mb-4 md:mb-6">
-                    <div className="h-[1px] w-8 md:w-12 bg-accent opacity-50" />
-                    <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.3em] md:tracking-[0.4em] text-accent">Inquiry Protocol</span>
-                  </div>
-                  <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif italic text-white leading-tight mb-4 md:mb-6">
-                    Begin Your <span className="text-accent underline decoration-accent/30 underline-offset-4 md:underline-offset-8">Engagement</span>
-                  </h2>
-                  <p className="text-white/40 font-light text-base md:text-lg max-w-xl">
-                    Our senior associates review all submissions personally. Please provide comprehensive context for your inquiry.
-                  </p>
-                </div>
-
-                <form className="space-y-8 md:space-y-12 relative z-10" onSubmit={(e) => e.preventDefault()}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10">
-                    <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
-                      <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Legal Identity</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
-                        placeholder="Johnathan D. Vance"
-                      />
-                    </div>
-                    <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
-                      <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Electronic Mail</label>
-                      <input 
-                        type="email" 
-                        required 
-                        className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
-                        placeholder="vance@corporate.law"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10">
-                    <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
-                      <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Secure Mobile</label>
-                      <input 
-                        type="tel" 
-                        className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
-                        placeholder="+234..."
-                      />
-                    </div>
-                    <div className="bg-white/5 border-b border-white/10 p-3 md:p-4 transition-all focus-within:border-accent">
-                      <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-1.5 md:mb-2">Counsel Required</label>
-                      <input 
-                        type="text" 
-                        className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none placeholder:text-white/5" 
-                        placeholder="Arbitration / Litigation"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 transition-all focus-within:border-accent/40">
-                    <label className="block text-[8px] md:text-[9px] font-black uppercase tracking-widest text-accent mb-3 md:mb-4">Brief Context</label>
-                    <textarea 
-                      required 
-                      rows={5} 
-                      className="w-full bg-transparent text-lg md:text-xl font-serif italic text-white outline-none resize-none placeholder:text-white/5" 
-                      placeholder="Outline the parameters of your legal matter..."
-                    ></textarea>
-                  </div>
-
-                  <div className="pt-6 md:pt-8 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-10">
-                    <button className="group relative w-full md:w-auto px-12 md:px-20 py-8 md:py-10 bg-accent text-primary rounded-full overflow-hidden transition-all duration-500 hover:scale-105 shadow-[0_15px_30px_-10px_rgba(212,175,55,0.4)]">
-                      <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
-                      <span className="relative z-10 text-[11px] md:text-[12px] font-black uppercase tracking-[0.4em] md:tracking-[0.6em] flex items-center justify-center gap-3 md:gap-4">
-                        <ShinyText text="TRANSMIT BRIEF" />
-                        <ArrowRight className="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-2" />
-                      </span>
-                    </button>
-                    <div className="flex flex-col items-center md:items-end opacity-30 text-[8px] md:text-[9px] font-black uppercase tracking-[0.2em] md:tracking-[0.3em] text-white">
-                      <span>v.25-Alpha Secure System</span>
-                      <span>Strict Attorney-Client Privilege</span>
-                    </div>
-                  </div>
-                </form>
-              </div>
+              <ContactForm />
             </div>
           </div>
         </div>

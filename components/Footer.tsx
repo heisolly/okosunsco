@@ -122,10 +122,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </div>
               </a>
 
-              <a href="mailto:counsel@okosunpartners.com" className="flex items-start gap-3 group">
+              <a href="mailto:okosunokosunandpartners@gmail.com" className="flex items-start gap-3 group">
                 <Mail className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                 <span className="text-sm text-white/60 group-hover:text-accent transition-colors">
-                  counsel@okosunpartners.com
+                  okosunokosunandpartners@gmail.com
                 </span>
               </a>
 
@@ -227,10 +227,10 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                     </div>
                   </a>
 
-                  <a href="mailto:counsel@okosunpartners.com" className="flex items-start gap-3">
+                  <a href="mailto:okosunokosunandpartners@gmail.com" className="flex items-start gap-3">
                     <Mail className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     <span className="text-sm text-white/60 break-all">
-                      counsel@okosunpartners.com
+                      okosunokosunandpartners@gmail.com
                     </span>
                   </a>
 
@@ -266,7 +266,8 @@ const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs text-white/40 text-center md:text-left">
-            © 2026 Okosun, Okosun & Partners. All rights reserved.
+            © 2026 Okosun, Okosun & Partners. All rights reserved. 
+            <button onClick={() => onNavigate('admin')} className="ml-2 opacity-0 hover:opacity-100 transition-opacity">.</button>
           </p>
 
           <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
