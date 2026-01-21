@@ -47,8 +47,8 @@ const App: React.FC = () => {
     if (currentPage === "home") {
       const observerOptions = {
         root: null,
-        rootMargin: "-10% 0px -10% 0px", // Loosened for better mobile detection
-        threshold: 0.05
+        rootMargin: "-45% 0px -45% 0px", // Precise center line detection
+        threshold: 0
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -62,8 +62,15 @@ const App: React.FC = () => {
         });
       }, observerOptions);
 
+      // Initial observation
       const sections = document.querySelectorAll("section[data-scene]");
       sections.forEach((section) => observer.observe(section));
+
+      // Re-observe after short delay to handle dynamic content/GSAP pinning
+      setTimeout(() => {
+        const updatedSections = document.querySelectorAll("section[data-scene]");
+        updatedSections.forEach((section) => observer.observe(section));
+      }, 1000);
 
       return () => observer.disconnect();
     }
@@ -124,7 +131,8 @@ const App: React.FC = () => {
 
 
   // Determine header theme based on current section - Clone section backgrounds
-  const isDarkSection = ["practice", "contact", "team", "archive", "case-study", "process", "about-highlight"].includes(currentScene || "");
+  // Practice is Light. Archive/Case/Process/About are Dark.
+  const isDarkSection = ["contact", "team", "archive", "case-study", "process", "about-highlight"].includes(currentScene || "");
   const headerBg = isDarkSection ? "bg-[#0E0E12]/90 border-white/10" : "bg-[#FDFCF8]/90 border-[#D4AF37]/20";
   const headerText = isDarkSection ? "text-white" : "text-primary";
   const headerAccent = isDarkSection ? "text-[#D4AF37]" : "text-[#D4AF37]";
