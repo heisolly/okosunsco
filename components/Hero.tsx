@@ -111,7 +111,7 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
             </div>
             <div className="overflow-hidden">
                <h1 className="hero-title-line font-italiana text-[16vw] leading-[0.85] text-primary uppercase tracking-widest relative inline-block origin-bottom">
-                Served <span className="text-accent text-[16vw] underline decoration-accent/10 underline-offset-[16px]">Sharp.</span>
+                Start <span className="text-accent text-[16vw] underline decoration-accent/10 underline-offset-[16px]">With Us.</span>
                 <div className="absolute -bottom-4 left-0 right-0 h-[6px] bg-accent" />
               </h1>
             </div>
@@ -186,21 +186,21 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
 
               {/* HERO TEXT: Italiana (Classic, Sharp, Engineered) */}
               <div className="relative z-20 text-primary space-y-4">
-                 <div className="overflow-hidden">
+                  <div className="overflow-hidden">
                     <h1 className="hero-title-line font-italiana text-[8vw] xl:text-[9vw] leading-[0.9] text-primary tracking-widest uppercase origin-bottom-left block">
                       Justice
                     </h1>
-                 </div>
-                 <div className="overflow-hidden">
+                  </div>
+                  <div className="overflow-hidden">
                     <h1 className="hero-title-line font-italiana text-[8vw] xl:text-[9vw] leading-[0.9] text-primary tracking-widest uppercase origin-bottom-left block">
-                      Served
+                      Start
                     </h1>
-                 </div>
-                 <div className="overflow-hidden flex items-center gap-6">
+                  </div>
+                  <div className="overflow-hidden flex items-center gap-6">
                     <h1 className="hero-title-line font-italiana text-[8vw] xl:text-[9vw] leading-[0.9] text-primary tracking-widest uppercase origin-bottom-left block">
-                      Sharp<span className="text-[#D4AF37]">.</span>
+                      With Us<span className="text-[#D4AF37]">.</span>
                     </h1>
-                 </div>
+                  </div>
               </div>
 
               {/* Description */}
