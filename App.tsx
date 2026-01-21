@@ -123,10 +123,13 @@ const App: React.FC = () => {
 
 
 
-  // Determine header theme based on current section
+  // Determine header theme based on current section - Clone section backgrounds
   const isDarkSection = ["practice", "contact", "team", "archive"].includes(currentScene || "");
   const headerBg = isDarkSection ? "bg-[#0E0E12]/90 border-white/10" : "bg-[#FDFCF8]/90 border-[#D4AF37]/20";
   const headerText = isDarkSection ? "text-white" : "text-primary";
+  const headerAccent = isDarkSection ? "text-[#D4AF37]" : "text-[#D4AF37]";
+  const navLinkActive = isDarkSection ? "text-[#D4AF37] bg-[#D4AF37]/10" : "text-primary bg-[#D4AF37]/5";
+  const navLinkInactive = isDarkSection ? "text-white/60 hover:text-[#D4AF37]" : "text-primary/60 hover:text-primary";
 
   return (
     <div className="relative min-h-screen bg-ivory text-primary selection:bg-accent/20 selection:text-accent font-sans overflow-x-hidden">
@@ -158,26 +161,26 @@ const App: React.FC = () => {
               </div>
               
               {/* Vertical Divider - Hidden on Mobile */}
-              <div className="hidden md:block h-10 w-[1px] bg-[#D4AF37]" />
+              <div className={`hidden md:block h-10 w-[1px] ${headerAccent}`} />
 
               {/* Text Hierarchy - Hidden on Mobile to reduce clutter */}
               <div className="hidden md:flex flex-col items-start justify-center">
                 {/* Top Label */}
                 <div className="flex items-center gap-2 mb-0.5 opacity-0 animate-in fade-in slide-in-from-left-2 duration-700 delay-100 fill-mode-forwards">
-                   <h3 className="text-[10px] uppercase font-medium tracking-[0.25em] text-[#D4AF37]">
+                   <h3 className={`text-[10px] uppercase font-medium tracking-[0.25em] ${headerAccent}`}>
                      Established 2010 • Benin City Hub
                    </h3>
                 </div>
 
                 {/* Main Name */}
-                <h1 className="font-serif text-lg md:text-xl italic text-primary leading-none tracking-wide text-shadow-sm mb-1">
+                <h1 className={`font-serif text-lg md:text-xl italic ${headerText} leading-none tracking-wide text-shadow-sm mb-1`}>
                   Okosun, Okosun & Partners
                 </h1>
 
                 {/* Bottom Label with Diamond */}
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-[#D4AF37] rotate-45" />
-                  <span className="text-[9px] uppercase font-medium tracking-[0.3em] text-[#D4AF37]">
+                  <div className={`w-2 h-2 ${isDarkSection ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]'} rotate-45`} />
+                  <span className={`text-[9px] uppercase font-medium tracking-[0.3em] ${headerAccent}`}>
                     Strategic Legal Counsel
                   </span>
                 </div>
@@ -185,7 +188,7 @@ const App: React.FC = () => {
             </div>
 
             {/* 2. Navigation - Fixed Layout (No Absolute) */}
-            <div className="hidden xl:flex items-center h-full ml-auto mr-12 border-l border-[#D4AF37]/20">
+            <div className={`hidden xl:flex items-center h-full ml-auto mr-12 border-l ${isDarkSection ? 'border-white/20' : 'border-[#D4AF37]/20'}`}>
               {[
                 { id: "home", label: "Home" },
                 { id: "about", label: "Firm" },
@@ -196,10 +199,10 @@ const App: React.FC = () => {
                 <button
                   key={item.id}
                   onClick={() => navigateTo(item.id as Page)}
-                  className={`relative h-12 px-8 flex items-center justify-center text-[10px] uppercase tracking-[0.25em] font-medium transition-all duration-300 border-r border-[#D4AF37]/20 group/nav ${
+                  className={`relative h-12 px-8 flex items-center justify-center text-[10px] uppercase tracking-[0.25em] font-medium transition-all duration-300 border-r ${isDarkSection ? 'border-white/20' : 'border-[#D4AF37]/20'} group/nav ${
                     currentPage === item.id 
-                      ? "text-primary bg-[#D4AF37]/5" 
-                      : "text-primary/60 hover:text-primary hover:bg-[#D4AF37]/5"
+                      ? navLinkActive
+                      : navLinkInactive + ' hover:bg-[#D4AF37]/5'
                   }`}
                 >
                   {/* Diamond Indicator for Active State */}
