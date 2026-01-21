@@ -79,7 +79,7 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
         <div className="absolute inset-x-0 bottom-0 top-0 z-0 flex items-center justify-center pointer-events-none">
           <div className="relative w-full h-full flex items-center justify-center">
              <img 
-               src="/lady-justice.png" 
+               src="/images/lady-justice.png" 
                alt="" 
                className="w-[140%] h-auto opacity-[0.25] grayscale brightness-[1.1] contrast-[1.05] transform translate-y-12" 
              />
@@ -260,7 +260,7 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
                   <div className="w-full h-full relative overflow-hidden bg-[#F2F0E9]">
                      {/* The Lady Justice - Grayscale & High Contrast */}
                      <img 
-                        src="/lady-justice.png" 
+                        src="/images/lady-justice.png" 
                         alt="Justice" 
                         className="w-full h-full object-cover object-top scale-110 grayscale contrast-[1.1] hover:scale-105 transition-transform duration-[1.5s]"
                      />

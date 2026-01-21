@@ -124,7 +124,7 @@ const App: React.FC = () => {
 
 
   // Determine header theme based on current section - Clone section backgrounds
-  const isDarkSection = ["practice", "contact", "team", "archive"].includes(currentScene || "");
+  const isDarkSection = ["practice", "contact", "team", "archive", "case-study", "process", "about-highlight"].includes(currentScene || "");
   const headerBg = isDarkSection ? "bg-[#0E0E12]/90 border-white/10" : "bg-[#FDFCF8]/90 border-[#D4AF37]/20";
   const headerText = isDarkSection ? "text-white" : "text-primary";
   const headerAccent = isDarkSection ? "text-[#D4AF37]" : "text-[#D4AF37]";

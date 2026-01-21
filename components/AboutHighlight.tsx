@@ -61,7 +61,7 @@ const AboutHighlight: React.FC<AboutHighlightProps> = ({ whyChooseUs }) => {
   ];
 
   return (
-    <section ref={containerRef} className="relative py-24 md:py-32 bg-[#0E0E12] text-white overflow-hidden">
+    <section ref={containerRef} className="relative py-24 md:py-32 bg-[#0E0E12] text-white overflow-hidden" data-scene="about-highlight">
       {/* Background Texture */}
       <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-[120px] pointer-events-none" />
