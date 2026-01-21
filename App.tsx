@@ -137,11 +137,11 @@ const App: React.FC = () => {
       
       <nav 
         style={{
-          clipPath: scrollY > 50 ? "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)" : "none"
+          clipPath: (scrollY > 50 && !mobileMenuOpen) ? "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)" : "none"
         }}
-        className={`fixed z-[1000] transistion-all duration-500 ease-out flex justify-center items-center ${
-        scrollY > 50 
-          ? `top-0 inset-x-0 md:top-4 md:inset-x-8 md:w-auto backdrop-blur-xl border-b md:border shadow-2xl py-3 md:py-4 ${headerBg} ${headerText}` 
+        className={`fixed z-[5000] transition-all duration-500 ease-out flex justify-center items-center ${
+        (scrollY > 50 || mobileMenuOpen)
+          ? `top-0 inset-x-0 md:top-4 md:inset-x-8 md:w-auto backdrop-blur-xl border-b md:border shadow-2xl py-3 md:py-4 ${mobileMenuOpen ? 'bg-[#0E0E12] border-white/10 text-white' : headerBg + ' ' + headerText}` 
           : "top-0 inset-x-0 bg-transparent py-4 md:py-6 border-b border-transparent text-primary"
       }`}>
         <div className="w-full max-w-[1920px] px-6 lg:px-8 xl:px-12 flex items-center justify-between">
@@ -246,17 +246,18 @@ const App: React.FC = () => {
               {/* Mobile Toggle - Minimal & Clean */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`lg:hidden relative z-[110] flex items-center justify-center transition-colors duration-300 ${
-                  mobileMenuOpen ? 'text-white' : headerText
+                className={`lg:hidden relative z-[5100] w-14 h-14 flex items-center justify-center transition-colors duration-300 ${
+                  mobileMenuOpen ? 'text-white' : (scrollY > 50 ? headerText : 'text-primary')
                 }`}
+                aria-label="Toggle Menu"
               >
                   {mobileMenuOpen ? (
-                    <span className="text-xs font-medium tracking-[0.25em] uppercase">Close</span>
+                    <span className="text-xs font-bold tracking-[0.2em] uppercase">Close</span>
                   ) : (
-                    <div className={`w-12 h-12 flex items-center justify-center border ${isDarkSection ? 'border-white/10' : 'border-primary/10'} rotate-45 hover:bg-accent hover:border-accent group transition-all duration-300`}>
+                    <div className={`w-12 h-12 flex items-center justify-center border ${isDarkSection || scrollY > 50 ? 'border-white/10' : 'border-primary/10'} rotate-45 hover:bg-accent hover:border-accent group transition-all duration-300`}>
                       <div className="flex flex-col gap-1.5 -rotate-45">
-                         <span className={`w-6 h-0.5 ${isDarkSection ? 'bg-white' : 'bg-primary'} group-hover:bg-primary transition-colors`} />
-                         <span className={`w-4 h-0.5 ${isDarkSection ? 'bg-white' : 'bg-primary'} group-hover:bg-primary transition-colors ml-auto`} />
+                         <span className={`w-6 h-0.5 ${isDarkSection || scrollY > 50 ? 'bg-white' : 'bg-primary'} group-hover:bg-primary transition-colors`} />
+                         <span className={`w-4 h-0.5 ${isDarkSection || scrollY > 50 ? 'bg-white' : 'bg-primary'} group-hover:bg-primary transition-colors ml-auto`} />
                       </div>
                     </div>
                   )}
@@ -265,9 +266,8 @@ const App: React.FC = () => {
 
           </div>
 
-        {/* 4. Architectural Mobile Menu */}
         <div 
-          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[90] h-[100dvh] transition-all duration-500 ease-out ${
+          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[4000] h-[100dvh] transition-all duration-500 ease-out ${
             mobileMenuOpen 
                ? "opacity-100 pointer-events-auto" 
                : "opacity-0 pointer-events-none"
