@@ -47,8 +47,8 @@ const App: React.FC = () => {
     if (currentPage === "home") {
       const observerOptions = {
         root: null,
-        rootMargin: "-20% 0px -20% 0px", // Focus on the middle of the viewport
-        threshold: 0.1
+        rootMargin: "-10% 0px -10% 0px", // Loosened for better mobile detection
+        threshold: 0.05
       };
 
       const observer = new IntersectionObserver((entries) => {
@@ -137,7 +137,7 @@ const App: React.FC = () => {
       
       <nav 
         style={{
-          clipPath: (scrollY > 50 && window.innerWidth >= 768) ? "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)" : "none"
+          clipPath: scrollY > 50 ? "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)" : "none"
         }}
         className={`fixed z-[1000] transistion-all duration-500 ease-out flex justify-center items-center ${
         scrollY > 50 

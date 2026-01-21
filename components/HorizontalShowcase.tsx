@@ -63,23 +63,23 @@ const HorizontalShowcase: React.FC = () => {
       {/* TRACK: Horizontal Scroll (Native on Mobile, GSAP on PC) */}
       <div 
         ref={trackRef}
-        className="horizontal-track relative z-10 
-                   flex flex-row items-center gap-6 px-6 
+        className="horizontal-track relative z-10 w-full
+                   flex flex-row items-stretch gap-6 px-6 py-4
                    overflow-x-auto snap-x snap-mandatory no-scrollbar
-                   lg:overflow-visible lg:gap-[4vw] lg:h-[75vh] lg:w-max lg:pl-[5vw] lg:pr-[5vw] lg:px-0 lg:snap-none"
+                   lg:items-center lg:overflow-visible lg:gap-[4vw] lg:h-[75vh] lg:w-max lg:pl-[5vw] lg:pr-[5vw] lg:px-0 lg:snap-none"
       >
         {cards.map((card: any, index) => (
           <div 
             key={index}
             className="panel relative flex-shrink-0 snap-center
-                       bg-[#0E0E12]/90 backdrop-blur-xl 
+                       bg-[#0E0E12]/95 backdrop-blur-xl 
                        border border-white/10 
                        rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden 
                        group 
                        hover:border-accent/50 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]
                        transition-all duration-700
-                       w-[85vw] h-[60vh] 
-                       lg:w-[65vw] lg:max-w-[950px] lg:h-full
+                       w-[85vw] min-w-[85vw] h-[65vh] 
+                       lg:w-[65vw] lg:min-w-0 lg:max-w-[950px] lg:h-full
                        shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
           >
              {/* Luxury Border Glow */}
@@ -99,19 +99,18 @@ const HorizontalShowcase: React.FC = () => {
                 {/* Header */}
                 <div className="flex justify-between items-start z-10">
                   <div className="flex items-center gap-4">
-                     <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-accent group-hover:text-primary group-hover:border-accent transition-all duration-500 shadow-lg">
-                        {card.type === 'intro' ? <Shield className="w-5 h-5 lg:w-6 lg:h-6"/> : 
-                         card.type === 'outro' ? <Award className="w-5 h-5 lg:w-6 lg:h-6"/> : 
-                         <Trophy className="w-5 h-5 lg:w-6 lg:h-6"/>}
+                     <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white/5 flex items-center justify-center border border-white/10 group-hover:bg-accent hover:text-primary transition-all duration-500 shadow-lg">
+                        {card.type === 'intro' ? <Shield className="w-5 h-5 lg:w-6 lg:h-6 text-accent"/> : 
+                         card.type === 'outro' ? <Award className="w-5 h-5 lg:w-6 lg:h-6 text-accent"/> : 
+                         <Trophy className="w-5 h-5 lg:w-6 lg:h-6 text-accent"/>}
                      </div>
                      <div className="flex flex-col">
                         <span className="text-accent text-[10px] font-black uppercase tracking-[0.25em]">
                           {index === 0 ? 'Start' : index === cards.length - 1 ? 'End' : `Case 0${index}`}
                         </span>
-                        {card.category && <span className="text-white/40 text-[9px] uppercase tracking-[0.1em]">{card.category}</span>}
                      </div>
                   </div>
-                  <span className="text-[5rem] lg:text-[9rem] leading-none font-serif text-white/5 font-black italic -mt-6 lg:-mt-8 -mr-4 select-none">
+                  <span className="text-5xl lg:text-[9rem] leading-none font-serif text-white/5 font-black italic -mt-6 lg:-mt-8 -mr-4 select-none">
                     {index + 1}
                   </span>
                 </div>
@@ -121,7 +120,7 @@ const HorizontalShowcase: React.FC = () => {
                    <h3 className="text-2xl lg:text-6xl font-serif text-white italic leading-tight group-hover:text-accent transition-colors duration-500">
                      {card.title}
                    </h3>
-                   <p className="text-white/70 text-sm lg:text-xl leading-relaxed border-l-2 border-accent/40 pl-5 lg:pl-6 group-hover:border-accent transition-colors duration-500 line-clamp-3 lg:line-clamp-none">
+                   <p className="text-white/70 text-sm lg:text-xl leading-relaxed border-l-2 border-accent/40 pl-5 lg:pl-6 group-hover:border-accent transition-colors duration-500 line-clamp-4 lg:line-clamp-none">
                      {card.subtitle || card.description || 'Strategic legal victory in high-stakes litigation.'}
                    </p>
                 </div>
@@ -129,7 +128,7 @@ const HorizontalShowcase: React.FC = () => {
                 {/* Footer/Action */}
                 <div className="pt-6 lg:pt-8 flex items-center gap-6 z-10">
                   <button className="flex items-center gap-3 text-xs lg:text-sm font-bold uppercase tracking-widest text-accent hover:text-white transition-colors group/btn px-5 lg:px-6 py-2.5 lg:py-3 border border-accent/20 rounded-full hover:bg-accent/10 hover:border-accent">
-                    <span>Explore</span>
+                    <span>Details</span>
                     <ArrowUpRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
                   </button>
                 </div>
@@ -138,7 +137,7 @@ const HorizontalShowcase: React.FC = () => {
           </div>
         ))}
         {/* Spacer for last card on mobile */}
-        <div className="flex-shrink-0 w-6 lg:hidden" />
+        <div className="flex-shrink-0 w-8 lg:hidden" />
       </div>
 
     </section>
