@@ -145,15 +145,15 @@ const App: React.FC = () => {
       
       <nav 
         style={{
-          clipPath: (scrollY > 50 && !mobileMenuOpen && window.innerWidth >= 768) ? "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)" : "none"
+          clipPath: (scrollY > 50 && !mobileMenuOpen) ? "polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px)" : "none"
         }}
         className={`fixed z-[5000] transition-all duration-500 ease-out flex justify-center items-center font-sans
         ${scrollY > 50 
           ? `
-             top-4 inset-x-4 w-auto rounded-full 
-             bg-[#0E0E12]/90 backdrop-blur-xl border border-white/10 text-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]
+             top-4 inset-x-4 w-auto 
+             bg-[#0E0E12]/95 backdrop-blur-xl border border-white/10 text-white shadow-[0_15px_40px_-10px_rgba(0,0,0,0.6)]
              
-             md:top-4 md:inset-x-8 md:w-auto md:rounded-none md:bg-transparent md:backdrop-blur-xl md:border-b md:border-t-0 md:border-l-0 md:border-r-0 md:shadow-2xl md:py-4
+             md:top-4 md:inset-x-8 md:w-auto md:bg-transparent md:backdrop-blur-xl md:border-b md:border-t-0 md:border-l-0 md:border-r-0 md:shadow-2xl md:py-4
              ${!mobileMenuOpen && window.innerWidth >= 768 ? headerBg + ' ' + headerText : ''}
             ` 
           : "top-0 inset-x-0 bg-transparent py-4 md:py-6 border-b border-transparent text-primary"
