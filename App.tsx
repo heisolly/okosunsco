@@ -47,7 +47,7 @@ const App: React.FC = () => {
     if (currentPage === "home") {
       const observerOptions = {
         root: null,
-        rootMargin: "-45% 0px -45% 0px", // Precise center line detection
+        rootMargin: "-25% 0px -25% 0px", // Broader detection band (50% of viewport)
         threshold: 0
       };
 
@@ -145,13 +145,20 @@ const App: React.FC = () => {
       
       <nav 
         style={{
-          clipPath: (scrollY > 50 && !mobileMenuOpen) ? "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)" : "none"
+          clipPath: (scrollY > 50 && !mobileMenuOpen && window.innerWidth >= 768) ? "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)" : "none"
         }}
-        className={`fixed z-[5000] transition-all duration-500 ease-out flex justify-center items-center ${
-        (scrollY > 50 || mobileMenuOpen)
-          ? `top-0 inset-x-0 md:top-4 md:inset-x-8 md:w-auto backdrop-blur-xl border-b md:border shadow-2xl py-3 md:py-4 ${mobileMenuOpen ? 'bg-[#0E0E12] border-white/10 text-white' : headerBg + ' ' + headerText}` 
+        className={`fixed z-[5000] transition-all duration-500 ease-out flex justify-center items-center font-sans
+        ${scrollY > 50 
+          ? `
+             top-4 inset-x-4 w-auto rounded-full 
+             bg-[#0E0E12]/90 backdrop-blur-xl border border-white/10 text-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]
+             
+             md:top-4 md:inset-x-8 md:w-auto md:rounded-none md:bg-transparent md:backdrop-blur-xl md:border-b md:border-t-0 md:border-l-0 md:border-r-0 md:shadow-2xl md:py-4
+             ${!mobileMenuOpen && window.innerWidth >= 768 ? headerBg + ' ' + headerText : ''}
+            ` 
           : "top-0 inset-x-0 bg-transparent py-4 md:py-6 border-b border-transparent text-primary"
-      }`}>
+        }
+      `}>
         <div className="w-full max-w-[1920px] px-6 lg:px-8 xl:px-12 flex items-center justify-between">
             
             {/* 1. Logo Section - Matches Image 1 */}
