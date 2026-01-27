@@ -72,91 +72,69 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
 
   return (
     <div ref={containerRef}>
-      {/* Large & Clean Mobile Hero Redesign - Cinematic Focus */}
-      <section className="lg:hidden relative min-h-screen w-full flex flex-col bg-[#FAF9F6] overflow-hidden pt-32 pb-10" data-scene="intro">
+      {/* SECOND DESIGN - Mobile Hero: "Justice Served Sharp." */}
+      <section className="lg:hidden relative min-h-screen w-full flex flex-col bg-[#FAF9F6] overflow-hidden pt-32 pb-16" data-scene="intro">
         
-        {/* LARGE CINEMATIC BACKGROUND VISUAL */}
-        <div className="absolute inset-x-0 bottom-0 top-0 z-0 flex items-center justify-center pointer-events-none">
+        {/* Background: Lady Justice (Centered, Larger) */}
+        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
           <div className="relative w-full h-full flex items-center justify-center">
              <img 
                src="/images/lady-justice.png" 
                alt="" 
-               className="w-[140%] h-auto opacity-[0.25] grayscale brightness-[1.1] contrast-[1.05] transform translate-y-12" 
+               className="h-[70%] w-auto opacity-[0.15] grayscale brightness-[1.05] contrast-[1.1]" 
              />
-             <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-transparent to-[#FAF9F6]/80" />
-             <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#FAF9F6] to-transparent" />
+             <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-transparent to-[#FAF9F6]" />
           </div>
-          
-          <div className="absolute top-0 right-[15%] w-[1px] h-full bg-accent/20 rotate-[20deg] transform-gpu" />
-          <div className="absolute bottom-0 left-[10%] w-[1px] h-1/2 bg-accent/10 rotate-[20deg] transform-gpu" />
         </div>
 
-        <div className="relative z-10 flex-1 flex flex-col px-10 text-center">
-          {/* Elite Tag - Focused Header */}
-          {/* Elite Tag - Focused Header */}
-          <div className="hero-fade-in flex flex-col items-center gap-4 mb-10">
+        <div className="relative z-10 flex-1 flex flex-col px-8 text-center justify-between">
+          
+          {/* Elite Tag */}
+          <div className="hero-fade-in flex flex-col items-center gap-4 mb-8 mt-4">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-[1px] bg-accent" />
-              <span className="text-[10px] font-medium uppercase tracking-[0.4em] text-accent">Elite National Command</span>
-              <div className="w-8 h-[1px] bg-accent" />
+              <div className="w-10 h-[1px] bg-accent" />
+              <span className="text-[9px] font-bold uppercase tracking-[0.45em] text-accent">Elite National Command</span>
+              <div className="w-10 h-[1px] bg-accent" />
             </div>
           </div>
 
-          {/* Headline Suite - Dramatic Centered Impact */}
-          <div className="space-y-4 mb-10">
-            <div className="overflow-hidden">
-              <h1 className="hero-title-line font-italiana text-[16vw] leading-[0.85] text-primary uppercase tracking-widest block origin-bottom">
-                Justice
-              </h1>
+          {/* Main Headline: "Justice Served Sharp." */}
+          <div className="flex-1 flex flex-col justify-center mb-8">
+            <div className="space-y-2">
+              <div className="overflow-hidden">
+                <h1 className="hero-title-line font-italiana text-[15vw] leading-[1] text-primary tracking-tight italic">
+                  Justice
+                </h1>
+              </div>
+              <div className="overflow-hidden">
+                <h1 className="hero-title-line font-italiana text-[15vw] leading-[1] text-primary tracking-tight">
+                  Served <span className="text-accent italic">Sharp.</span>
+                </h1>
+              </div>
+              {/* Gold Underline */}
+              <div className="w-[70%] h-[3px] bg-accent mx-auto mt-3" />
             </div>
-            <div className="overflow-hidden">
-               <h1 className="hero-title-line font-italiana text-[16vw] leading-[0.85] text-primary uppercase tracking-widest relative inline-block origin-bottom">
-                Start <span className="text-accent text-[16vw] underline decoration-accent/10 underline-offset-[16px]">With Us.</span>
-                <div className="absolute -bottom-4 left-0 right-0 h-[6px] bg-accent" />
-              </h1>
+
+            {/* Tagline */}
+            <div className="hero-fade-in mt-10 max-w-[320px] mx-auto">
+              <p className="text-primary/60 text-sm font-serif italic leading-relaxed">
+                "Clinical legal strategies architected for Nigeria's most complex corporate and private interests."
+              </p>
             </div>
           </div>
 
-          {/* Clean Clinical Description */}
-          <div className="hero-fade-in relative py-6 px-8 mb-10 backdrop-blur-md bg-white/10 rounded-[2.5rem] border border-white/30 max-w-[340px] mx-auto shadow-sm">
-             <p className="text-primary/70 text-base font-serif italic leading-relaxed">
-               "Clinical legal strategies architected for Nigeria's most complex corporate and private interests."
-             </p>
-          </div>
-
-          {/* Precision Stats Node */}
-          <div className="hero-fade-in grid grid-cols-2 gap-12 mb-16 relative px-4">
-            <div className="space-y-1">
-              <p className="text-[9px] font-medium uppercase tracking-widest text-accent opacity-60">Success Rate</p>
+          {/* Stats Row - Centered */}
+          <div className="hero-fade-in grid grid-cols-2 gap-16 mb-12 max-w-[340px] mx-auto">
+            <div className="text-center space-y-1">
+              <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-accent/60">Success Rate</p>
               <p className="text-5xl font-serif italic font-light text-primary">98.4%</p>
             </div>
-            <div className="absolute left-1/2 top-4 bottom-4 w-[1px] bg-primary/10 -translate-x-1/2 rotate-[12deg]" />
-            <div className="space-y-1">
-              <p className="text-[9px] font-medium uppercase tracking-widest text-accent opacity-60">Years Active</p>
+            <div className="text-center space-y-1">
+              <p className="text-[8px] font-bold uppercase tracking-[0.3em] text-accent/60">Years Active</p>
               <p className="text-5xl font-serif italic font-light text-primary">15+</p>
             </div>
           </div>
 
-          {/* Multi-Action Suite */}
-          <div className="hero-fade-in mt-auto pb-12 w-full max-w-[420px] mx-auto space-y-8">
-            <button 
-              onClick={onInitiateBrief}
-              className="group relative w-full py-8 bg-primary text-white rounded-[2rem] overflow-hidden transition-all duration-500 shadow-[0_25px_50px_-12px_rgba(14,14,18,0.5)] flex items-center justify-center gap-4"
-            >
-              <div className="absolute inset-0 bg-white translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-500 opacity-20" />
-              <span className="relative z-10 text-[12px] font-medium uppercase tracking-[0.5em]">
-                <ShinyText text="COMMENCE BRIEF" />
-              </span>
-              <ArrowRight className="w-5 h-5 text-accent transition-transform group-hover:translate-x-3" />
-            </button>
-            
-            <div className="flex justify-center flex-col items-center gap-4">
-               <a href="tel:+2348101050240" className="text-[10px] font-medium uppercase tracking-[0.4em] text-primary/40 flex items-center gap-3 hover:text-accent transition-colors">
-                 <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                 Secure Response: 0810 105 0240
-               </a>
-            </div>
-          </div>
         </div>
       </section>
 
