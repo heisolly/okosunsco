@@ -81,7 +81,7 @@ const Hero: React.FC<HeroProps> = ({ onInitiateBrief, onViewCapabilities }) => {
              <img 
                src="/images/lady-justice.png" 
                alt="" 
-               className="h-[70%] w-auto opacity-[0.15] grayscale brightness-[1.05] contrast-[1.1]" 
+               className="h-[50%] w-auto opacity-[0.12] grayscale brightness-[1.05] contrast-[1.1]" 
              />
              <div className="absolute inset-0 bg-gradient-to-t from-[#FAF9F6] via-transparent to-[#FAF9F6]" />
           </div>
