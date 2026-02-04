@@ -151,9 +151,9 @@ const App: React.FC = () => {
         ${scrollY > 50 
           ? `
              top-4 inset-x-4 w-auto 
-             bg-[#0E0E12]/95 backdrop-blur-xl border border-white/10 text-white shadow-[0_15px_40px_-10px_rgba(0,0,0,0.6)]
+             bg-[#0E0E12]/95 backdrop-blur-2xl backdrop-saturate-150 border border-white/10 text-white shadow-[0_15px_40px_-10px_rgba(0,0,0,0.6)]
              
-             md:top-4 md:inset-x-8 md:w-auto md:bg-transparent md:backdrop-blur-xl md:border-b md:border-t-0 md:border-l-0 md:border-r-0 md:shadow-2xl md:py-4
+             md:top-4 md:inset-x-8 md:w-auto md:bg-transparent md:backdrop-blur-2xl md:backdrop-saturate-150 md:border-b md:border-t-0 md:border-l-0 md:border-r-0 md:shadow-2xl md:py-4
              ${!mobileMenuOpen && window.innerWidth >= 768 ? headerBg + ' ' + headerText : ''}
             ` 
           : "top-0 inset-x-0 bg-transparent py-4 md:py-6 border-b border-transparent text-primary"
@@ -164,7 +164,7 @@ const App: React.FC = () => {
             {/* 1. Logo Section - Matches Image 1 */}
             <div
               onClick={() => navigateTo("home")}
-              className="flex items-center gap-4 md:gap-6 cursor-pointer group/logo"
+              className="flex items-center gap-4 md:gap-6 cursor-pointer group/logo hover:opacity-80 transition-opacity duration-300"
             >
               {/* Logo Icon */}
               <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center">
@@ -181,7 +181,7 @@ const App: React.FC = () => {
               {/* Text Hierarchy - Hidden on Mobile to reduce clutter */}
               <div className="hidden md:flex flex-col items-start justify-center">
                 {/* Top Label */}
-                <div className="flex items-center gap-2 mb-0.5 opacity-0 animate-in fade-in slide-in-from-left-2 duration-700 delay-100 fill-mode-forwards">
+                <div className="flex items-center gap-2 mb-0.5 slide-in-from-left" style={{ animationDelay: "100ms" }}>
                    <h3 className={`text-[10px] uppercase font-medium tracking-[0.25em] ${headerAccent}`}>
                      Established 2010 • Benin City Hub
                    </h3>
@@ -240,7 +240,7 @@ const App: React.FC = () => {
               {/* Desktop Details */}
               <button
                 onClick={() => navigateTo("consultation")}
-                className="hidden md:flex relative group overflow-hidden transition-transform duration-300 active:scale-95"
+                className="hidden md:flex relative group overflow-hidden transition-transform duration-300 active:scale-95 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]"
                 style={{
                    clipPath: "polygon(0 0, 100% 0, 100% 70%, 92% 100%, 0 100%)",
                    filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.15))"
@@ -261,7 +261,7 @@ const App: React.FC = () => {
               {/* Mobile Toggle - Minimal & Clean */}
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className={`lg:hidden relative z-[5100] w-14 h-14 flex items-center justify-center transition-colors duration-300 ${
+                className={`xl:hidden relative z-[5100] w-14 h-14 flex items-center justify-center transition-colors duration-300 ${
                   mobileMenuOpen ? 'text-white' : (scrollY > 50 ? headerText : 'text-primary')
                 }`}
                 aria-label="Toggle Menu"
@@ -282,7 +282,7 @@ const App: React.FC = () => {
           </div>
 
         <div 
-          className={`lg:hidden fixed inset-0 bg-[#0E0E12] z-[4000] h-[100dvh] transition-all duration-500 ease-out ${
+          className={`xl:hidden fixed inset-0 bg-[#0E0E12]/95 backdrop-blur-3xl z-[4000] h-[100dvh] transition-all duration-500 ease-out ${
             mobileMenuOpen 
                ? "opacity-100 pointer-events-auto" 
                : "opacity-0 pointer-events-none"
